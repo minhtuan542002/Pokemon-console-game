@@ -136,6 +136,13 @@ public abstract class Item implements Printable, Capable {
 	}
 
 	/**
+	 * Clear all actions from this item.
+	 */
+	protected final void clearActions(){
+		this.allowableActions = new ActionList();
+	}
+
+	/**
 	 * Does this Item have the given Capability?
 	 * 
 	 * @return true if and only if is Item has the given Capability
