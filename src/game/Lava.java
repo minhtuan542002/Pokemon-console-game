@@ -13,7 +13,7 @@ public class Lava extends Ground {
      * Constructor.
      */
     public Lava() {
-        super('L');
+        super('^');
         this.addCapability(Element.FIRE);
     }
 }
