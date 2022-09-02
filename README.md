@@ -2,11 +2,11 @@
 
 ## XX_LabYYTeamZZ
 Team members:
-*
-*
-*
+* Zhijun Chen
+* Ishrat Kaur
+* Minh Tuan Le
 
-Link to contribution logs spreadsheet: ...
+Link to contribution logs spreadsheet: https://docs.google.com/spreadsheets/d/1SE61xhpFfJmrVGdvF2a_fhs3K3dRU2vio88GIsvJOlU/edit?usp=sharing
 
 ## Design Rationale
 
