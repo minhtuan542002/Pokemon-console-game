@@ -1,7 +1,7 @@
 package game.affection;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import game.Charmander;
+import game.pokemons.Charmander;
 
 import java.util.HashMap;
 import java.util.Map;
