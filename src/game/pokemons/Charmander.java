@@ -24,9 +24,6 @@ import java.util.TreeMap;
  * Modified by:
  */
 public class Charmander extends Pokemon {
-    //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
-
-
     /**
      * Constructor.
      */
@@ -50,13 +47,6 @@ public class Charmander extends Pokemon {
         return actions;
     }
 
-
-
-    /**
-     * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
-     */
-    public void toggleWeapon(boolean isEquipping) {
-    }
 
     @Override
     public void dayEffect() {

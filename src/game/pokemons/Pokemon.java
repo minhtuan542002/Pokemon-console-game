@@ -9,14 +9,17 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.specialattacks.BackupWeapons;
 import game.time.TimePerception;
 
 import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class Pokemon extends Actor implements TimePerception  {
-
+    //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
     protected final Map<Integer, Behaviour> behaviours = new TreeMap<>(); // priority, behaviour
+
+    protected final BackupWeapons backupWeapon = new BackupWeapons();
     /**
      * Constructor.
      *
@@ -32,6 +35,13 @@ public abstract class Pokemon extends Actor implements TimePerception  {
 
     public void addBehaviour(Integer priority, Behaviour behaviour) {
         behaviours.put(priority, behaviour);
+    }
+
+    /**
+     * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
+     */
+    public void toggleWeapon(boolean isEquipping) {
+
     }
 
     /**
