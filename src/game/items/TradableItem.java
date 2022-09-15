@@ -2,7 +2,8 @@ package game.items;
 
 import edu.monash.fit2099.engine.items.Item;
 
-public abstract class TradableItem extends Item {
+abstract class TradableItem extends Item {
+
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -13,7 +14,4 @@ public abstract class TradableItem extends Item {
         super(name, displayChar, portable);
     }
 
-    public TradableItem() {
-        super();
-    }
 }

@@ -14,6 +14,7 @@ import game.behaviours.WanderBehaviour;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by:
@@ -21,9 +22,9 @@ import java.util.Map;
  * @author Riordan D. Alfredo
  * Modified by:
  */
-public class Charmander extends Actor {
+public class Charmander extends Pokemon {
     //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
-    private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+    private final Map<Integer, Behaviour> behaviours = new TreeMap<>(); // priority, behaviour
 
     /**
      * Constructor.
@@ -70,4 +71,13 @@ public class Charmander extends Actor {
     public void toggleWeapon(boolean isEquipping) {
     }
 
+    @Override
+    public void dayEffect() {
+
+    }
+
+    @Override
+    public void nightEffect() {
+
+    }
 }

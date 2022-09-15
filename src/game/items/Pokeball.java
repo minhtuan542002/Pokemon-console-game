@@ -8,5 +8,6 @@ public class Pokeball extends TradableItem{
      * @param portable true if and only if the Item can be picked up
      */
     public Pokeball(String name, char displayChar, boolean portable) {
-        super();
+        super(name, displayChar, portable);
+    }
 }
