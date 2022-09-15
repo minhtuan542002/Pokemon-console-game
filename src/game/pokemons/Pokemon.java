@@ -1,9 +1,22 @@
 package game.pokemons;
 
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.positions.GameMap;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.Behaviour;
+import game.behaviours.WanderBehaviour;
 import game.time.TimePerception;
 
-abstract class Pokemon extends Actor implements TimePerception  {
+import java.util.Map;
+import java.util.TreeMap;
+
+public abstract class Pokemon extends Actor implements TimePerception  {
+
+    protected final Map<Integer, Behaviour> behaviours = new TreeMap<>(); // priority, behaviour
     /**
      * Constructor.
      *
@@ -13,5 +26,26 @@ abstract class Pokemon extends Actor implements TimePerception  {
      */
     public Pokemon(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
+        this.behaviours.put(10, new WanderBehaviour());
+        this.behaviours.put(9, new AttackBehaviour());
+    }
+
+    public void addBehaviour(Integer priority, Behaviour behaviour) {
+        behaviours.put(priority, behaviour);
+    }
+
+    /**
+     * By using behaviour loops, it will decide what will be the next action automatically.
+     *
+     * @see Actor#playTurn(ActionList, Action, GameMap, Display)
+     */
+    @Override
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        for (Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            if (action != null)
+                return action;
+        }
+        return new DoNothingAction();
     }
 }

@@ -1,7 +1,9 @@
 package game.affection;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import game.behaviours.FollowBehaviour;
 import game.pokemons.Charmander;
+import game.pokemons.Pokemon;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +25,7 @@ public class AffectionManager {
     /**
      * HINT: is it just for a Charmander?
      */
-    private final Map<Charmander, Integer> affectionPoints;
+    private final Map<Pokemon, Integer> affectionPoints;
 
     /**
      * We assume there's only one trainer in this manager.
@@ -83,8 +85,8 @@ public class AffectionManager {
      * @param actor general actor instance
      * @return the Pokemon instance.
      */
-    private Charmander findPokemon(Actor actor) {
-        for (Charmander pokemon : affectionPoints.keySet()) {
+    private Pokemon findPokemon(Actor actor) {
+        for (Pokemon pokemon : affectionPoints.keySet()) {
             if (pokemon.equals(actor)) {
                 return pokemon;
             }
@@ -113,6 +115,14 @@ public class AffectionManager {
      */
     public String decreaseAffection(Actor actor, int point) {
         return "";
+    }
+
+    public void updatePokemonBehaviours() {
+        for(Map.Entry<Pokemon, Integer> entry : affectionPoints.entrySet()) {
+            if(entry.getValue()>=75) {
+                entry.getKey().addBehaviour(1, new FollowBehaviour(trainer));
+            }
+        }
     }
 
 }
