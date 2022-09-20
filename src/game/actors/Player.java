@@ -16,6 +16,9 @@ import game.Status;
  * Modified by:
  *
  */
+
+// player should store candies in his inventory
+
 public class Player extends Actor {
 
 	private final Menu menu = new Menu();

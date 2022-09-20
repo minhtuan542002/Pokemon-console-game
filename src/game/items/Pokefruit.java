@@ -1,6 +1,8 @@
 package game.items;
 
-public class Pokefruit extends TradableItem {
+import edu.monash.fit2099.engine.items.Item;
+
+public class Pokefruit extends Item {
     /***
      * Constructor.
      * @param name the name of this Item
@@ -9,6 +11,6 @@ public class Pokefruit extends TradableItem {
      */
     public Pokefruit(String name, char displayChar, boolean portable) {
 
-        super(name, displayChar, portable);
+        super("Pokefruit", 'f', true);
     }
 }

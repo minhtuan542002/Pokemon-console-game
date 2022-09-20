@@ -1,6 +1,8 @@
 package game.items;
 
-public class Pokeball extends TradableItem{
+import edu.monash.fit2099.engine.items.Item;
+
+public class Pokeball extends Item {
     /***
      * Constructor.
      * @param name the name of this Item
@@ -8,6 +10,6 @@ public class Pokeball extends TradableItem{
      * @param portable true if and only if the Item can be picked up
      */
     public Pokeball(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+        super("Pokeball", '0', true);
     }
 }

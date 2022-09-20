@@ -14,7 +14,7 @@ public class Candy extends Item {
      * @param displayChar the character to use to represent this item if it is on the ground
      * @param portable true if and only if the Item can be picked up
      */
-    public Candy() {super('Candy', '*', true);}
+    public Candy() {super("Candy", '*', true);}
 
 
     // methods
