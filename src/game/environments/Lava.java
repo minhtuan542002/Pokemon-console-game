@@ -1,7 +1,7 @@
-package game;
+package game.environments;
 
 import edu.monash.fit2099.engine.positions.Ground;
-import game.time.TimePerception;
+import game.Element;
 
 /**
  * Created by:
@@ -9,22 +9,12 @@ import game.time.TimePerception;
  * Modified by:
  *
  */
-public class Lava extends Ground implements TimePerception {
+public class Lava extends Ground {
     /**
      * Constructor.
      */
     public Lava() {
         super('^');
         this.addCapability(Element.FIRE);
-    }
-
-    @Override
-    public void dayEffect() {
-
-    }
-
-    @Override
-    public void nightEffect() {
-
     }
 }

@@ -5,29 +5,45 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import java.util.HashMap;
-import java.util.Map;
+import edu.monash.fit2099.engine.displays.Menu;
+import game.Status;
 
+/**
+ * Class representing the Player.
+ *
+ * Created by:
+ * @author Riordan D. Alfredo
+ * Modified by:
+ *
+ */
 public class Player extends Actor {
 
-    Map<String, String> playerInventory = new HashMap<String, String>();
+	private final Menu menu = new Menu();
 
-    /**
-     * Constructor.
-     *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
-     */
-    public Player(String name, char displayChar, int hitPoints) {
-        super("Player", '@', hitPoints);            // hitPoints represent the health of the Actor
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param name        Name to call the player in the UI
+	 * @param displayChar Character to represent the player in the UI
+	 * @param hitPoints   Player's starting number of hitpoints
+	 */
+	public Player(String name, char displayChar, int hitPoints) {
+		super(name, displayChar, hitPoints);
+		this.addCapability(Status.IMMUNE);
+	}
 
-    // implements methods inherited from parent class
-    @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        return null;
-    }
+	@Override
+	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		// Handle multi-turn Actions
+		if (lastAction.getNextAction() != null)
+			return lastAction.getNextAction();
 
-    // methods
+		// return/print the console menu
+		return menu.showMenu(this, actions, display);
+	}
+
+	@Override
+	public char getDisplayChar() {
+		return super.getDisplayChar();
+	}
 }

@@ -1,4 +1,4 @@
-package game;
+package game.pokemons;
 
 
 import edu.monash.fit2099.engine.actions.Action;
@@ -7,11 +7,15 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.AttackAction;
+import game.Element;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by:
@@ -19,10 +23,7 @@ import java.util.Map;
  * @author Riordan D. Alfredo
  * Modified by:
  */
-public class Charmander extends Actor {
-    //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
-    private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
-
+public class Charmander extends Pokemon {
     /**
      * Constructor.
      */
@@ -30,7 +31,6 @@ public class Charmander extends Actor {
         super("Charmander", 'c', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.FIRE);
-        this.behaviours.put(10, new WanderBehaviour());
     }
 
     /**
@@ -47,25 +47,14 @@ public class Charmander extends Actor {
         return actions;
     }
 
-    /**
-     * By using behaviour loops, it will decide what will be the next action automatically.
-     *
-     * @see Actor#playTurn(ActionList, Action, GameMap, Display)
-     */
+
     @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        for (Behaviour behaviour : behaviours.values()) {
-            Action action = behaviour.getAction(this, map);
-            if (action != null)
-                return action;
-        }
-        return new DoNothingAction();
+    public void dayEffect() {
+
     }
 
-    /**
-     * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
-     */
-    public void toggleWeapon(boolean isEquipping) {
-    }
+    @Override
+    public void nightEffect() {
 
+    }
 }
