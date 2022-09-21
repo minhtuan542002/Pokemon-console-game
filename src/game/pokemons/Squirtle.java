@@ -1,37 +1,20 @@
 package game.pokemons;
 
-
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.AttackAction;
 import game.Element;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.WanderBehaviour;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-
-/**
- * Created by:
- *
- * @author Riordan D. Alfredo
- * Modified by:
- */
-public class Charmander extends Pokemon {
+public class Squirtle extends Pokemon{
     /**
      * Constructor.
      */
-    public Charmander() {
-        super("Charmander", 'c', 100);
+    public Squirtle() {
+        super("Squirtle", 's', 100);
         // HINT: add more relevant behaviours here
-        this.addCapability(Element.FIRE);
+        this.addCapability(Element.WATER);
     }
 
     /**
@@ -44,13 +27,13 @@ public class Charmander extends Pokemon {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         actions.add(new AttackAction(this, direction));
-        //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
+
         return actions;
     }
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(10, "scratch");
+        return new IntrinsicWeapon(10, "tackle");
     }
 
     @Override
