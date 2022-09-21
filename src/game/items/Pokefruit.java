@@ -2,7 +2,7 @@ package game.items;
 
 import edu.monash.fit2099.engine.items.Item;
 
-public class Pokefruit extends Item {
+public class Pokefruit extends tradableItem {
     /***
      * Constructor.
      * @param name the name of this Item

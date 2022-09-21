@@ -18,7 +18,7 @@ import java.util.List;
 public class Nurse extends Actor {
 
     // making nurse's inventory:
-    ArrayList<Item> nurseInventoryImmutable = new ArrayList<>();
+    static ArrayList<Item> nurseInventoryImmutable = new ArrayList<>();
 
     /**
      * Constructor.
@@ -28,7 +28,7 @@ public class Nurse extends Actor {
      * @param hitPoints   the Actor's starting hit points
      */
 
-    // note to self: nurse joy is non-playable actor so she needs a list of behaviours to help her perform actions
+    // note to self: nurse joy is non-playable actor so, she needs a list of behaviours to help her perform actions
     public Nurse(String name, char displayChar, int hitPoints) {
         super("Nurse Joy", '%', hitPoints);
     }

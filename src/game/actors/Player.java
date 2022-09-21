@@ -4,9 +4,14 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Class representing the Player.
@@ -20,6 +25,8 @@ import game.Status;
 // player should store candies in his inventory
 
 public class Player extends Actor {
+
+	static ArrayList<Item> playerInventoryImmutable = new ArrayList<>();
 
 	private final Menu menu = new Menu();
 
@@ -49,4 +56,17 @@ public class Player extends Actor {
 	public char getDisplayChar() {
 		return super.getDisplayChar();
 	}
+
+
+
+	// when player picks up candy, candy is dropped
+	// when player picks up candy, he adds it to his inventory
+	// gets inventory from engine but problem is this inventory is not mutable
+	public List<Item> getInventory() {
+		return Collections.unmodifiableList(playerInventoryImmutable);
+	}
+
+	// so I try to make the inventory mutable
+	public static List<Item> playerInventory = new ArrayList<>(playerInventoryImmutable);
+	
 }
