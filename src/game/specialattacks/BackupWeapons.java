@@ -10,7 +10,7 @@ import game.pokemons.Pokemon;
 /**
  * Created by:
  * @author Riordan D. Alfredo
- * Modified by:
+ * Modified by: Minh Tuan Le
  *
  * TODO: Use this class to store Pokemon's weapons (special attack) permanently.
  * If a Pokemon needs to use a weapon, put it into that Pokemon's inventory.
@@ -20,19 +20,17 @@ import game.pokemons.Pokemon;
 public class BackupWeapons {
     static private SpecialWeapon specialWeapon = null;
 
-    public void createSpecialWeapon(Element element) {
-        if (specialWeapon == null) {
-            if(element ==Element.FIRE) specialWeapon= new Ember();
-            if(element ==Element.GRASS) specialWeapon= new VineWhip();
-            if(element ==Element.WATER) specialWeapon= new Bubble();
-        }
+    public BackupWeapons(Element element) {
+        if(element ==Element.FIRE) specialWeapon= new Ember();
+        if(element ==Element.GRASS) specialWeapon= new VineWhip();
+        if(element ==Element.WATER) specialWeapon= new Bubble();
     }
-    public Item getSpecialWeapon() {
 
+    public Item getSpecialWeapon() {
         return specialWeapon;
     }
 
-    public void equipWeapon(Pokemon pokemon) {
+    public void updateWeapon(Pokemon pokemon) {
 
     }
 }
