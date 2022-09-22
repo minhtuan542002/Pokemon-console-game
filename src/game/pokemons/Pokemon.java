@@ -6,8 +6,13 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.AttackAction;
+import game.Element;
+import game.ElementsHelper;
+import game.affection.AffectionManager;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.specialattacks.BackupWeapons;
 import game.time.TimePerception;
@@ -19,7 +24,8 @@ public abstract class Pokemon extends Actor implements TimePerception  {
     //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
     protected final Map<Integer, Behaviour> behaviours = new TreeMap<>(); // priority, behaviour
 
-    protected final BackupWeapons backupWeapon = new BackupWeapons();
+    protected BackupWeapons backupWeapon;
+
     /**
      * Constructor.
      *
@@ -31,6 +37,9 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         super(name, displayChar, hitPoints);
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(9, new AttackBehaviour());
+
+        AffectionManager affectionManager = AffectionManager.getInstance();
+        affectionManager.registerPokemon(this);
     }
 
     public void addBehaviour(Integer priority, Behaviour behaviour) {
@@ -41,7 +50,23 @@ public abstract class Pokemon extends Actor implements TimePerception  {
      * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
      */
     public void toggleWeapon(boolean isEquipping) {
+        if(isEquipping)this.addItemToInventory(backupWeapon.getSpecialWeapon());
+        else this.removeItemFromInventory(backupWeapon.getSpecialWeapon());
+    }
 
+
+    /**
+     * @param otherActor the Actor that might perform an action.
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return list of actions
+     */
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions = new ActionList();
+        actions.add(new AttackAction(this, direction));
+        //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
+        return actions;
     }
 
     /**
@@ -51,11 +76,20 @@ public abstract class Pokemon extends Actor implements TimePerception  {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        toggleWeapon(new ElementsHelper().hasAnySimilarElements(
+                map.locationOf(this).getGround(), this.findCapabilitiesByType(Element.class)
+        ));
+
+        AffectionManager affectionManager = AffectionManager.getInstance();
+        affectionManager.updatePokemonBehaviours();
+
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if (action != null)
                 return action;
         }
+
+
         return new DoNothingAction();
     }
 }
