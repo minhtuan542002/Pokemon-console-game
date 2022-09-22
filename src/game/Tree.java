@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.positions.Ground;
+import edu.monash.fit2099.engine.positions.Location;
 
 public class Tree extends SpawningGround {
 
@@ -18,7 +19,14 @@ public class Tree extends SpawningGround {
     }
 
     @Override
-    public int chanceToSpawn() {
-        return 0;
+    public void spawnPokemon(Location location) {
+
     }
+
+    @Override
+    public void dropPokeFruit() {
+
+    }
+
+
 }
