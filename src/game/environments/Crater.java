@@ -36,18 +36,11 @@ public class Crater extends SpawningGround {
 
     @Override
     public void dropPokeFruit(Location location) {
-        int dropRate = new Random().nextInt(4);
-        if (dropRate == 0){
+        int dropRate = new Random().nextInt(100);
+        if (dropRate < 25){
 
         }
 
     }
 
-
-    @Override
-    public void tick(Location location) {
-        //put in abstract class
-        this.spawnPokemon(location);
-        this.dropPokeFruit(location);
-    }
 }
