@@ -11,29 +11,46 @@ import game.items.tradableItem;
 
 public class TradeAction extends Action {
 
-    // attributes
-    Nurse nurse;
-    Player player;
-    int candyAmount;
-    int i;
 
-    tradableItem Pokefruit;
+    // attributes:
+    // tradable is my interface (still needs implementation)
+    // note to self: I gotta make tradable an interface not abstract cause makes easy to add more items in future
+    private Tradable item;
+    // cost is how many candies we would need to buy one item
+    private Integer cost;
 
-    tradableItem Pokeball;
+    //constructor
+    // put attributes in constructor to store
+    public TradeAction(Tradable item, Integer cost) {
+        this.item = item;
+        this.cost = cost;
+    }
 
+    // methods
+    // execute method from game engine
     @Override
     public String execute(Actor actor, GameMap map) {
+        // confusion ???
+        // work on tradable and then come back
         return null;
     }
 
-
+    // menu description method also from game engine
+    // used to print message on console
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+
+        return actor + "traded " + item + " for " + cost + " candies.";
     }
 
-    public String tradeCandy() {
 
+}
+
+
+        /**
+         *
+         * Notes from consultation - instead of mkaing new methods focus on using execute method from engine
+         *
         // work on player's inventory and then come back here to continue this
         // both player and nurse's inventory looks sorted, so now i do this logic in trade action
 
@@ -60,7 +77,7 @@ public class TradeAction extends Action {
         }
         else if (candyAmount == 1) {
             // remove one candy from player's inventory;
-            player.removeItemFromInventory(Item candy);
+            player.removeItemFromInventory(Candy candy);
 
             // add one pokefruit to player's inventory
             player.addItemToInventory(Item );
@@ -76,7 +93,7 @@ public class TradeAction extends Action {
         }
 
     }
+*/
 
 
-}
 

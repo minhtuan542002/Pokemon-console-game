@@ -17,9 +17,11 @@ import java.util.List;
 
 public class Nurse extends Actor {
 
+
+    /**
     // making nurse's inventory:
     static ArrayList<Item> nurseInventoryImmutable = new ArrayList<>();
-
+     */
     /**
      * Constructor.
      *
@@ -30,14 +32,20 @@ public class Nurse extends Actor {
 
     // note to self: nurse joy is non-playable actor so, she needs a list of behaviours to help her perform actions
     public Nurse(String name, char displayChar, int hitPoints) {
+
         super("Nurse Joy", '%', hitPoints);
     }
 
     @Override // implements method inherited
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
         return null;
     }
 
+}
+
+    /** This was all wrong ~(>.<)~
+     *
     // print a list of things ready to be traded - this i will do in trade action
 
 
@@ -52,5 +60,5 @@ public class Nurse extends Actor {
     // now nurseInventory is nurse's inventory that can be changed
     // now i should use this inventory in trade action to do the trading logic
 }
-
+**/
 
