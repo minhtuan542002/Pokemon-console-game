@@ -27,7 +27,7 @@ public class Application {
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(),
                 new Floor(), new Tree(),
-                new game.Lava(), new Puddle());
+                new Lava(), new Puddle());
 
         List<String> map = Arrays.asList(
                 ".............................................^^^^^^^^^^^^^^",
