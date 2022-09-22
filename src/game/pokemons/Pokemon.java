@@ -8,8 +8,10 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Element;
 import game.ElementsHelper;
+import game.affection.AffectionManager;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.specialattacks.BackupWeapons;
 import game.time.TimePerception;
@@ -34,6 +36,9 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         super(name, displayChar, hitPoints);
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(9, new AttackBehaviour());
+
+        AffectionManager affectionManager = AffectionManager.getInstance();
+        affectionManager.registerPokemon(this);
     }
 
     public void addBehaviour(Integer priority, Behaviour behaviour) {
@@ -61,11 +66,16 @@ public abstract class Pokemon extends Actor implements TimePerception  {
                 map.locationOf(this).getGround(), this.findCapabilitiesByType(Element.class)
         ));
 
+        AffectionManager affectionManager = AffectionManager.getInstance();
+        affectionManager.updatePokemonBehaviours();
+
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if (action != null)
                 return action;
         }
+
+
         return new DoNothingAction();
     }
 }
