@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Element;
+import game.ElementsHelper;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
@@ -20,7 +21,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
     //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
     protected final Map<Integer, Behaviour> behaviours = new TreeMap<>(); // priority, behaviour
 
-    protected final BackupWeapons backupWeapon;
+    protected BackupWeapons backupWeapon;
 
     /**
      * Constructor.
@@ -33,7 +34,6 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         super(name, displayChar, hitPoints);
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(9, new AttackBehaviour());
-        backupWeapon = new BackupWeapons(findCapabilitiesByType(Class<Element<?>>));
     }
 
     public void addBehaviour(Integer priority, Behaviour behaviour) {
@@ -44,7 +44,8 @@ public abstract class Pokemon extends Actor implements TimePerception  {
      * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
      */
     public void toggleWeapon(boolean isEquipping) {
-        backupWeapon.updateWeapon(this);
+        if(isEquipping)this.addItemToInventory(backupWeapon.getSpecialWeapon());
+        else this.removeItemFromInventory(backupWeapon.getSpecialWeapon());
     }
 
 
@@ -56,6 +57,9 @@ public abstract class Pokemon extends Actor implements TimePerception  {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        toggleWeapon(new ElementsHelper().hasAnySimilarElements(
+                map.locationOf(this).getGround(), this.findCapabilitiesByType(Element.class)
+        ));
 
         for (Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);

@@ -18,19 +18,15 @@ import game.pokemons.Pokemon;
  * @see AttackAction uses getWeapon() in the execute() method.
  */
 public class BackupWeapons {
-    static private SpecialWeapon specialWeapon = null;
+    static private SpecialWeapon specialWeapon;
 
     public BackupWeapons(Element element) {
         if(element ==Element.FIRE) specialWeapon= new Ember();
-        if(element ==Element.GRASS) specialWeapon= new VineWhip();
-        if(element ==Element.WATER) specialWeapon= new Bubble();
+        else if (element ==Element.GRASS) specialWeapon= new VineWhip();
+        else if (element ==Element.WATER) specialWeapon= new Bubble();
     }
 
-    public Item getSpecialWeapon() {
+    public SpecialWeapon getSpecialWeapon() {
         return specialWeapon;
-    }
-
-    public void updateWeapon(Pokemon pokemon) {
-
     }
 }

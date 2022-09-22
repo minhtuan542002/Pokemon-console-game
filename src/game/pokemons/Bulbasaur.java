@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.AttackAction;
 import game.Element;
+import game.specialattacks.BackupWeapons;
 
 public class Bulbasaur extends Pokemon{
     /**
@@ -15,6 +16,7 @@ public class Bulbasaur extends Pokemon{
         super("Bulbasaur", 'b', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.GRASS);
+        backupWeapon = new BackupWeapons(Element.GRASS);
     }
 
     /**
