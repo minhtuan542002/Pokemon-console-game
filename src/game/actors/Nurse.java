@@ -7,6 +7,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.behaviours.Tradable;
+import game.items.Pokeball;
+import game.items.Pokefruit;
 
 
 import java.util.ArrayList;
@@ -20,6 +23,8 @@ public class Nurse extends Actor {
 
     /**
     // making nurse's inventory:
+     note to self - nurse joy's inventory different fromo player,
+     she just needs to have items that tradable to player
     static ArrayList<Item> nurseInventoryImmutable = new ArrayList<>();
      */
     /**
@@ -31,15 +36,26 @@ public class Nurse extends Actor {
      */
 
     // note to self: nurse joy is non-playable actor so, she needs a list of behaviours to help her perform actions
-    public Nurse(String name, char displayChar, int hitPoints) {
+    public HashMap<String, Tradable> nurseTradableList =  new HashMap<>();
+    // what has nurse to do, a nurse should give player a list of tradable items.
+    // so step 1 - print to console a list of tradable items - which are pokeball (with charmander inside) and pokefruit (of three types)
+    //
 
+    // constructor
+    public Nurse(String name, char displayChar, int hitPoints) {
         super("Nurse Joy", '%', hitPoints);
+
     }
 
     @Override // implements method inherited
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        // nurse should show tradable items in her inventory,
+        // hashmap syntax https://edstem.org/au/courses/8750/lessons/22738/slides/160450
+        nurseTradableList.put("Pokefruit", new Pokefruit());
+        nurseTradableList.put("Pokeball", new Pokeball());
 
-        return null;
+        // use do nothing action instead of null as null would crash the engine
+        return new DoNothingAction();
     }
 
 }

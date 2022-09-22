@@ -9,8 +9,11 @@ public class Pokefruit extends tradableItem {
      * @param displayChar the character to use to represent this item if it is on the ground
      * @param portable true if and only if the Item can be picked up
      */
+
+    // constructor
     public Pokefruit(String name, char displayChar, boolean portable) {
 
         super("Pokefruit", 'f', true);
     }
-}
+
+

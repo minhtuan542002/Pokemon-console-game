@@ -6,8 +6,9 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Nurse;
 import game.actors.Player;
+import game.behaviours.Tradable;
 import game.items.Candy;
-import game.items.tradableItem;
+
 
 public class TradeAction extends Action {
 
@@ -43,13 +44,14 @@ public class TradeAction extends Action {
         return actor + "traded " + item + " for " + cost + " candies.";
     }
 
+    // a new method
 
 }
 
 
         /**
          *
-         * Notes from consultation - instead of mkaing new methods focus on using execute method from engine
+         * Notes from consultation - instead of making new methods focus on using execute method from engine
          *
         // work on player's inventory and then come back here to continue this
         // both player and nurse's inventory looks sorted, so now i do this logic in trade action
