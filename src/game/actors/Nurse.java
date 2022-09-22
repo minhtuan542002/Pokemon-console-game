@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.action.TradeAction;
 import game.behaviours.Tradable;
 import game.items.Pokeball;
 import game.items.Pokefruit;
@@ -58,6 +59,13 @@ public class Nurse extends Actor {
         return new DoNothingAction();
     }
 
+    public ActionList allowableActions () {
+        ActionList actions = new ActionList();
+        for (Tradable item: nurseTradableList.values()) {
+            actions.add(new TradeAction(item, item.getItemCost()));
+        }
+        return actions;
+    }
 }
 
     /** This was all wrong ~(>.<)~
