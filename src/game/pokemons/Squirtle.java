@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.AttackAction;
 import game.Element;
+import game.specialattacks.BackupWeapons;
 
 public class Squirtle extends Pokemon{
     /**
@@ -15,6 +16,7 @@ public class Squirtle extends Pokemon{
         super("Squirtle", 's', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.WATER);
+        backupWeapon = new BackupWeapons(Element.WATER);
     }
 
     /**

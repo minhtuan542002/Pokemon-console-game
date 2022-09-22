@@ -13,6 +13,7 @@ import game.Element;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.specialattacks.BackupWeapons;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class Charmander extends Pokemon {
         super("Charmander", 'c', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.FIRE);
+        backupWeapon = new BackupWeapons(Element.FIRE);
     }
 
     /**
