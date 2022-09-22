@@ -10,7 +10,8 @@ import java.util.Map;
 
 /**
  * Affection Manager
- * <p>
+ * <p> Self initiated and single instance class to manage Pokemon affection level and update their
+ * Capability, allowable actions and behaviours accordingly. </p>
  * Created by:
  *
  * @author Riordan D. Alfredo
