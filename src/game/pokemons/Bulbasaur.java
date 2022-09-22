@@ -19,19 +19,6 @@ public class Bulbasaur extends Pokemon{
         backupWeapon = new BackupWeapons(Element.GRASS);
     }
 
-    /**
-     * @param otherActor the Actor that might perform an action.
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return list of actions
-     */
-    @Override
-    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        ActionList actions = new ActionList();
-        actions.add(new AttackAction(this, direction));
-
-        return actions;
-    }
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
