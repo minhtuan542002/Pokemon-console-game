@@ -24,12 +24,11 @@ public class AttackBehaviour implements Behaviour {
         Actor targetedActor = null;
         for (Exit exit : map.locationOf(actor).getExits()){
             targetedActor= map.getActorAt(exit.getDestination());
-            if(targetedActor != null)break;
+            if((targetedActor != null) && (ElementsHelper.hasAnySimilarElements(actor, targetedActor.findCapabilitiesByType(Element.class))) ) {
+                return new AttackAction(targetedActor, "here");// behaviour will stop here.
+            }
         }
 
-        if(ElementsHelper.hasAnySimilarElements(actor, targetedActor.findCapabilitiesByType(Element.class))){
-            return new AttackAction(targetedActor, "here"); // behaviour will stop here.
-        }
         return null; // go to next behaviour
     }
 }
