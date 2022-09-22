@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by:
  *
  * @author Riordan D. Alfredo
- * Modified by:
+ * Modified by: Minh Tuan Le
  */
 public class AffectionManager {
 
@@ -62,11 +62,13 @@ public class AffectionManager {
     }
 
     /**
-     * Add Pokemon to the collection. By default, it has 0 affection point. Ideally, you'll register all instantiated Pokemon
+     * Add Pokemon to the collection. By default, it has 0 affection point.
+     * Ideally, you'll register all instantiated Pokemon
      *
      * @param pokemon
      */
-    public void registerPokemon(Charmander pokemon) {
+    public void registerPokemon(Pokemon pokemon) {
+        affectionPoints.put(pokemon,0);
     }
 
     /**
@@ -75,7 +77,7 @@ public class AffectionManager {
      * @param pokemon Pokemon instance
      * @return integer of affection point.
      */
-    public int getAffectionPoint(Charmander pokemon) {
+    public int getAffectionPoint(Pokemon pokemon) {
         return affectionPoints.get(pokemon);
     }
 
