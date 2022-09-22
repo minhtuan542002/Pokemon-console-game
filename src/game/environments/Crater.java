@@ -1,15 +1,11 @@
-package game;
+package game.environments;
 
-import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.pokemons.Charmander;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class Crater extends SpawningGround{
+public class Crater extends SpawningGround {
 
 
 

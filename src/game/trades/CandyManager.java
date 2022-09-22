@@ -1,4 +1,4 @@
-package game.Actions;
+package game.trades;
 
 import game.Items.Candy;
 
