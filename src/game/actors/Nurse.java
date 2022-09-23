@@ -5,18 +5,14 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.action.TradeAction;
-import game.behaviours.Tradable;
+import game.trades.Tradable;
 import game.items.Pokeball;
 import game.items.Pokefruit;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class Nurse extends Actor {
@@ -61,6 +57,7 @@ public class Nurse extends Actor {
 
     public ActionList allowableActions () {
         ActionList actions = new ActionList();
+        // to implement trading action for every item that is in nurse's inventory
         for (Tradable item: nurseTradableList.values()) {
             actions.add(new TradeAction(item, item.getItemCost()));
         }
