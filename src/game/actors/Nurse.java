@@ -19,14 +19,21 @@ public class Nurse extends Actor {
 
     // note to self: nurse joy is non-playable actor so, she needs a list of behaviours to help her perform actions
     public HashMap<String, Tradable> nurseTradableList =  new HashMap<>();
+
+    /**
+     * Constructor.
+     *
+     * @param name        the name of the Actor
+     * @param displayChar the character that will represent the Actor in the display
+     * @param hitPoints   the Actor's starting hit points
+     */
+    public Nurse(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
+    }
     // what has nurse to do, a nurse should give player a list of tradable items.
     // so step 1 - print to console a list of tradable items - which are pokeball (with charmander inside) and pokefruit (of three types)
     //
 
-    // constructor
-    public Nurse(String name, char displayChar, int hitPoints) {
-        super("Nurse Joy", '%', hitPoints);
-    }
 
     @Override // implements method inherited
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
@@ -43,7 +50,7 @@ public class Nurse extends Actor {
         ActionList actions = new ActionList();
         // to implement trading action for every item that is in nurse's inventory
         for (Tradable item: nurseTradableList.values()) {
-            actions.add(new TradeAction(item, item.getItemCost()));
+            actions.add(new TradeAction());
         }
         return actions;
     }

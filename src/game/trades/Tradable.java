@@ -9,6 +9,9 @@ public interface Tradable {
     // tradable items should give me thier cost price of Item
     public Integer getItemCost();  // method 1
 
-    // whichever item is traded should be added to player's inventory
-    public void addToPlayerInventory(Actor actor);     // method 2 - passing Actor, see pokefruit, to get actor engine
+    // item to be traded by actor
+    public static void addToPlayerInventory(Actor actor)     // method 2 - passing Actor, see pokefruit, to get actor engine
+    {
+        System.out.println("if this line prints then see tradable interface");
+    }
 }
