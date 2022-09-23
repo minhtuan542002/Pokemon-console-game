@@ -18,6 +18,7 @@ public class Pokefruit extends Item implements Tradable {
      */
     public Pokefruit(String name, char displayChar, boolean portable) {
         super("Pokefruit", 'f', true);
+        //
     }
 
     // methods
@@ -26,11 +27,8 @@ public class Pokefruit extends Item implements Tradable {
         return cost;
     }
 
-    @Override
-    public void addToPlayerInventory(Actor actor) {
-        // actor.addItemToInventory ???
-        return null
-    }
+
+
 }
 
 

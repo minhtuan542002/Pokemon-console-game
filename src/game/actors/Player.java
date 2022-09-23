@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.action.TradeAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class Player extends Actor {
 
-	static ArrayList<Item> playerInventoryImmutable = new ArrayList<>();
+	ArrayList<Item> playerInventory = new ArrayList<>();
 
 	private final Menu menu = new Menu();
 
@@ -57,16 +58,18 @@ public class Player extends Actor {
 		return super.getDisplayChar();
 	}
 
-
-
-	// when player picks up candy, candy is dropped
-	// when player picks up candy, he adds it to his inventory
-	// gets inventory from engine but problem is this inventory is not mutable
-	public List<Item> getInventory() {
-		return Collections.unmodifiableList(playerInventoryImmutable);
+	// adding item to his invenotry
+	public void addItemToInventory(Item item) {
+		playerInventory.remove(item);
 	}
 
-	// so I try to make the inventory mutable
-	public static List<Item> playerInventory = new ArrayList<>(playerInventoryImmutable);
-	
+	// now removing as well
+	public void removeItemFromInventory(){
+		playerInventory.remove(item); // why this error figure out
+	}
+
+	// getting inventory now
+	public List<Item> getInventory() {
+		return Collections.unmodifiableList(playerInventory);
+	}
 }
