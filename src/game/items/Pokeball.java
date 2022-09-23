@@ -1,11 +1,13 @@
 package game.items;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import game.trades.Tradable;
 
 public class Pokeball extends Item implements Tradable{
 
     // attributes
+    private int cost = 5;
 
     /***
      * Constructor.
@@ -22,11 +24,11 @@ public class Pokeball extends Item implements Tradable{
     // methods
     @Override
     public Integer getItemCost() {
-        return null;
+        return cost;
     }
 
     @Override
-    public void addToPlayerInventory() {
+    public void addToPlayerInventory(Actor actor) {
 
     }
 }

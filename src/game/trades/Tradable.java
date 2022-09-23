@@ -1,5 +1,7 @@
 package game.trades;
 
+import edu.monash.fit2099.engine.actors.Actor;
+
 public interface Tradable {
 
     // add methods that tradable items can implement (IMPORTANT NOte - should not have a body for methods

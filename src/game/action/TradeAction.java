@@ -12,14 +12,17 @@ public class TradeAction extends Action {
     // attributes:
     // tradable is my interface (still needs implementation)
     // note to self: I gotta make tradable an interface not abstract cause makes easy to add more items in future
-    private Tradable item;
+    boolean Traded = true;
+    public Integer item;
     // cost is how many candies we would need to buy one item
-    private Integer cost;
+    public Integer cost;
+    public Integer candyBalance;
 
-    //constructor
+
+        //constructor
     // put attributes in constructor to store
-    public TradeAction(Tradable item, Integer cost) {
-        this.item = item;
+        public TradeAction(Tradable item, Integer cost) {
+        this.item = item.getItemCost();
         this.cost = cost;
     }
 
@@ -27,9 +30,13 @@ public class TradeAction extends Action {
     // execute method from game engine
     @Override
     public String execute(Actor actor, GameMap map) {
-        // confusion ???
-        // work on tradable and then come back
-        return null;
+        // Basically, if candy balance < cost (of item)
+        // then item is traded
+
+        // get candy balance
+        candyBalance = Player.
+        // if not, then return not enough candies
+        return "you don't have enough candies";
     }
 
     // menu description method also from game engine
@@ -40,58 +47,7 @@ public class TradeAction extends Action {
         return actor + "traded " + item + " for " + cost + " candies.";
     }
 
-    // a new method
-
 }
-
-
-        /**
-         *
-         * Notes from consultation - instead of making new methods focus on using execute method from engine
-         *
-        // work on player's inventory and then come back here to continue this
-        // both player and nurse's inventory looks sorted, so now i do this logic in trade action
-
-        // print player's inventory to console
-        System.out.println(Player.playerInventory);
-
-        // ask player which item he wants to buy using menu description
-        menuDescription(Player player){
-            return "Do you want pokeball or pokefruit";
-        }
-
-        // maybe get player's input using a hotkey
-        hotkey(){
-            return "y";
-        }
-
-        // check how many candies player has
-        candyAmount = Player.playerInventory.size() + 1;
-        System.out.println(candyAmount);
-
-        if (candyAmount < 1) {
-            // not enough candies
-            System.out.println("Not enough candies");
-        }
-        else if (candyAmount == 1) {
-            // remove one candy from player's inventory;
-            player.removeItemFromInventory(Candy candy);
-
-            // add one pokefruit to player's inventory
-            player.addItemToInventory(Item );
-        }
-
-        else if (candyAmount == 5) {
-            // remove five candies from player's inventory
-            for (i = 0; i < 5; i++) {
-                player.removeItemFromInventory();
-            }
-            // add one pokeball to player's inventory
-            player.addItemToInventory();
-        }
-
-    }
-*/
 
 
 
