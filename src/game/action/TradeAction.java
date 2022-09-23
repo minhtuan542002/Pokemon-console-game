@@ -3,6 +3,7 @@ package game.action;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actors.Player;
 import game.trades.Tradable;
 
 
@@ -12,19 +13,16 @@ public class TradeAction extends Action {
     // attributes:
     // tradable is my interface (still needs implementation)
     // note to self: I gotta make tradable an interface not abstract cause makes easy to add more items in future
-    boolean Traded = true;
-    public Integer item;
+
+    public int item;
     // cost is how many candies we would need to buy one item
-    public Integer cost;
-    public Integer candyBalance;
+    public int pokefruitCost;
+    public int pokeballCost;
+    public int candyBalance;
 
-
-        //constructor
-    // put attributes in constructor to store
-        public TradeAction(Tradable item, Integer cost) {
-        this.item = item.getItemCost();
-        this.cost = cost;
+    public TradeAction(){
     }
+
 
     // methods
     // execute method from game engine
@@ -34,7 +32,17 @@ public class TradeAction extends Action {
         // then item is traded
 
         // get candy balance
-        candyBalance = Player.
+        candyBalance = Player.playerInventory.size() + 1;
+        System.out.println(Player.playerInventory);
+
+        if (candyBalance >= pokefruitCost) {
+            Tradable.addToPlayerInventory(actor);
+        }
+
+        else if (candyBalance >= pokeballCost) {
+            Tradable.addToPlayerInventory(actor);
+        }
+
         // if not, then return not enough candies
         return "you don't have enough candies";
     }
@@ -44,7 +52,7 @@ public class TradeAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
 
-        return actor + "traded " + item + " for " + cost + " candies.";
+        return actor + "traded " + item + " successfully ";
     }
 
 }

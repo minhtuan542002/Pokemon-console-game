@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Player extends Actor {
 
-	ArrayList<Item> playerInventory = new ArrayList<>();
+	public static ArrayList<Item> playerInventory = new ArrayList<>();
 
 	private final Menu menu = new Menu();
 
@@ -64,8 +64,8 @@ public class Player extends Actor {
 	}
 
 	// now removing as well
-	public void removeItemFromInventory(){
-		playerInventory.remove(item); // why this error figure out
+	public void removeItemFromInventory(Item item){
+		playerInventory.remove(item);
 	}
 
 	// getting inventory now

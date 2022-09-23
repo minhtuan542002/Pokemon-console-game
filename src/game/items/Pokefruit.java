@@ -6,10 +6,6 @@ import game.trades.Tradable;
 
 public class Pokefruit extends Item implements Tradable {
 
-    // attributes
-    private int cost = 1;
-
-    // constructor
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -17,16 +13,38 @@ public class Pokefruit extends Item implements Tradable {
      * @param portable true if and only if the Item can be picked up
      */
     public Pokefruit(String name, char displayChar, boolean portable) {
-        super("Pokefruit", 'f', true);
-        //
+        super(name, displayChar, portable);
     }
 
-    // methods
+    /**
+     * @return
+     */
     @Override
     public Integer getItemCost() {
-        return cost;
+        // attributes
+        return 1;
     }
 
+    /**
+     * @param actor
+     */
+
+    /**
+    // note to self: try better name to not get confused b/w engine method and mine
+    @Override
+    public void addToPlayerInventory(Actor actor) {
+        actor.addItemToInventory(this);
+    }
+    */
+
+    // attributes
+
+    // enumeration defining Pokefruit types as constants
+    public enum PokefruitType {
+        FIRE,
+        WATER,
+        GRASS
+    }
 
 
 }
