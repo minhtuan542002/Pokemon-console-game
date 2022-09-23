@@ -2,12 +2,8 @@ package game.action;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actors.Nurse;
-import game.actors.Player;
-import game.behaviours.Tradable;
-import game.items.Candy;
+import game.trades.Tradable;
 
 
 public class TradeAction extends Action {
