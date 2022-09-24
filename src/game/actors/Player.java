@@ -4,9 +4,15 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.action.TradeAction;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Class representing the Player.
@@ -16,7 +22,12 @@ import game.Status;
  * Modified by:
  *
  */
+
+// player should store candies in his inventory
+
 public class Player extends Actor {
+
+	public static ArrayList<Item> playerInventory = new ArrayList<>();
 
 	private final Menu menu = new Menu();
 
@@ -45,5 +56,20 @@ public class Player extends Actor {
 	@Override
 	public char getDisplayChar() {
 		return super.getDisplayChar();
+	}
+
+	// adding item to his invenotry
+	public void addItemToInventory(Item item) {
+		playerInventory.remove(item);
+	}
+
+	// now removing as well
+	public void removeItemFromInventory(Item item){
+		playerInventory.remove(item);
+	}
+
+	// getting inventory now
+	public List<Item> getInventory() {
+		return Collections.unmodifiableList(playerInventory);
 	}
 }

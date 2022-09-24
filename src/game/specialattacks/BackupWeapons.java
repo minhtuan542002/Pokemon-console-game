@@ -1,11 +1,8 @@
 package game.specialattacks;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.weapons.Weapon;
-import game.AttackAction;
-import game.Element;
-import game.pokemons.Pokemon;
+import game.action.AttackAction;
+import game.elements.Element;
 
 /**
  * Created by:

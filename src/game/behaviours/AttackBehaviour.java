@@ -4,8 +4,9 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.*;
-import game.pokemons.Charmander;
+import game.action.AttackAction;
+import game.elements.Element;
+import game.elements.ElementsHelper;
 
 /**
  * Created by:
@@ -23,12 +24,11 @@ public class AttackBehaviour implements Behaviour {
         Actor targetedActor = null;
         for (Exit exit : map.locationOf(actor).getExits()){
             targetedActor= map.getActorAt(exit.getDestination());
-            if(targetedActor != null)break;
+            if((targetedActor != null) && (ElementsHelper.hasAnySimilarElements(actor, targetedActor.findCapabilitiesByType(Element.class))) ) {
+                return new AttackAction(targetedActor, "here");// behaviour will stop here.
+            }
         }
 
-        if(ElementsHelper.hasAnySimilarElements(actor, targetedActor.findCapabilitiesByType(Element.class))){
-            return new AttackAction(targetedActor, "here"); // behaviour will stop here.
-        }
         return null; // go to next behaviour
     }
 }

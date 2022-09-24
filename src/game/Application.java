@@ -8,8 +8,10 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.Nurse;
 import game.actors.Player;
 import game.environments.*;
+import game.items.Pokeball;
 import game.pokemons.Charmander;
 
 /**
@@ -54,7 +56,12 @@ public class Application {
         Actor charmander = new Charmander();
         gameMap.at(33, 10).addActor(charmander);
 
+        // add nurse joy
+        Actor nurse = new Nurse("nurse", '%', 100000);
+        gameMap.at(29, 6).addActor(nurse);
         world.run();
+
+
 
     }
 }

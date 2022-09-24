@@ -1,5 +1,10 @@
 package game.time;
 
+import edu.monash.fit2099.engine.positions.Ground;
+import game.environments.Lava;
+import game.environments.Puddle;
+import game.environments.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +28,11 @@ public class TimePerceptionManager {
     private int turn;
 
     private TimePeriod shift; // DAY or NIGHT
+
+    private Lava lava = new Lava();
+    private Puddle puddle = new Puddle();
+    private Tree tree = new Tree();
+
 
     /**
      * A singleton instance
@@ -75,5 +85,18 @@ public class TimePerceptionManager {
      * @param objInstance object instance
      */
     public void cleanUp(TimePerception objInstance) {
+    }
+
+    public void tick(){
+        if(shift == TimePeriod.DAY){
+            lava.dayEffect();
+            puddle.dayEffect();
+            tree.dayEffect();
+        }
+        if(shift == TimePeriod.NIGHT){
+            lava.nightEffect();
+            puddle.nightEffect();
+            tree.nightEffect();
+        }
     }
 }

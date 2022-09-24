@@ -1,11 +1,7 @@
 package game.pokemons;
 
-import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.AttackAction;
-import game.Element;
+import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 
 public class Bulbasaur extends Pokemon{
