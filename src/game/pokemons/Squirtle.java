@@ -23,11 +23,11 @@ public class Squirtle extends Pokemon{
 
     @Override
     public void dayEffect() {
-
+        this.hurt(10);
     }
 
     @Override
     public void nightEffect() {
-
+        this.heal(10);
     }
 }

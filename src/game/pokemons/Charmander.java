@@ -30,11 +30,11 @@ public class Charmander extends Pokemon {
 
     @Override
     public void dayEffect() {
-
+        this.heal(10);
     }
 
     @Override
     public void nightEffect() {
-
+        this.hurt(10);
     }
 }

@@ -23,11 +23,11 @@ public class Bulbasaur extends Pokemon{
 
     @Override
     public void dayEffect() {
-
+        this.hurt(5);
     }
 
     @Override
     public void nightEffect() {
-
+        this.heal(5);
     }
 }
