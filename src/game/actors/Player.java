@@ -60,7 +60,7 @@ public class Player extends Actor {
 
 	// adding item to his inventory
 	public void addItemToInventory(Item item) {
-		playerInventory.remove(item);
+		playerInventory.add(item);
 	}
 
 	// now removing as well
