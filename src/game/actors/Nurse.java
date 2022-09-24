@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.action.TradeAction;
+import game.elements.Element;
+import game.pokemons.Charmander;
 import game.trades.Tradable;
 import game.items.Pokeball;
 import game.items.Pokefruit;
@@ -39,8 +41,10 @@ public class Nurse extends Actor {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // nurse should show tradable items in her inventory,
         // hashmap syntax https://edstem.org/au/courses/8750/lessons/22738/slides/160450
-        nurseTradableList.put("Pokefruit", new Pokefruit("Pokefruit", 'f', true));
-        nurseTradableList.put("Pokeball", new Pokeball("Pokeball", '0', true));
+        nurseTradableList.put("Pokefruit", new Pokefruit(Element.FIRE));
+        nurseTradableList.put("Pokefruit", new Pokefruit(Element.WATER));
+        nurseTradableList.put("Pokefruit", new Pokefruit(Element.GRASS));
+        nurseTradableList.put("Pokeball", new Pokeball(new Charmander()));
 
         // use do nothing action instead of null as null would crash the engine
         return new DoNothingAction();
