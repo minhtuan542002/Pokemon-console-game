@@ -1,10 +1,16 @@
 package game.items;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import game.trades.Tradable;
 
+import java.util.List;
+
 public class Pokefruit extends Item implements Tradable {
+
+    // attributes
+    private int cost = 1;
 
     /***
      * Constructor.
@@ -22,28 +28,16 @@ public class Pokefruit extends Item implements Tradable {
     @Override
     public Integer getItemCost() {
         // attributes
-        return 1;
+        return cost;
     }
 
     /**
      * @param actor
      */
-
-    /**
     // note to self: try better name to not get confused b/w engine method and mine
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);
-    }
-    */
-
-    // attributes
-
-    // enumeration defining Pokefruit types as constants
-    public enum PokefruitType {
-        FIRE,
-        WATER,
-        GRASS
     }
 
 

@@ -6,6 +6,9 @@ import game.trades.Tradable;
 
 public class Pokeball extends Item implements Tradable{
 
+    // attributes:
+    private int cost = 5;
+
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -20,12 +23,12 @@ public class Pokeball extends Item implements Tradable{
     @Override
     public Integer getItemCost() {
         // attributes
-        return 5;
+        return cost;
     }
-/**
+
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);
     }
-    */
+
 }
