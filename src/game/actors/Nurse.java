@@ -41,9 +41,9 @@ public class Nurse extends Actor {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // nurse should show tradable items in her inventory,
         // hashmap syntax https://edstem.org/au/courses/8750/lessons/22738/slides/160450
-        nurseTradableList.put("Pokefruit", new Pokefruit(Element.FIRE));
-        nurseTradableList.put("Pokefruit", new Pokefruit(Element.WATER));
-        nurseTradableList.put("Pokefruit", new Pokefruit(Element.GRASS));
+        nurseTradableList.put("Fire Pokefruit", new Pokefruit(Element.FIRE));
+        nurseTradableList.put("Water Pokefruit", new Pokefruit(Element.WATER));
+        nurseTradableList.put("Grass Pokefruit", new Pokefruit(Element.GRASS));
         nurseTradableList.put("Pokeball", new Pokeball(new Charmander()));
 
         // use do nothing action instead of null as null would crash the engine
