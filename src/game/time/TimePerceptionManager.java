@@ -69,7 +69,17 @@ public class TimePerceptionManager {
      * FIXME: write a relevant logic (i.e., increment turns choose day or night) and call this method once at every turn.
      */
     public void run() {
-        turn++;
+        ++turn;
+        int shiftIndicator = ((turn-1)%10)/5;
+        if(shiftIndicator ==0) shift = TimePeriod.DAY;
+        else shift = TimePeriod.NIGHT;
+
+        for(TimePerception objInstance : timePerceptionList) {
+            if(shift == TimePeriod.DAY) {
+                objInstance.dayEffect();
+            }
+            else objInstance.nightEffect();
+        }
     }
 
 
@@ -92,16 +102,4 @@ public class TimePerceptionManager {
     public void cleanUp(TimePerception objInstance) {
     }
 
-    public void tick(){
-        if(shift == TimePeriod.DAY){
-            lava.dayEffect();
-            puddle.dayEffect();
-            tree.dayEffect();
-        }
-        if(shift == TimePeriod.NIGHT){
-            lava.nightEffect();
-            puddle.nightEffect();
-            tree.nightEffect();
-        }
-    }
 }
