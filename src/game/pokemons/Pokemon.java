@@ -15,6 +15,7 @@ import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 import game.specialattacks.BackupWeapons;
 import game.time.TimePerception;
+import game.time.TimePerceptionManager;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -39,6 +40,8 @@ public abstract class Pokemon extends Actor implements TimePerception  {
 
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.registerPokemon(this);
+        TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
+        timePerceptionManager.append(this);
     }
 
     public void addBehaviour(Integer priority, Behaviour behaviour) {
