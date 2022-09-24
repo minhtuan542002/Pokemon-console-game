@@ -58,7 +58,7 @@ public class Player extends Actor {
 		return super.getDisplayChar();
 	}
 
-	// adding item to his invenotry
+	// adding item to his inventory
 	public void addItemToInventory(Item item) {
 		playerInventory.remove(item);
 	}
