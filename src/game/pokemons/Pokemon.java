@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
 import game.action.AttackAction;
+import game.action.CaptureAction;
 import game.elements.Element;
 import game.elements.ElementsHelper;
 import game.affection.AffectionManager;
@@ -70,6 +71,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
         actions.add(new AttackAction(this, direction));
+        if(this.hasCapability(Status.CATCHABLE)) { actions.add(new CaptureAction(this, direction));}
         //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
         return actions;
     }

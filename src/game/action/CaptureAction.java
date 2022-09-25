@@ -23,10 +23,11 @@ public class CaptureAction extends Action {
      */
     protected String direction;
 
-    /**
-     * Random number generator
-     */
-    protected Random rand = new Random();
+    public CaptureAction(Pokemon target, String direction) {
+        this.target = target;
+        this.direction = direction;
+    }
+
     @Override
     public String execute(Actor actor, GameMap map) {
         AffectionManager affectionManager = AffectionManager.getInstance();
@@ -38,7 +39,7 @@ public class CaptureAction extends Action {
         else {
             target.removeCapability(Status.CATCHABLE);
             affectionManager.decreaseAffection(target,10);
-            return "Failed to capture " + target + "! -10 affection points. This Pokemon can no longer be captured."
+            return "Failed to capture " + target + "! -10 affection points. This Pokemon can no longer be captured.";
         }
 
     }
