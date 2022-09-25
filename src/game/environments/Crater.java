@@ -1,6 +1,7 @@
 package game.environments;
 
 import edu.monash.fit2099.engine.positions.Location;
+import game.elements.Element;
 import game.pokemons.Charmander;
 
 import java.util.Random;
@@ -16,6 +17,7 @@ public class Crater extends SpawningGround {
      */
     public Crater() {
         super('O');
+        this.addCapability(Element.FIRE);
     }
 
 

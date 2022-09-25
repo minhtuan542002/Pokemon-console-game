@@ -3,6 +3,7 @@ package game.environments;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.elements.Element;
 import game.time.TimePerception;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class Puddle extends Ground implements TimePerception {
      */
     public Puddle() {
         super('~');
+        this.addCapability(Element.WATER);
     }
 
     @Override

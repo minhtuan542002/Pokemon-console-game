@@ -3,6 +3,7 @@ package game.environments;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.elements.Element;
 import game.items.Candy;
 import game.pokemons.Bulbasaur;
 import game.pokemons.Squirtle;
@@ -21,6 +22,7 @@ public class Tree extends SpawningGround implements TimePerception {
      */
     public Tree() {
         super('+');
+        this.addCapability(Element.GRASS);
     }
 
 

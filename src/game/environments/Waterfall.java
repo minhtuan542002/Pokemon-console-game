@@ -3,6 +3,7 @@ package game.environments;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.elements.Element;
 import game.pokemons.Charmander;
 import game.pokemons.Squirtle;
 
@@ -16,6 +17,7 @@ public class Waterfall extends SpawningGround{
      */
     public Waterfall() {
         super('W');
+        this.addCapability(Element.WATER);
     }
 
     @Override
