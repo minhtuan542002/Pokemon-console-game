@@ -19,8 +19,9 @@ public class Pokefruit extends Item implements Tradable {
      * @param portable true if and only if the Item can be picked up
      */
     public Pokefruit(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+        super("pokefruit", 'f', true);
     }
+
 
     /**
      * @return
