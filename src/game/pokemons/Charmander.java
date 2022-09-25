@@ -2,6 +2,7 @@ package game.pokemons;
 
 
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.Status;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 
@@ -19,6 +20,7 @@ public class Charmander extends Pokemon {
         super("Charmander", 'c', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.FIRE);
+        this.removeCapability(Status.CATCHABLE);
         backupWeapon = new BackupWeapons(Element.FIRE);
     }
 

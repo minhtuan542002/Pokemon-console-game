@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Status;
 import game.action.AttackAction;
 import game.elements.Element;
 import game.elements.ElementsHelper;
@@ -37,6 +38,8 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         super(name, displayChar, hitPoints);
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(9, new AttackBehaviour());
+
+        this.addCapability(Status.CATCHABLE);
 
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.registerPokemon(this);
