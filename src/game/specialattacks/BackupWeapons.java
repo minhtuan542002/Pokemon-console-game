@@ -26,4 +26,8 @@ public class BackupWeapons {
     public SpecialWeapon getSpecialWeapon() {
         return specialWeapon;
     }
+
+    public void remove() {
+        specialWeapon=null;
+    }
 }

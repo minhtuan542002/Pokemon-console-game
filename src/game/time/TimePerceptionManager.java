@@ -101,6 +101,7 @@ public class TimePerceptionManager {
      * @param objInstance object instance
      */
     public void cleanUp(TimePerception objInstance) {
+        timePerceptionList.remove(objInstance);
     }
 
 }
