@@ -4,6 +4,9 @@ import javax.swing.*;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Status;
+import game.affection.AffectionManager;
+import game.items.Pokeball;
 import game.pokemons.Pokemon;
 
 import java.util.Random;
@@ -26,7 +29,18 @@ public class CaptureAction extends Action {
     protected Random rand = new Random();
     @Override
     public String execute(Actor actor, GameMap map) {
-        return null;
+        AffectionManager affectionManager = AffectionManager.getInstance();
+        if(affectionManager.getAffectionPoint(target)>=50) {
+            Pokeball pokeball = new Pokeball(target);
+            actor.addItemToInventory(pokeball);
+            return target + " is captured successfully! ";
+        }
+        else {
+            target.removeCapability(Status.CATCHABLE);
+            affectionManager.decreaseAffection(target,10);
+            return "Failed to capture " + target + "! -10 affection points. This Pokemon can no longer be captured."
+        }
+
     }
 
     @Override
