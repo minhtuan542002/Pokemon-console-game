@@ -2,6 +2,7 @@ package game.environments;
 
 import edu.monash.fit2099.engine.positions.Location;
 import game.elements.Element;
+import game.items.Pokefruit;
 import game.pokemons.Charmander;
 
 import java.util.Random;
@@ -40,7 +41,8 @@ public class Crater extends SpawningGround {
     public void dropPokeFruit(Location location) {
         int dropRate = new Random().nextInt(100);
         if (dropRate < 25){
-
+            Pokefruit pokefruit = new Pokefruit(Element.FIRE);
+            location.addItem(pokefruit);
         }
 
     }
