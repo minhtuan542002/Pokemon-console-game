@@ -26,6 +26,10 @@ public class Pokefruit extends Item implements Tradable {
         return 1;
     }
 
+    public void remove() {
+        pokeFruitType=null;
+    }
+
     /**
      * @param actor
      */

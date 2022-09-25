@@ -128,4 +128,8 @@ public class AffectionManager {
         }
     }
 
+    public void removePokemon(Pokemon pokemon) {
+        affectionPoints.remove(pokemon);
+    }
+
 }

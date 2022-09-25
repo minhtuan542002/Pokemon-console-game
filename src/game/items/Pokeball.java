@@ -26,6 +26,10 @@ public class Pokeball extends Item implements Tradable{
         return 5;
     }
 
+    public void remove() {
+        pokemon = null;
+    }
+
     public Pokemon getPokemon() { return this.pokemon;}
 /**
     @Override

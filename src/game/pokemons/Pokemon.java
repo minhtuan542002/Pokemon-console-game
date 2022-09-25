@@ -95,8 +95,21 @@ public abstract class Pokemon extends Actor implements TimePerception  {
             if (action != null)
                 return action;
         }
-
-
         return new DoNothingAction();
+
+        //If pokemon is dead then remove it from game
+        if(!this.isConscious()) {
+            this.remove();
+        }
+    }
+
+    public  void remove() {
+        behaviours.clear();
+        backupWeapon.remove();
+        backupWeapon=null;
+        AffectionManager affectionManager = AffectionManager.getInstance();
+        affectionManager.removePokemon(this);
+        TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
+        timePerceptionManager.cleanUp(this);
     }
 }
