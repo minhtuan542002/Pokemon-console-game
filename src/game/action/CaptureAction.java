@@ -31,7 +31,7 @@ public class CaptureAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         AffectionManager affectionManager = AffectionManager.getInstance();
-        if(affectionManager.getAffectionPoint(target)>=50) {
+        if(target.hasCapability(Status.CATCHABLE)) {
             Pokeball pokeball = new Pokeball(target);
             actor.addItemToInventory(pokeball);
             return target + " is captured successfully! ";
