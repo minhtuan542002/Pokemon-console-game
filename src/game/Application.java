@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
@@ -13,6 +14,7 @@ import game.actors.Player;
 import game.affection.AffectionManager;
 import game.elements.Element;
 import game.environments.*;
+import game.items.Candy;
 import game.items.Pokeball;
 import game.items.Pokefruit;
 import game.pokemons.Bulbasaur;
@@ -74,8 +76,11 @@ public class Application {
         // add nurse joy
         Actor nurse = new Nurse("nurse", '%', 100000);
         gameMap.at(29, 6).addActor(nurse);
-        world.run();
 
+        // throw a candy to test if it works
+        // Item candy = new Candy();
+        gameMap.at(32, 11).addItem(new Candy());
+        world.run();
 
 
     }
