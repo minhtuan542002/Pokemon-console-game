@@ -40,8 +40,6 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(9, new AttackBehaviour());
 
-        this.addCapability(Status.CATCHABLE);
-
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.registerPokemon(this);
         TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
@@ -97,13 +95,9 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         }
         return new DoNothingAction();
 
-        //If pokemon is dead then remove it from game
-        if(!this.isConscious()) {
-            this.remove();
-        }
     }
 
-    public  void remove() {
+    public void remove() {
         behaviours.clear();
         backupWeapon.remove();
         backupWeapon=null;
