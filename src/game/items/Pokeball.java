@@ -6,6 +6,7 @@ import game.pokemons.Pokemon;
 import game.trades.Tradable;
 
 public class Pokeball extends Item implements Tradable{
+    private Pokemon pokemon;
 
     /***
      * Constructor.
@@ -13,6 +14,7 @@ public class Pokeball extends Item implements Tradable{
     public Pokeball(Pokemon pokemon) {
 
         super("Pokeball", '0', true);
+        this.pokemon =pokemon;
     }
 
     // methods
@@ -21,6 +23,8 @@ public class Pokeball extends Item implements Tradable{
         // attributes
         return 5;
     }
+
+    public Pokemon getPokemon() { return this.pokemon;}
 /**
     @Override
     public void addToPlayerInventory(Actor actor) {
