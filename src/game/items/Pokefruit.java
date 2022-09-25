@@ -1,6 +1,5 @@
 package game.items;
 
-import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import game.elements.Element;
 import game.trades.Tradable;
@@ -8,13 +7,17 @@ import game.trades.Tradable;
 public class Pokefruit extends Item implements Tradable {
     Element pokeFruitType;
 
+    private String name;
+
     /***
      * Constructor.
      */
     public Pokefruit(Element pokeFruitType) {
-
         super("Pokefruit", 'f', true);
         this.pokeFruitType = pokeFruitType;
+        if(pokeFruitType==Element.FIRE) this.name = "Fire Fruit";
+        if(pokeFruitType==Element.WATER) this.name = "Water Fruit";
+        if(pokeFruitType==Element.GRASS) this.name = "Grass Fruit";
     }
 
     /**
@@ -24,6 +27,11 @@ public class Pokefruit extends Item implements Tradable {
     public Integer getItemCost() {
         // attributes
         return 1;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public void remove() {

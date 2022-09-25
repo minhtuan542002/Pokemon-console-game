@@ -5,16 +5,19 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
 import game.action.AttackAction;
 import game.action.CaptureAction;
+import game.action.FeedPokefruitAction;
 import game.elements.Element;
 import game.elements.ElementsHelper;
 import game.affection.AffectionManager;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.items.Pokefruit;
 import game.specialattacks.BackupWeapons;
 import game.time.TimePerception;
 import game.time.TimePerceptionManager;
@@ -68,9 +71,34 @@ public abstract class Pokemon extends Actor implements TimePerception  {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        actions.add(new AttackAction(this, direction));
-        if(this.hasCapability(Status.CATCHABLE)) { actions.add(new CaptureAction(this, direction));}
         //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
+        actions.add(new AttackAction(this, direction));
+        //Allow pokemon with catchable status to be captured
+        if(this.hasCapability(Status.CATCHABLE)) { actions.add(new CaptureAction(this, direction));}
+        //Allow player to feed Pokefruit to pokemon
+        if((!this.hasCapability(Status.HOSTILE))) {
+            Pokefruit firePokefruit = null,
+                    grassPokefruit = null,
+                    waterPokefruit = null;
+            for (Item item : otherActor.getInventory()) {
+                if (item.toString() == "Pokefruit" || item.getDisplayChar()=='f') {
+                    Pokefruit pokefruit = (Pokefruit) item;
+                    if (pokefruit.hasCapability(Element.FIRE)) {
+                        firePokefruit = pokefruit;
+                    }
+                    if (pokefruit.hasCapability(Element.WATER)) {
+                        waterPokefruit = pokefruit;
+                    }
+                    if (pokefruit.hasCapability(Element.GRASS)) {
+                        grassPokefruit = pokefruit;
+                    }
+                }
+            }
+            if(waterPokefruit != null) actions.add(new FeedPokefruitAction(this,waterPokefruit));
+            if(firePokefruit != null) actions.add(new FeedPokefruitAction(this,firePokefruit));
+            if(grassPokefruit != null) actions.add(new FeedPokefruitAction(this,grassPokefruit));
+        }
+
         return actions;
     }
 
@@ -105,5 +133,9 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         affectionManager.removePokemon(this);
         TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
         timePerceptionManager.cleanUp(this);
+    }
+
+    public String printHP() {
+        return this.printHp();
     }
 }

@@ -139,4 +139,8 @@ public class AffectionManager {
         affectionPoints.remove(pokemon);
     }
 
+    public String printAffectionPoint(Pokemon pokemon) {
+        return "(AP: " + getAffectionPoint(pokemon) + ")";
+    }
+
 }
