@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.elements.Element;
 import game.items.Candy;
+import game.items.Pokefruit;
 import game.pokemons.Bulbasaur;
 import game.pokemons.Squirtle;
 import game.time.TimePerception;
@@ -55,7 +56,8 @@ public class Tree extends SpawningGround implements TimePerception {
     public void dropPokeFruit(Location location) {
         int dropRate = new Random().nextInt(100);
         if (dropRate < 15){
-
+            Pokefruit pokefruit = new Pokefruit(Element.GRASS);
+            location.addItem(pokefruit);
         }
 
     }
