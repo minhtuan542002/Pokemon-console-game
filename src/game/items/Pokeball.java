@@ -6,22 +6,28 @@ import game.action.SummonAction;
 import game.pokemons.Pokemon;
 import game.trades.Tradable;
 
+/**
+ * Class representing Pokeball
+ * Created by:
+ * @author Minh Tuan Le and Ishrat Kaur
+ * Modified by: Minh Tuan Le, Zhijun Chen and Ishrat Kaur
+ */
+
 public class Pokeball extends Item implements Tradable{
 
-    // attributes:
-    private int cost = 5;
-
-    /***
-     * Constructor.
-     *  @param name the name of this Item
-     * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
+    /**
+     * The Pokemon contained inside the Pokeball
      */
     private Pokemon pokemon;
 
     /**
+     * private attribute cost defined as an integer
+     */
+    private int cost = 5;
+
+    /**
      * Constructor
-     * @param pokemon The Pokemon contained inside the Pokeball
+     * @param pokemon is an actor in the game
      */
     public Pokeball(Pokemon pokemon) {
         super("Pokeball", '0', false);
@@ -29,10 +35,12 @@ public class Pokeball extends Item implements Tradable{
         this.addAction(new SummonAction(this));
     }
 
-    // methods
+    /**
+     * method to obtain cost of an item
+     * @return cost of item
+     */
     @Override
     public Integer getItemCost() {
-        // attributes
         return cost;
     }
 
@@ -45,11 +53,15 @@ public class Pokeball extends Item implements Tradable{
     }
 
     /**
-     *  Fetch the pokemon inside the Pokeball
+     *  implements to fetch the pokemon inside the Pokeball
      * @return the pokemon inside the Pokeball
      */
     public Pokemon getPokemon() { return this.pokemon;}
 
+    /**
+     * implements method to add item to player's inventory after successful trade
+     * @param actor is the player
+     */
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);

@@ -6,8 +6,14 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.action.FeedPokefruitAction;
-import game.elements.Element;
 import game.trades.Tradable;
+
+/**
+ * Class representing Pokefruit
+ * Created by:
+ * @author Minh Tuan Le
+ * Modified by: Minh Tuan Le, Zhijun Chen and Ishrat Kaur
+ */
 
 public class Pokefruit extends Item implements Tradable {
     /**
@@ -15,7 +21,9 @@ public class Pokefruit extends Item implements Tradable {
      */
     private String name;
 
-
+    /**
+     * cost of pokefruit defined as a private integer
+     */
     private int cost = 1;
 
     /***
@@ -32,7 +40,8 @@ public class Pokefruit extends Item implements Tradable {
     }
 
     /**
-     * @return
+     * method from tradabel interface to return cost of item
+     * @return cost of the item
      */
     @Override
     public Integer getItemCost() {
@@ -40,6 +49,10 @@ public class Pokefruit extends Item implements Tradable {
         return cost;
     }
 
+    /**
+     * method to convert to string format
+     * @return name of the pokefruit
+     */
     @Override
     public String toString() {
         return name;
@@ -64,11 +77,15 @@ public class Pokefruit extends Item implements Tradable {
         else this.clearActions();
     }
 
-    // note to self: try better name to not get confused b/w engine method and mine
+    /**
+     * method from tradable interface to add item to actor's inventory
+     * @param actor is the player
+     */
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);
     }
+
 
 }
 
