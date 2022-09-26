@@ -32,12 +32,10 @@ public class TimePerceptionManager {
      */
     private int turn;
 
+    /**
+     * The indicator to show whether the current turn is daytime or nighttime
+     */
     private TimePeriod shift; // DAY or NIGHT
-
-    private Lava lava = new Lava();
-    private Puddle puddle = new Puddle();
-    private Tree tree = new Tree();
-
 
     /**
      * A singleton instance
