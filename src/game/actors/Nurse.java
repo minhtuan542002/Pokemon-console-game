@@ -1,16 +1,19 @@
 package game.actors;
+
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.trades.TradeAction;
+import game.action.TradeAction;
 import game.elements.Element;
 import game.pokemons.Charmander;
 import game.trades.Tradable;
 import game.items.Pokeball;
 import game.items.Pokefruit;
+
+
 import java.util.HashMap;
 
 /**
@@ -54,11 +57,14 @@ public class Nurse extends Actor {
      */
     public ActionList allowableActions () {
         ActionList actions = new ActionList();
+        // to implement trading action for every item that is in nurse's inventory
         for (Tradable item: nurseTradableList.values()) {
             actions.add(new TradeAction(item, item.getItemCost()));
         }
         return actions;
     }
+
+
 }
 
 
