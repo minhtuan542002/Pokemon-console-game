@@ -3,6 +3,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
+import game.items.Candy;
 import game.trades.Tradable;
 
 /**
@@ -54,8 +55,10 @@ public class TradeAction extends Action {
         /** if conditional to check if there are enough candies to trade the item */
         if (candyBalance >= cost) {
             item.addToPlayerInventory(actor);
-            // delete candies
 
+            for (int i =0; i < cost; i++){
+                Candy.candyList.remove(0);
+            }
         }
 
         /** returns a message if player does not have enough candies */
