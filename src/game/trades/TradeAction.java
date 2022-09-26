@@ -54,6 +54,7 @@ public class TradeAction extends Action {
         /** if conditional to check if there are enough candies to trade the item */
         if (candyBalance >= cost) {
             item.addToPlayerInventory(actor);
+            // delete candies
 
         }
 

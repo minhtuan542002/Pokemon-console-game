@@ -20,5 +20,4 @@ public interface Tradable {
      * @param actor is the player
      */
     void addToPlayerInventory(Actor actor);
-
 }
