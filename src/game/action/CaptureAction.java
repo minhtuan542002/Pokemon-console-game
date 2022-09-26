@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
 import game.affection.AffectionManager;
+import game.items.Candy;
 import game.items.Pokeball;
 import game.pokemons.Pokemon;
 
@@ -45,6 +46,7 @@ public class CaptureAction extends Action {
             Pokeball pokeball = new Pokeball(target);
             map.removeActor(target);
             actor.addItemToInventory(pokeball);
+            map.locationOf(actor).addItem(new Candy());
             return target + " is captured successfully! ";
         }
         else {
