@@ -3,21 +3,33 @@ package game.action;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.Status;
 import game.affection.AffectionManager;
 import game.elements.Element;
 import game.elements.ElementsHelper;
 import game.items.Pokefruit;
-import game.pokemons.Pokemon;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * An action to feed the Pokefruit to a Pokemon
+ * Created by:
+ *
+ * @author Minh Tuan Le
+ */
 public class FeedPokefruitAction extends Action {
+    /**
+     * The Pokemon to be fed
+     */
     private Actor pokemon;
 
+    /**
+     * The Pokefruit fed to the pokemon
+     */
     private Pokefruit pokefruit;
 
+    /**
+     * Constructor
+     * @param pokemon The Pokemon to be fed
+     * @param pokefruit The Pokefruit fed to the pokemon
+     */
     public FeedPokefruitAction(Actor pokemon, Pokefruit pokefruit) {
         this.pokefruit=pokefruit;
         this.pokemon=pokemon;

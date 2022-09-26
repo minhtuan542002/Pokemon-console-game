@@ -4,6 +4,12 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 
+/**
+ * Pokemon Squirtle
+ * Created by:
+ *
+ * @author Minh Tuan Le
+ */
 public class Squirtle extends Pokemon{
     /**
      * Constructor.

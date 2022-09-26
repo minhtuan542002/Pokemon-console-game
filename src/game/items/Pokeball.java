@@ -10,11 +10,25 @@ import game.action.SummonAction;
 import game.pokemons.Pokemon;
 import game.trades.Tradable;
 
+/**
+ * An item that can contain Pokemon when successfully capturing one and
+ * capable of summoning the Pokemon again.
+ * Created by:
+ * @author Minh Tuan Le
+ *
+ * Modified by:
+ * @author
+ */
 public class Pokeball extends Item implements Tradable{
+
+    /**
+     * The Pokemon contained inside the Pokeball
+     */
     private Pokemon pokemon;
 
-    /***
-     * Constructor.
+    /**
+     * Constructor
+     * @param pokemon The Pokemon contained inside the Pokeball
      */
     public Pokeball(Pokemon pokemon) {
         super("Pokeball", '0', false);
@@ -29,10 +43,18 @@ public class Pokeball extends Item implements Tradable{
         return 5;
     }
 
+    /**
+     * Clean up all unnecessary data and free resources
+     */
     public void remove() {
         pokemon = null;
+        this.clearActions();
     }
 
+    /**
+     *  Fetch the pokemon inside the Pokeball
+     * @return the pokemon inside the Pokeball
+     */
     public Pokemon getPokemon() { return this.pokemon;}
 /**
     @Override

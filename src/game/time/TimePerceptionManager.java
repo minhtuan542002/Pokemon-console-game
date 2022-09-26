@@ -27,6 +27,9 @@ public class TimePerceptionManager {
      */
     private final List<TimePerception> timePerceptionList;
 
+    /**
+     * The current turn count
+     */
     private int turn;
 
     private TimePeriod shift; // DAY or NIGHT

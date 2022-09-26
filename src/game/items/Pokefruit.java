@@ -13,12 +13,18 @@ import game.elements.Element;
 import game.time.TimePerceptionManager;
 import game.trades.Tradable;
 
+/**
+ *
+ */
 public class Pokefruit extends Item implements Tradable {
-
+    /**
+     * The name of the Pokefruit
+     */
     private String name;
 
-    /***
-     * Constructor.
+    /**
+     * Constructor
+     * @param pokeFruitType The Element of Pokefruit
      */
     public Pokefruit(Element pokeFruitType) {
         super("Pokefruit", 'f', true);
@@ -43,6 +49,11 @@ public class Pokefruit extends Item implements Tradable {
         return name;
     }
 
+    /**
+     *
+     * @param location The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
     public void tick(Location location, Actor actor) {
         if(actor.getInventory().contains(this)) {
             for (Exit exit : location.getExits()) {

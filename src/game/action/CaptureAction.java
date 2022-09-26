@@ -11,18 +11,28 @@ import game.pokemons.Pokemon;
 
 import java.util.Random;
 
+/**
+ * An Action to catch a Pokemon.
+ *  Created by:
+ *  @author Minh Tuan Le
+ */
 public class CaptureAction extends Action {
 
     /**
      * The Pokemon that is to be captured
      */
-    protected Pokemon target;
+    private Pokemon target;
 
     /**
      * The direction of the Pokemon that is to be captured.
      */
-    protected String direction;
+    private String direction;
 
+    /**
+     * Constructor
+     * @param target the target of the capture Action
+     * @param direction the direction of the Capture Action
+     */
     public CaptureAction(Pokemon target, String direction) {
         this.target = target;
         this.direction = direction;

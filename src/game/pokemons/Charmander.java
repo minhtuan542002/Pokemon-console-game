@@ -7,10 +7,12 @@ import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 
 /**
+ * Pokemon Charmander
  * Created by:
  *
  * @author Riordan D. Alfredo
  * Modified by:
+ * @author Minh Tuan Le
  */
 public class Charmander extends Pokemon {
     /**

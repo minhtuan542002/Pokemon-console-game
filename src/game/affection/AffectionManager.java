@@ -127,6 +127,9 @@ public class AffectionManager {
         return affectionPoints.get(pokemon).toString();
     }
 
+    /**
+     * Update the behaviours of the Pokemons according to the Affection points
+     */
     public void updatePokemonBehaviours() {
         for(Map.Entry<Pokemon, Integer> entry : affectionPoints.entrySet()) {
             if(entry.getValue()>=75) {
@@ -150,10 +153,19 @@ public class AffectionManager {
         }
     }
 
+    /**
+     * Remove a Pokemon from the Affection manager to free up resource
+     * @param pokemon the Pokemon to be removed from Affection Manager
+     */
     public void removePokemon(Pokemon pokemon) {
         affectionPoints.remove(pokemon);
     }
 
+    /**
+     * Print the Pokemon name, health and Affection point
+     * @param actor
+     * @return Pokemon information in the format of [Pokemon's name](current HP/max HP)(AP:Affection point)
+     */
     public String printAffectionPoint(Actor actor) {
         Pokemon pokemon = findPokemon(actor);
         return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(findPokemon(actor)) + ")";

@@ -6,17 +6,20 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.items.Pokeball;
-import game.pokemons.Pokemon;
 
-import javax.swing.*;
-import java.util.Random;
-
+/**
+ * The Action to summon a Pokemon from a Pokeball
+ */
 public class SummonAction extends Action {
     /**
-     * The Pokeball that is to be summoned
+     * The Pokeball containing the Pokemon to be summoned
      */
     private Pokeball summon;
 
+    /**
+     * Constructor
+     * @param pokeball The Pokeball containing the Pokemon to be summoned
+     */
     public SummonAction(Pokeball pokeball) {
         this.summon = pokeball;
     }

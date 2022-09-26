@@ -9,14 +9,16 @@ import game.elements.Element;
 import game.elements.ElementsHelper;
 
 /**
+ * The Attack behaviour of Pokemon
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
- *
+ * @author Minh Tuan Le
  */
 public class AttackBehaviour implements Behaviour {
 
     /**
+     *
      *  HINT: develop a logic to check surrounding, check elements, and return an action to attack that opponent.
      */
     @Override
