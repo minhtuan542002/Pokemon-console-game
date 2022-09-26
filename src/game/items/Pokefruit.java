@@ -5,7 +5,6 @@ import game.elements.Element;
 import game.trades.Tradable;
 
 public class Pokefruit extends Item implements Tradable {
-    Element pokeFruitType;
 
     private String name;
 
@@ -14,7 +13,8 @@ public class Pokefruit extends Item implements Tradable {
      */
     public Pokefruit(Element pokeFruitType) {
         super("Pokefruit", 'f', true);
-        this.pokeFruitType = pokeFruitType;
+        this.addCapability(pokeFruitType);
+
         if(pokeFruitType==Element.FIRE) this.name = "Fire Fruit";
         if(pokeFruitType==Element.WATER) this.name = "Water Fruit";
         if(pokeFruitType==Element.GRASS) this.name = "Grass Fruit";
@@ -34,9 +34,6 @@ public class Pokefruit extends Item implements Tradable {
         return name;
     }
 
-    public void remove() {
-        pokeFruitType=null;
-    }
 
     /**
      * @param actor

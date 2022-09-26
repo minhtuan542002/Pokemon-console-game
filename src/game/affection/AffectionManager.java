@@ -107,7 +107,8 @@ public class AffectionManager {
      * @return custom message to be printed by Display instance later.
      */
     public String increaseAffection(Actor actor, int point) {
-        return "";
+        affectionPoints.put((Pokemon) actor, affectionPoints.get((Pokemon) actor) + point);
+        return affectionPoints.get((Pokemon) actor).toString();
     }
 
     /**
@@ -118,7 +119,8 @@ public class AffectionManager {
      * @return custom message to be printed by Display instance later.
      */
     public String decreaseAffection(Actor actor, int point) {
-        return "";
+        affectionPoints.put((Pokemon) actor, affectionPoints.get((Pokemon) actor) - point);
+        return affectionPoints.get((Pokemon) actor).toString();
     }
 
     public void updatePokemonBehaviours() {
@@ -126,11 +128,17 @@ public class AffectionManager {
             if(entry.getValue()>=75) {
                 entry.getKey().addBehaviour(1, new FollowBehaviour(trainer));
             }
+            else {
+                entry.getKey().removeBehaviour(1);
+            }
             if(entry.getValue()<=-50) {
                 entry.getKey().addCapability(Status.HOSTILE);
             }
             if(entry.getValue()>=50) {
                 entry.getKey().addCapability(Status.CATCHABLE);
+            }
+            else {
+                entry.getKey().removeCapability(Status.CATCHABLE);
             }
         }
     }

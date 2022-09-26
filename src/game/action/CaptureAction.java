@@ -33,6 +33,7 @@ public class CaptureAction extends Action {
         AffectionManager affectionManager = AffectionManager.getInstance();
         if(target.hasCapability(Status.CATCHABLE)) {
             Pokeball pokeball = new Pokeball(target);
+            map.removeActor(target);
             actor.addItemToInventory(pokeball);
             return target + " is captured successfully! ";
         }
