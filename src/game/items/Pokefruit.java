@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.action.FeedPokefruitAction;
+import game.elements.Element;
 import game.trades.Tradable;
 
 /**
