@@ -6,23 +6,21 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
 import game.trades.Tradable;
 
-
 public class TradeAction extends Action {
-
 
     // attributes:
     // tradable is my interface (still needs implementation)
-    // note to self: I gotta make tradable an interface not abstract cause makes easy to add more items in future
+    // note to self: I got to make tradable an interface not abstract cause makes easy to add more items in future
 
-    public int item;
+    public Tradable item;
     // cost is how many candies we would need to buy one item
-    public int pokefruitCost;
-    public int pokeballCost;
+    public int cost;
     public int candyBalance;
 
-    public TradeAction(){
+    public TradeAction(Tradable item, int cost){
+        this.item = item;
+        this.cost = cost;
     }
-
 
     // methods
     // execute method from game engine
@@ -35,12 +33,9 @@ public class TradeAction extends Action {
         candyBalance = Player.playerInventory.size() + 1;
         System.out.println(Player.playerInventory);
 
-        if (candyBalance >= pokefruitCost) {
-            Tradable.addToPlayerInventory(actor);
-        }
-
-        else if (candyBalance >= pokeballCost) {
-            Tradable.addToPlayerInventory(actor);
+        if (candyBalance >= cost) {
+            item.addToPlayerInventory(actor);
+            // NOTE TO SELF - HOW DO I DELETE MY CANDIES ????? DO I GO IN PLAYER CLASS AND CAUSE A VOILATION OF PRINCIPLES
         }
 
         // if not, then return not enough candies

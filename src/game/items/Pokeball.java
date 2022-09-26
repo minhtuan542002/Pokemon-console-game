@@ -2,27 +2,18 @@ package game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Exit;
-import edu.monash.fit2099.engine.positions.Location;
-import game.Status;
-import game.action.FeedPokefruitAction;
-import game.action.SummonAction;
-import game.pokemons.Pokemon;
 import game.trades.Tradable;
 
-/**
- * An item that can contain Pokemon when successfully capturing one and
- * capable of summoning the Pokemon again.
- * Created by:
- * @author Minh Tuan Le
- *
- * Modified by:
- * @author
- */
 public class Pokeball extends Item implements Tradable{
 
-    /**
-     * The Pokemon contained inside the Pokeball
+    // attributes:
+    private int cost = 5;
+
+    /***
+     * Constructor.
+     *  @param name the name of this Item
+     * @param displayChar the character to use to represent this item if it is on the ground
+     * @param portable true if and only if the Item can be picked up
      */
     private Pokemon pokemon;
 
@@ -40,7 +31,7 @@ public class Pokeball extends Item implements Tradable{
     @Override
     public Integer getItemCost() {
         // attributes
-        return 5;
+        return cost;
     }
 
     /**
@@ -56,10 +47,9 @@ public class Pokeball extends Item implements Tradable{
      * @return the pokemon inside the Pokeball
      */
     public Pokemon getPokemon() { return this.pokemon;}
-/**
+
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);
     }
-    */
 }

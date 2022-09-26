@@ -11,6 +11,7 @@ import game.Status;
 import game.action.TradeAction;
 import game.affection.AffectionManager;
 import game.time.TimePerceptionManager;
+import game.items.Candy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,8 +34,6 @@ public class Player extends Actor {
 
 	private final Menu menu = new Menu();
 
-	private TimePerceptionManager time;
-
 	/**
 	 * Constructor.
 	 *
@@ -45,7 +44,6 @@ public class Player extends Actor {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.IMMUNE);
-		AffectionManager.getInstance().registerTrainer(this);
 	}
 
 	@Override
@@ -53,8 +51,6 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		time = TimePerceptionManager.getInstance();
-		time.run();
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -65,7 +61,7 @@ public class Player extends Actor {
 		return super.getDisplayChar();
 	}
 
-	// adding item to his inventory
+	// adding item to his invenotry
 	public void addItemToInventory(Item item) {
 		playerInventory.add(item);
 	}

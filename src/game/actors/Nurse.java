@@ -54,10 +54,12 @@ public class Nurse extends Actor {
         ActionList actions = new ActionList();
         // to implement trading action for every item that is in nurse's inventory
         for (Tradable item: nurseTradableList.values()) {
-            actions.add(new TradeAction());
+            actions.add(new TradeAction(item, item.getItemCost()));
         }
         return actions;
     }
+
+
 }
 
 
