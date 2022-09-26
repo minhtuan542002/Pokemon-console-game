@@ -25,10 +25,22 @@ import game.time.TimePerceptionManager;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * The Pokemon class
+ * Created by:
+ * @author Minh Tuan Le
+ */
 public abstract class Pokemon extends Actor implements TimePerception  {
     //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
+    /**
+     * The behaviour list for the Pokemon, sorted by its priority implemented by key
+     * The smaller the key, the higher priority of the behaviour
+     */
     protected final Map<Integer, Behaviour> behaviours = new TreeMap<>(); // priority, behaviour
 
+    /**
+     * The Backup weapon containing special attack to equip when conditions are met
+     */
     protected BackupWeapons backupWeapon;
 
     /**
@@ -49,6 +61,12 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         timePerceptionManager.append(this);
     }
 
+    /**
+     * Add behaviour and its priority to the behaviour list
+     *
+     * @param priority The priority of the added behaviour
+     * @param behaviour The added behaviour
+     */
     public void addBehaviour(Integer priority, Behaviour behaviour) {
         behaviours.put(priority, behaviour);
     }
@@ -56,7 +74,11 @@ public abstract class Pokemon extends Actor implements TimePerception  {
     public void removeBehaviour(Integer priority) { behaviours.remove(priority); }
 
     /**
-     * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
+     * Add and remove the Special attack from the pokemon inventory
+     *
+     * @param isEquipping Whether the Special weapon should be in the Inventory - true for yes and false for no.
+     * FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
+     *
      */
     public void toggleWeapon(boolean isEquipping) {
         if(isEquipping)this.addItemToInventory(backupWeapon.getSpecialWeapon());
@@ -127,6 +149,9 @@ public abstract class Pokemon extends Actor implements TimePerception  {
 
     }
 
+    /**
+     * Free up all resources in the Pokemon class and related manager classes
+     */
     public void remove() {
         behaviours.clear();
         backupWeapon.remove();
@@ -137,6 +162,11 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         timePerceptionManager.cleanUp(this);
     }
 
+    /**
+     * Print out the current Health point of the Pokemon
+     *
+     * @return The current health point of the pokemon and its max HP
+     */
     public String printHP() {
         return this.printHp();
     }

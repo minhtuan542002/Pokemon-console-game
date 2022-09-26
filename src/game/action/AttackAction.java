@@ -15,6 +15,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
  *
  * @author Riordan D. Alfredo
  * Modified by:
+ * @author Minh Tuan Le
  */
 public class AttackAction extends Action {
 
