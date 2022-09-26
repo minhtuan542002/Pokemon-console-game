@@ -64,8 +64,6 @@ public class Application {
         Actor bulbasaur = new Bulbasaur();
         gameMap.at(33,11).addActor(bulbasaur);
 
-        AffectionManager.getInstance().increaseAffection(bulbasaur, 200);
-
         ash.addItemToInventory(new Pokefruit(Element.FIRE));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
