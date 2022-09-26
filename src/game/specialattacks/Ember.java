@@ -1,46 +1,18 @@
 package game.specialattacks;
 
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+
 /**
  * Special attack for Charmander
  *
  * Created by:
  * @author Minh Tuan Le
  */
-public class Ember extends SpecialWeapon{
-    /**
-     * The damage of the attack
-     */
-    private final int damage = 20;
-
-    /**
-     * The verb for the attack
-     */
-    private final String verb = "sparks";
-
-    /**
-     * hitRate for the attack to succeed
-     */
-    private final int hitRate = 90;
-
+public class Ember extends WeaponItem {
     /***
      * Constructor.
      */
     public Ember() {
-        super("Ember");
-    }
-
-    @Override
-    public int damage() {
-        return damage;
-    }
-
-    @Override
-    public String verb() {
-        return verb;
-    }
-
-    @Override
-    public int chanceToHit() {
-        return hitRate;
+        super("Ember", 's', 20, "sparks", 90);
     }
 }
