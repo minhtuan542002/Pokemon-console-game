@@ -4,6 +4,11 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 
+/**
+ * The Pokemon of type Bulbasaur, element is GRASS
+ * Created by:
+ * @author Minh Tuan Le
+ */
 public class Bulbasaur extends Pokemon{
     /**
      * Constructor.
@@ -23,11 +28,11 @@ public class Bulbasaur extends Pokemon{
 
     @Override
     public void dayEffect() {
-
+        this.hurt(5);
     }
 
     @Override
     public void nightEffect() {
-
+        this.heal(5);
     }
 }

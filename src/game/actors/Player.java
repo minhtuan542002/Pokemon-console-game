@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
 import game.action.TradeAction;
+import game.affection.AffectionManager;
+import game.time.TimePerceptionManager;
 import game.items.Candy;
 
 import java.util.ArrayList;
@@ -49,13 +51,9 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		// everytime it should print candy list ethe
-		System.out.println(Candy.candyList);
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
-
-
 	}
 
 	@Override
@@ -63,9 +61,9 @@ public class Player extends Actor {
 		return super.getDisplayChar();
 	}
 
-	// adding item to his inventory
+	// adding item to his invenotry
 	public void addItemToInventory(Item item) {
-		playerInventory.remove(item);
+		playerInventory.add(item);
 	}
 
 	// now removing as well

@@ -3,7 +3,9 @@ package game.environments;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.elements.Element;
 import game.items.Candy;
+import game.items.Pokefruit;
 import game.pokemons.Bulbasaur;
 import game.pokemons.Squirtle;
 import game.time.TimePerception;
@@ -21,6 +23,8 @@ public class Tree extends SpawningGround implements TimePerception {
      */
     public Tree() {
         super('+');
+        this.addCapability(Element.GRASS);
+        this.registerInstance();
     }
 
 
@@ -53,7 +57,8 @@ public class Tree extends SpawningGround implements TimePerception {
     public void dropPokeFruit(Location location) {
         int dropRate = new Random().nextInt(100);
         if (dropRate < 15){
-
+            Pokefruit pokefruit = new Pokefruit(Element.GRASS);
+            location.addItem(pokefruit);
         }
 
     }
@@ -66,6 +71,11 @@ public class Tree extends SpawningGround implements TimePerception {
         }
     }
 
+    /**
+     * Compute the day effect of tree if it's happend
+     *
+     * @param location the location of that ground
+     */
     public void dayTree(Location location){
         if(this.hasDayEffect == 1){
             Candy candy = new Candy();
@@ -82,6 +92,11 @@ public class Tree extends SpawningGround implements TimePerception {
 
     }
 
+    /**
+     * Compute the night effect of lava if it's happend
+     *
+     * @param location the location of that ground
+     */
     public void nightTree(Location location){
         if(this.hasNightEffect == 1){
             List<Exit> exits = location.getExits();
@@ -107,5 +122,7 @@ public class Tree extends SpawningGround implements TimePerception {
         this.dayTree(location);
         //this.nightEffect();
         this.nightTree(location);
+        this.spawnPokemon(location);
+        this.dropPokeFruit(location);
     }
 }
