@@ -70,6 +70,11 @@ public class Tree extends SpawningGround implements TimePerception {
         }
     }
 
+    /**
+     * Compute the day effect of tree if it's happend
+     *
+     * @param location the location of that ground
+     */
     public void dayTree(Location location){
         if(this.hasDayEffect == 1){
             Candy candy = new Candy();
@@ -86,6 +91,11 @@ public class Tree extends SpawningGround implements TimePerception {
 
     }
 
+    /**
+     * Compute the night effect of lava if it's happend
+     *
+     * @param location the location of that ground
+     */
     public void nightTree(Location location){
         if(this.hasNightEffect == 1){
             List<Exit> exits = location.getExits();

@@ -14,11 +14,11 @@ public class Crater extends SpawningGround {
     /**
      * Constructor.
      *
-     *
      */
     public Crater() {
         super('O');
         this.addCapability(Element.FIRE);
+
     }
 
 
