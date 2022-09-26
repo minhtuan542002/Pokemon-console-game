@@ -6,12 +6,13 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.action.TradeAction;
+import game.trades.TradeAction;
 import game.elements.Element;
 import game.pokemons.Charmander;
 import game.trades.Tradable;
 import game.items.Pokeball;
 import game.items.Pokefruit;
+import game.trades.TradeAction;
 
 
 import java.util.HashMap;

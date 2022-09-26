@@ -10,12 +10,11 @@ import edu.monash.fit2099.engine.positions.Ground;
  * Modified by: Zhijun Chen
  *
  */
-
-/**
- * Constructor.
- *
- */
 public class Floor extends Ground {
+	/**
+	 * Constructor.
+	 *
+	 */
 	public Floor() {
 		super('_');
 	}
