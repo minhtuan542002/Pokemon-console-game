@@ -53,6 +53,8 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         behaviours.put(priority, behaviour);
     }
 
+    public void removeBehaviour(Integer priority) { behaviours.remove(priority); }
+
     /**
      * @param isEquipping FIXME: develop a logic to toggle weapon (put a selected weapon to the inventory - used!);
      */
@@ -73,24 +75,24 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         ActionList actions = new ActionList();
         //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
         actions.add(new AttackAction(this, direction));
-        //Allow pokemon with catchable status to be captured
-        if(this.hasCapability(Status.CATCHABLE)) { actions.add(new CaptureAction(this, direction));}
+        //Allow pokemon except Charmander to be captured
+        if(!this.hasCapability(Element.FIRE))actions.add(new CaptureAction(this, direction));
         //Allow player to feed Pokefruit to pokemon
         if((!this.hasCapability(Status.HOSTILE))) {
             Pokefruit firePokefruit = null,
                     grassPokefruit = null,
                     waterPokefruit = null;
+
             for (Item item : otherActor.getInventory()) {
-                if (item.toString() == "Pokefruit" || item.getDisplayChar()=='f') {
-                    Pokefruit pokefruit = (Pokefruit) item;
-                    if (pokefruit.hasCapability(Element.FIRE)) {
-                        firePokefruit = pokefruit;
+                if (item.getDisplayChar()=='f') {
+                    if (item.hasCapability(Element.FIRE)) {
+                        firePokefruit = (Pokefruit) item;
                     }
-                    if (pokefruit.hasCapability(Element.WATER)) {
-                        waterPokefruit = pokefruit;
+                    if (item.hasCapability(Element.WATER)) {
+                        waterPokefruit = (Pokefruit) item;
                     }
-                    if (pokefruit.hasCapability(Element.GRASS)) {
-                        grassPokefruit = pokefruit;
+                    if (item.hasCapability(Element.GRASS)) {
+                        grassPokefruit = (Pokefruit) item;
                     }
                 }
             }

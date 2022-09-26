@@ -19,7 +19,8 @@ public class FeedPokefruitAction extends Action {
     private Pokefruit pokefruit;
 
     public FeedPokefruitAction(Pokemon pokemon, Pokefruit pokefruit) {
-
+        this.pokefruit=pokefruit;
+        this.pokemon=pokemon;
     }
 
     @Override
@@ -36,7 +37,6 @@ public class FeedPokefruitAction extends Action {
            resultMessage = pokemon+" dislikes it! -10 affection points";
         }
         actor.removeItemFromInventory(pokefruit);
-        pokefruit.remove();
         return resultMessage;
     }
 
