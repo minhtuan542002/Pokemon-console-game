@@ -1,16 +1,24 @@
 package game.trades;
-
 import edu.monash.fit2099.engine.actors.Actor;
 
+/**
+ * Interface representing Tradable
+ * Created by:
+ * @author Ishrat Kaur
+ * Modified by: Minh Tuan Le, Zhijun Chen and Ishrat Kaur
+ */
 public interface Tradable {
 
-    // add methods that tradable items can implement (IMPORTANT NOte - should not have a body for methods
+    /**
+     * method to obtain cost of the item
+     * @returns item cost
+     */
+    Integer getItemCost();
 
-    // tradable items should give me thier cost price of Item
-
-    public Integer getItemCost();  // method 1
-
-    // item to be traded by actor
-    void addToPlayerInventory(Actor actor);     // method 2 - passing Actor, see pokefruit, to get actor engine
+    /**
+     * method to add item to actor's inventory
+     * @param actor is the player
+     */
+    void addToPlayerInventory(Actor actor);
 
 }

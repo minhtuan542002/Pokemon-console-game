@@ -77,11 +77,5 @@ public class Application {
         Actor nurse = new Nurse("nurse", '%', 100000);
         gameMap.at(29, 6).addActor(nurse);
 
-        // throw a candy to test if it works
-        // Item candy = new Candy();
-        gameMap.at(32, 11).addItem(new Candy());
-        world.run();
-
-
     }
 }
