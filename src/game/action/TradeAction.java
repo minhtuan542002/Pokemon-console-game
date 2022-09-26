@@ -36,6 +36,7 @@ public class TradeAction extends Action {
         if (candyBalance >= cost) {
             item.addToPlayerInventory(actor);
             // NOTE TO SELF - HOW DO I DELETE MY CANDIES ????? DO I GO IN PLAYER CLASS AND CAUSE A VOILATION OF PRINCIPLES
+            return actor + "trades " + item + " successfully!";
         }
 
         // if not, then return not enough candies
@@ -47,7 +48,7 @@ public class TradeAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
 
-        return actor + "traded " + item + " successfully ";
+        return actor + "trades " + item;
     }
 
 }
