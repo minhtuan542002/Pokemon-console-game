@@ -24,6 +24,7 @@ public class Tree extends SpawningGround implements TimePerception {
     public Tree() {
         super('+');
         this.addCapability(Element.GRASS);
+        this.registerInstance();
     }
 
 

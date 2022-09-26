@@ -26,6 +26,7 @@ public class Lava extends Ground implements TimePerception {
     public Lava() {
         super('^');
         this.addCapability(Element.FIRE);
+        this.registerInstance();
     }
 
     @Override
