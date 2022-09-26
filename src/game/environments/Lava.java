@@ -16,5 +16,6 @@ public class Lava extends Ground {
     public Lava() {
         super('^');
         this.addCapability(Element.FIRE);
+        this.registerInstance();
     }
 }

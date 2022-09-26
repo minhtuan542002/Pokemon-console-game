@@ -18,7 +18,7 @@ public class Crater extends SpawningGround {
     public Crater() {
         super('O');
         this.addCapability(Element.FIRE);
-
+        this.registerInstance();
     }
 
 

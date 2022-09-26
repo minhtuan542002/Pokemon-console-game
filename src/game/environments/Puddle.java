@@ -19,6 +19,7 @@ public class Puddle extends Ground implements TimePerception {
     public Puddle() {
         super('~');
         this.addCapability(Element.WATER);
+        this.registerInstance();
     }
 
     @Override
