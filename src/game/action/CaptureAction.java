@@ -47,7 +47,6 @@ public class CaptureAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " catches " + target + target.printHP() +
-                AffectionManager.getInstance().printAffectionPoint(target);
+        return actor + " catches " + AffectionManager.getInstance().printAffectionPoint(target);
     }
 }

@@ -15,7 +15,7 @@ public class SummonAction extends Action {
     /**
      * The Pokeball that is to be summoned
      */
-    protected Pokeball summon;
+    private Pokeball summon;
 
     public SummonAction(Pokeball pokeball) {
         this.summon = pokeball;
@@ -36,7 +36,6 @@ public class SummonAction extends Action {
         else {
             summonSpot.addActor(summon.getPokemon());
             actor.removeItemFromInventory(summon);
-            summon.remove();
             return summon.getPokemon() + "has been summoned!";
         }
     }

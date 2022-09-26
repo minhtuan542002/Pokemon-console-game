@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeedPokefruitAction extends Action {
-    private Pokemon pokemon;
+    private Actor pokemon;
 
     private Pokefruit pokefruit;
 
-    public FeedPokefruitAction(Pokemon pokemon, Pokefruit pokefruit) {
+    public FeedPokefruitAction(Actor pokemon, Pokefruit pokefruit) {
         this.pokefruit=pokefruit;
         this.pokemon=pokemon;
     }
@@ -42,7 +42,6 @@ public class FeedPokefruitAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Ash gives " + pokefruit + " to " + pokemon +
-                pokemon.printHP() + AffectionManager.getInstance().printAffectionPoint(pokemon);
+        return "Ash gives " + pokefruit + " to " + AffectionManager.getInstance().printAffectionPoint(pokemon);
     }
 }

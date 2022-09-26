@@ -1,7 +1,16 @@
 package game.items;
 
+import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.Location;
+import game.Status;
+import game.action.FeedPokefruitAction;
+import game.affection.AffectionManager;
 import game.elements.Element;
+import game.time.TimePerceptionManager;
 import game.trades.Tradable;
 
 public class Pokefruit extends Item implements Tradable {
@@ -34,7 +43,19 @@ public class Pokefruit extends Item implements Tradable {
         return name;
     }
 
-
+    public void tick(Location location, Actor actor) {
+        if(actor.getInventory().contains(this)) {
+            for (Exit exit : location.getExits()) {
+                Actor otherActor = exit.getDestination().getActor();
+                if (otherActor != null) {
+                    if (otherActor.hasCapability(Status.CAN_CONSUME_POKEFRUIT)) {
+                        this.addAction(new FeedPokefruitAction(otherActor, this));
+                    }
+                }
+            }
+        }
+        else this.clearActions();
+    }
     /**
      * @param actor
      */
