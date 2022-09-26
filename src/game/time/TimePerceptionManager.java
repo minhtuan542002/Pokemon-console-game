@@ -91,6 +91,7 @@ public class TimePerceptionManager {
      * @param objInstance any instance that implements TimePerception
      */
     public void append(TimePerception objInstance) {
+        timePerceptionList.add(objInstance);
     }
 
 

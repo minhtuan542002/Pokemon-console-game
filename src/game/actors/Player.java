@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
 import game.action.TradeAction;
 import game.affection.AffectionManager;
+import game.time.TimePerceptionManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,6 +33,8 @@ public class Player extends Actor {
 
 	private final Menu menu = new Menu();
 
+	private TimePerceptionManager time;
+
 	/**
 	 * Constructor.
 	 *
@@ -50,6 +53,8 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		time = TimePerceptionManager.getInstance();
+		time.run();
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);

@@ -19,19 +19,25 @@ public abstract class SpawningGround extends Ground {
 
     /**
      * TODO: override this method.
+
+     * spawn pokemon on that ground location
+     *
+     * @param location the location of that ground
      */
     public abstract void spawnPokemon(Location location);
 
+    /**
+     * TODO: override this method.
+
+     * drop pokefruit on that ground location
+     *
+     * @param location the location of that ground
+     */
     public abstract void dropPokeFruit(Location location);
 
+    @Override
     public void tick(Location location) {
-        //put in abstract class
         this.spawnPokemon(location);
         this.dropPokeFruit(location);
     }
-
-
-
-
-
 }
