@@ -1,46 +1,20 @@
 package game.specialattacks;
 
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+
 /**
  * Special attack for Squirtle
  *
  * Created by:
  * @author Minh Tuan Le
  */
-public class Bubble extends SpecialWeapon{
-    /**
-     * The damage of the attack
-     */
-    private final int damage = 25;
+public class Bubble extends WeaponItem {
 
     /**
-     * The verb for the attack
-     */
-    private final String verb = "burbles";
-
-    /**
-     * hitRate for the attack to succeed
-     */
-    private final int hitRate = 80;
-
-    /***
-     * Constructor.
+     * Constructor
      */
     public Bubble() {
-        super("Bubble");
+        super("Bubble", 's', 25, "burbles", 80);
     }
 
-    @Override
-    public int damage() {
-        return damage;
-    }
-
-    @Override
-    public String verb() {
-        return verb;
-    }
-
-    @Override
-    public int chanceToHit() {
-        return hitRate;
-    }
 }

@@ -1,6 +1,7 @@
 package game.specialattacks;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.action.AttackAction;
 import game.elements.Element;
 
@@ -20,7 +21,7 @@ public class BackupWeapons {
     /**
      * The Special weapon specific to one Pokemon
      */
-    static private SpecialWeapon specialWeapon;
+    static private WeaponItem specialWeapon;
 
     /**
      * Constructor
@@ -37,7 +38,7 @@ public class BackupWeapons {
      * Get the unique special weapon
      * @return the unique special weapon
      */
-    public SpecialWeapon getSpecialWeapon() {
+    public WeaponItem getSpecialWeapon() {
         return specialWeapon;
     }
 

@@ -1,45 +1,19 @@
 package game.specialattacks;
 
+import edu.monash.fit2099.engine.weapons.WeaponItem;
+
 /**
  * Special attack for Bulbasaur
  *
  * Created by:
  * @author Minh Tuan Le
  */
-public class VineWhip extends SpecialWeapon{
+public class VineWhip extends WeaponItem {
     /**
-     * The damage of the attack
-     */
-    private final int damage = 30;
-
-    /**
-     * The verb for the attack
-     */
-    private final String verb = "whips";
-
-    /**
-     * hitRate for the attack to succeed
-     */
-    private final int hitRate = 70;
-    /***
-     * Constructor.
+     * Constructor
      */
     public VineWhip() {
-        super("Vine Whip");
+        super("Vine Whip", 's', 30, "whips", 70);
     }
 
-    @Override
-    public int damage() {
-        return damage;
-    }
-
-    @Override
-    public String verb() {
-        return verb;
-    }
-
-    @Override
-    public int chanceToHit() {
-        return hitRate;
-    }
 }
