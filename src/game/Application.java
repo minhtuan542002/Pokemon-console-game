@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Nurse;
 import game.actors.Player;
+import game.affection.AffectionManager;
 import game.elements.Element;
 import game.environments.*;
 import game.items.Pokeball;
@@ -61,10 +62,14 @@ public class Application {
         Actor bulbasaur = new Bulbasaur();
         gameMap.at(33,11).addActor(bulbasaur);
 
+        AffectionManager.getInstance().increaseAffection(bulbasaur, 200);
+
         ash.addItemToInventory(new Pokefruit(Element.FIRE));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
+        ash.addItemToInventory(new Pokefruit(Element.GRASS));
+
 
         // add nurse joy
         Actor nurse = new Nurse("nurse", '%', 100000);

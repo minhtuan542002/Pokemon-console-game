@@ -9,6 +9,8 @@ import game.pokemons.Pokemon;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.min;
+
 /**
  * Affection Manager
  * <p> Self initiated and single instance class to manage Pokemon affection level and update their
@@ -107,8 +109,9 @@ public class AffectionManager {
      * @return custom message to be printed by Display instance later.
      */
     public String increaseAffection(Actor actor, int point) {
-        affectionPoints.put((Pokemon) actor, affectionPoints.get((Pokemon) actor) + point);
-        return affectionPoints.get((Pokemon) actor).toString();
+        Pokemon pokemon = findPokemon(actor);
+        affectionPoints.put(pokemon, min(100,affectionPoints.get(pokemon) + point));
+        return affectionPoints.get(pokemon).toString();
     }
 
     /**
@@ -119,8 +122,9 @@ public class AffectionManager {
      * @return custom message to be printed by Display instance later.
      */
     public String decreaseAffection(Actor actor, int point) {
-        affectionPoints.put((Pokemon) actor, affectionPoints.get((Pokemon) actor) - point);
-        return affectionPoints.get((Pokemon) actor).toString();
+        Pokemon pokemon = findPokemon(actor);
+        affectionPoints.put(pokemon, affectionPoints.get(pokemon) - point);
+        return affectionPoints.get(pokemon).toString();
     }
 
     public void updatePokemonBehaviours() {
@@ -133,6 +137,9 @@ public class AffectionManager {
             }
             if(entry.getValue()<=-50) {
                 entry.getKey().addCapability(Status.HOSTILE);
+            }
+            else {
+                entry.getKey().hasCapability(Status.CAN_CONSUME_POKEFRUIT);
             }
             if(entry.getValue()>=50) {
                 entry.getKey().addCapability(Status.CATCHABLE);
@@ -147,8 +154,9 @@ public class AffectionManager {
         affectionPoints.remove(pokemon);
     }
 
-    public String printAffectionPoint(Pokemon pokemon) {
-        return "(AP: " + getAffectionPoint(pokemon) + ")";
+    public String printAffectionPoint(Actor actor) {
+        Pokemon pokemon = findPokemon(actor);
+        return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(findPokemon(actor)) + ")";
     }
 
 }

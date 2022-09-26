@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
 import game.action.TradeAction;
+import game.affection.AffectionManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +42,7 @@ public class Player extends Actor {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.IMMUNE);
+		AffectionManager.getInstance().registerTrainer(this);
 	}
 
 	@Override
