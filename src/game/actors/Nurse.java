@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Status;
 import game.action.TradeAction;
 import game.elements.Element;
 import game.pokemons.Charmander;
@@ -30,7 +31,9 @@ public class Nurse extends Actor {
      * @param hitPoints   the Actor's starting hit points
      */
     public Nurse(String name, char displayChar, int hitPoints) {
+
         super(name, displayChar, hitPoints);
+        this.addCapability(Status.IMMUNE);
     }
     // what has nurse to do, a nurse should give player a list of tradable items.
     // so step 1 - print to console a list of tradable items - which are pokeball (with charmander inside) and pokefruit (of three types)
