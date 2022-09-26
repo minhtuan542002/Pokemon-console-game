@@ -122,5 +122,7 @@ public class Tree extends SpawningGround implements TimePerception {
         this.dayTree(location);
         //this.nightEffect();
         this.nightTree(location);
+        this.spawnPokemon(location);
+        this.dropPokeFruit(location);
     }
 }

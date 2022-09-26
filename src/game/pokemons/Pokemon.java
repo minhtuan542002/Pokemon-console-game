@@ -57,8 +57,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
 
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.registerPokemon(this);
-        TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
-        timePerceptionManager.append(this);
+        this.registerInstance();
     }
 
     /**
