@@ -32,6 +32,6 @@ public class PickUpCandyAction extends PickUpItemAction {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " can pick up " + candy;
+        return actor + " picks up " + candy;
     }
 }
