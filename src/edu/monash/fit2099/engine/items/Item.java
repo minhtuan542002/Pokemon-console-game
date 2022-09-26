@@ -65,7 +65,7 @@ public abstract class Item implements Printable, Capable {
 		return displayChar;
 	}
 
-	protected final void setDisplayChar(char displayChar){
+	protected void setDisplayChar(char displayChar){
 		this.displayChar = displayChar;
 	}
 

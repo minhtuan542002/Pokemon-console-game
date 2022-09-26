@@ -1,4 +1,4 @@
-package game;
+package game.environments;
 
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -22,7 +22,13 @@ public abstract class SpawningGround extends Ground {
      */
     public abstract void spawnPokemon(Location location);
 
-    public abstract void dropPokeFruit();
+    public abstract void dropPokeFruit(Location location);
+
+    public void tick(Location location) {
+        //put in abstract class
+        this.spawnPokemon(location);
+        this.dropPokeFruit(location);
+    }
 
 
 

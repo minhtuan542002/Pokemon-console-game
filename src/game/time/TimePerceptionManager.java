@@ -1,5 +1,11 @@
 package game.time;
 
+import edu.monash.fit2099.engine.positions.Ground;
+import game.affection.AffectionManager;
+import game.environments.Lava;
+import game.environments.Puddle;
+import game.environments.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +17,7 @@ import java.util.List;
  * Created by:
  * @author Riordan D. Alfredo
  * Modified by:
+ * @author Minh Tuan Le
  *
  */
 public class TimePerceptionManager {
@@ -20,8 +27,14 @@ public class TimePerceptionManager {
      */
     private final List<TimePerception> timePerceptionList;
 
+    /**
+     * The current turn count
+     */
     private int turn;
 
+    /**
+     * The indicator to show whether the current turn is daytime or nighttime
+     */
     private TimePeriod shift; // DAY or NIGHT
 
     /**
@@ -37,7 +50,10 @@ public class TimePerceptionManager {
      * FIXME: create a singleton instance.
      */
     public static TimePerceptionManager getInstance() {
-        return null;
+        if (instance == null) {
+            instance = new TimePerceptionManager();
+        }
+        return instance;
     }
 
     /**
@@ -55,6 +71,17 @@ public class TimePerceptionManager {
      * FIXME: write a relevant logic (i.e., increment turns choose day or night) and call this method once at every turn.
      */
     public void run() {
+        ++turn;
+        int shiftIndicator = ((turn-1)%10)/5;
+        if(shiftIndicator ==0) shift = TimePeriod.DAY;
+        else shift = TimePeriod.NIGHT;
+
+        for(TimePerception objInstance : timePerceptionList) {
+            if(shift == TimePeriod.DAY) {
+                objInstance.dayEffect();
+            }
+            else objInstance.nightEffect();
+        }
     }
 
 
@@ -75,5 +102,7 @@ public class TimePerceptionManager {
      * @param objInstance object instance
      */
     public void cleanUp(TimePerception objInstance) {
+        timePerceptionList.remove(objInstance);
     }
+
 }

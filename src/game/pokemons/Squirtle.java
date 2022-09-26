@@ -1,44 +1,39 @@
 package game.pokemons;
 
-
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.Status;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 
 /**
- * Pokemon Charmander
+ * Pokemon Squirtle
  * Created by:
  *
- * @author Riordan D. Alfredo
- * Modified by:
  * @author Minh Tuan Le
  */
-public class Charmander extends Pokemon {
+public class Squirtle extends Pokemon{
     /**
      * Constructor.
      */
-    public Charmander() {
-        super("Charmander", 'c', 100);
+    public Squirtle() {
+        super("Squirtle", 's', 100);
         // HINT: add more relevant behaviours here
-        this.addCapability(Element.FIRE);
-        this.removeCapability(Status.CATCHABLE);
-        backupWeapon = new BackupWeapons(Element.FIRE);
+        this.addCapability(Element.WATER);
+        backupWeapon = new BackupWeapons(Element.WATER);
     }
 
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(10, "scratch");
+        return new IntrinsicWeapon(10, "tackle");
     }
 
     @Override
     public void dayEffect() {
-        this.heal(10);
+        this.hurt(10);
     }
 
     @Override
     public void nightEffect() {
-        this.hurt(10);
+        this.heal(10);
     }
 }

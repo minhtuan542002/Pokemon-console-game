@@ -1,18 +1,24 @@
 package game.affection;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import game.Status;
+import game.behaviours.FollowBehaviour;
 import game.pokemons.Charmander;
+import game.pokemons.Pokemon;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.min;
+
 /**
  * Affection Manager
- * <p>
+ * <p> Self initiated and single instance class to manage Pokemon affection level and update their
+ * Capability, allowable actions and behaviours accordingly. </p>
  * Created by:
  *
  * @author Riordan D. Alfredo
- * Modified by:
+ * Modified by: Minh Tuan Le
  */
 public class AffectionManager {
 
@@ -23,7 +29,7 @@ public class AffectionManager {
     /**
      * HINT: is it just for a Charmander?
      */
-    private final Map<Charmander, Integer> affectionPoints;
+    private final Map<Pokemon, Integer> affectionPoints;
 
     /**
      * We assume there's only one trainer in this manager.
@@ -60,11 +66,13 @@ public class AffectionManager {
     }
 
     /**
-     * Add Pokemon to the collection. By default, it has 0 affection point. Ideally, you'll register all instantiated Pokemon
+     * Add Pokemon to the collection. By default, it has 0 affection point.
+     * Ideally, you'll register all instantiated Pokemon
      *
      * @param pokemon
      */
-    public void registerPokemon(Charmander pokemon) {
+    public void registerPokemon(Pokemon pokemon) {
+        affectionPoints.put(pokemon,0);
     }
 
     /**
@@ -73,7 +81,7 @@ public class AffectionManager {
      * @param pokemon Pokemon instance
      * @return integer of affection point.
      */
-    public int getAffectionPoint(Charmander pokemon) {
+    public int getAffectionPoint(Pokemon pokemon) {
         return affectionPoints.get(pokemon);
     }
 
@@ -83,8 +91,8 @@ public class AffectionManager {
      * @param actor general actor instance
      * @return the Pokemon instance.
      */
-    private Charmander findPokemon(Actor actor) {
-        for (Charmander pokemon : affectionPoints.keySet()) {
+    private Pokemon findPokemon(Actor actor) {
+        for (Pokemon pokemon : affectionPoints.keySet()) {
             if (pokemon.equals(actor)) {
                 return pokemon;
             }
@@ -101,7 +109,9 @@ public class AffectionManager {
      * @return custom message to be printed by Display instance later.
      */
     public String increaseAffection(Actor actor, int point) {
-        return "";
+        Pokemon pokemon = findPokemon(actor);
+        affectionPoints.put(pokemon, min(100,affectionPoints.get(pokemon) + point));
+        return affectionPoints.get(pokemon).toString();
     }
 
     /**
@@ -112,7 +122,53 @@ public class AffectionManager {
      * @return custom message to be printed by Display instance later.
      */
     public String decreaseAffection(Actor actor, int point) {
-        return "";
+        Pokemon pokemon = findPokemon(actor);
+        affectionPoints.put(pokemon, affectionPoints.get(pokemon) - point);
+        return affectionPoints.get(pokemon).toString();
+    }
+
+    /**
+     * Update the behaviours of the Pokemons according to the Affection points
+     */
+    public void updatePokemonBehaviours() {
+        for(Map.Entry<Pokemon, Integer> entry : affectionPoints.entrySet()) {
+            if(entry.getValue()>=75) {
+                entry.getKey().addBehaviour(1, new FollowBehaviour(trainer));
+            }
+            else {
+                entry.getKey().removeBehaviour(1);
+            }
+            if(entry.getValue()<=-50) {
+                entry.getKey().addCapability(Status.HOSTILE);
+            }
+            else {
+                entry.getKey().hasCapability(Status.CAN_CONSUME_POKEFRUIT);
+            }
+            if(entry.getValue()>=50) {
+                entry.getKey().addCapability(Status.CATCHABLE);
+            }
+            else {
+                entry.getKey().removeCapability(Status.CATCHABLE);
+            }
+        }
+    }
+
+    /**
+     * Remove a Pokemon from the Affection manager to free up resource
+     * @param pokemon the Pokemon to be removed from Affection Manager
+     */
+    public void removePokemon(Pokemon pokemon) {
+        affectionPoints.remove(pokemon);
+    }
+
+    /**
+     * Print the Pokemon name, health and Affection point
+     * @param actor
+     * @return Pokemon information in the format of [Pokemon's name](current HP/max HP)(AP:Affection point)
+     */
+    public String printAffectionPoint(Actor actor) {
+        Pokemon pokemon = findPokemon(actor);
+        return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(findPokemon(actor)) + ")";
     }
 
 }
