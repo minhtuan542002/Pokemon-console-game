@@ -14,7 +14,6 @@ public class Crater extends SpawningGround {
     /**
      * Constructor.
      *
-     *
      */
     public Crater() {
         super('O');

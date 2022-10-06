@@ -6,21 +6,29 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.action.TradeAction;
+import game.trades.TradeAction;
 import game.elements.Element;
 import game.pokemons.Charmander;
 import game.trades.Tradable;
 import game.items.Pokeball;
 import game.items.Pokefruit;
+import game.trades.TradeAction;
 
 
 import java.util.HashMap;
 
+/**
+ * Class representing Pokefruit
+ * Created by:
+ * @author Ishrat Kaur
+ */
 
 public class Nurse extends Actor {
 
-    // note to self: nurse joy is non-playable actor so, she needs a list of behaviours to help her perform actions
-    public HashMap<String, Tradable> nurseTradableList =  new HashMap<>();
+    /**
+     * Created a hashmap for a list of items that nurse joy can trade
+     */
+    private HashMap<String, Tradable> nurseTradableList =  new HashMap<>();
 
     /**
      * Constructor.
@@ -32,10 +40,6 @@ public class Nurse extends Actor {
     public Nurse(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
     }
-    // what has nurse to do, a nurse should give player a list of tradable items.
-    // so step 1 - print to console a list of tradable items - which are pokeball (with charmander inside) and pokefruit (of three types)
-    //
-
 
     @Override // implements method inherited
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
@@ -45,19 +49,23 @@ public class Nurse extends Actor {
         nurseTradableList.put("Water Pokefruit", new Pokefruit(Element.WATER));
         nurseTradableList.put("Grass Pokefruit", new Pokefruit(Element.GRASS));
         nurseTradableList.put("Pokeball", new Pokeball(new Charmander()));
-
-        // use do nothing action instead of null as null would crash the engine
         return new DoNothingAction();
     }
 
+    /**
+     * allows implementation of trade action for every tradable item in nurse's inventory
+     * @return the actions allowed
+     */
     public ActionList allowableActions () {
         ActionList actions = new ActionList();
         // to implement trading action for every item that is in nurse's inventory
         for (Tradable item: nurseTradableList.values()) {
-            actions.add(new TradeAction());
+            actions.add(new TradeAction(item, item.getItemCost()));
         }
         return actions;
     }
+
+
 }
 
 

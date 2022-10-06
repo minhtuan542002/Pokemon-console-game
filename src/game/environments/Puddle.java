@@ -19,6 +19,7 @@ public class Puddle extends Ground implements TimePerception {
     public Puddle() {
         super('~');
         this.addCapability(Element.WATER);
+        this.registerInstance();
     }
 
     @Override
@@ -29,6 +30,11 @@ public class Puddle extends Ground implements TimePerception {
         }
     }
 
+    /**
+     * Compute the day effect of puddle if it's happend
+     *
+     * @param location the location of that ground
+     */
     public void dayPuddle(Location location){
         if(this.hasDayEffect == 1){
             boolean bool = location.containsAnActor();
@@ -46,6 +52,11 @@ public class Puddle extends Ground implements TimePerception {
         }
     }
 
+    /**
+     * Compute the night effect of puddle if it's happend
+     *
+     * @param location the location of that ground
+     */
     public void nightPuddle(Location location){
         if(this.hasNightEffect == 1){
             List<Exit> exits = location.getExits();
