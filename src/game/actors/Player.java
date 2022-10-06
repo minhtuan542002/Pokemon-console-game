@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
 import game.affection.AffectionManager;
 import game.items.Candy;
+import game.time.TimePerceptionManager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +33,7 @@ public class Player extends Actor {
 	 *  displays menu for GUI implementation
 	 */
 	private final Menu menu = new Menu();
-
+	private TimePerceptionManager time = TimePerceptionManager.getInstance();
 	/**
 	 * Constructor.
 	 * @param name        Name to call the player in the UI
@@ -58,7 +60,8 @@ public class Player extends Actor {
 			return lastAction.getNextAction();
 		// everytime it should print candy list ethe
 		System.out.println(Candy.candyList);
-
+		// everytime run the time
+		time.run();
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
