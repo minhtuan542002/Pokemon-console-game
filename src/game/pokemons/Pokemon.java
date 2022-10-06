@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.Status;
 import game.action.AttackAction;
 import game.action.CaptureAction;
@@ -80,8 +81,14 @@ public abstract class Pokemon extends Actor implements TimePerception  {
      *
      */
     public void toggleWeapon(boolean isEquipping) {
-        if(isEquipping)this.addItemToInventory(backupWeapon.getSpecialWeapon());
-        else this.removeItemFromInventory(backupWeapon.getSpecialWeapon());
+        if(isEquipping) {
+            for(WeaponItem weaponItem : backupWeapon.getSpecialWeapon())
+                this.addItemToInventory(weaponItem);
+        }
+        else {
+            for(WeaponItem weaponItem : backupWeapon.getSpecialWeapon())
+                this.removeItemFromInventory(weaponItem);
+        }
     }
 
 
@@ -97,30 +104,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
         actions.add(new AttackAction(this, direction));
         //Allow pokemon except Charmander to be captured
-        if(!this.hasCapability(Element.FIRE))actions.add(new CaptureAction(this, direction));
-        //Allow player to feed Pokefruit to pokemon
-        if((!this.hasCapability(Status.HOSTILE))) {
-            Pokefruit firePokefruit = null,
-                    grassPokefruit = null,
-                    waterPokefruit = null;
-
-            for (Item item : otherActor.getInventory()) {
-                if (item.getDisplayChar()=='f') {
-                    if (item.hasCapability(Element.FIRE)) {
-                        firePokefruit = (Pokefruit) item;
-                    }
-                    if (item.hasCapability(Element.WATER)) {
-                        waterPokefruit = (Pokefruit) item;
-                    }
-                    if (item.hasCapability(Element.GRASS)) {
-                        grassPokefruit = (Pokefruit) item;
-                    }
-                }
-            }
-            if(waterPokefruit != null) actions.add(new FeedPokefruitAction(this,waterPokefruit));
-            if(firePokefruit != null) actions.add(new FeedPokefruitAction(this,firePokefruit));
-            if(grassPokefruit != null) actions.add(new FeedPokefruitAction(this,grassPokefruit));
-        }
+        actions.add(new CaptureAction(this, direction));
 
         return actions;
     }
