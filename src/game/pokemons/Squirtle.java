@@ -3,6 +3,7 @@ package game.pokemons;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
+import game.specialattacks.Bubble;
 
 /**
  * Pokemon Squirtle
@@ -18,7 +19,7 @@ public class Squirtle extends Pokemon{
         super("Squirtle", 's', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.WATER);
-        backupWeapon = new BackupWeapons(Element.WATER);
+        backupWeapon = new BackupWeapons(new Bubble());
     }
 
 
