@@ -16,7 +16,7 @@ import java.util.Random;
  * Modified by:
  * @author Zhijun Chen
  */
-public class Lava extends Ground implements TimePerception {
+public class Lava extends Ground implements TimePerception, Expendable, Destoryable {
     private int hasDayEffect;
     private int hasNightEffect;
 
@@ -44,14 +44,10 @@ public class Lava extends Ground implements TimePerception {
      */
     public void dayLava(Location location){
         if(this.hasDayEffect == 1){
-            List<Exit> exits = location.getExits();
-            for(Exit exit: exits){
-                Location exitLocation = exit.getDestination();
-                Lava lava = new Lava();
-                exitLocation.setGround(lava);
+            Lava lava = new Lava();
+            expend(location, lava);
             }
         }
-    }
 
     @Override
     public void nightEffect() {
@@ -68,13 +64,9 @@ public class Lava extends Ground implements TimePerception {
      */
     public void nightLava(Location location){
         if(this.hasNightEffect == 1){
-            boolean bool = location.containsAnActor();
-            if(!bool){
-                Dirt dirt = new Dirt();
-                location.setGround(dirt);
+            destory(location);
             }
         }
-    }
 
     @Override
     public void tick(Location location) {

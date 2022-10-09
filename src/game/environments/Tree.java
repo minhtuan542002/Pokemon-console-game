@@ -13,7 +13,7 @@ import game.time.TimePerception;
 import java.util.List;
 import java.util.Random;
 
-public class Tree extends SpawningGround implements TimePerception {
+public class Tree extends SpawningGround implements TimePerception, Expendable, Destoryable {
     private int hasDayEffect;
     private int hasNightEffect;
 
@@ -30,16 +30,7 @@ public class Tree extends SpawningGround implements TimePerception {
 
     @Override
     public void spawnPokemon(Location location) {
-        List<Exit> exits = location.getExits();
-        int grassCount = 0;
-        Ground tree = new Tree();
-        Ground hay = new Hay();
-        for(Exit exit: exits){
-            Location exitLocation = exit.getDestination();
-            if(exitLocation.getGround() == tree ||exitLocation.getGround() == hay){
-                grassCount += 1;
-            }
-        }
+        int grassCount = checkSurrounding(location, Element.GRASS);
         int spawnRate = new Random().nextInt(100);
         if(spawnRate < 15 && grassCount >= 1){
             // 10 percent chance
@@ -99,23 +90,16 @@ public class Tree extends SpawningGround implements TimePerception {
      */
     public void nightTree(Location location){
         if(this.hasNightEffect == 1){
-            List<Exit> exits = location.getExits();
             int groundRate = new Random().nextInt(100);
             if(groundRate < 50){
-                for(Exit exit: exits){
-                    Location exitLocation = exit.getDestination();
-                    Tree tree = new Tree();
-                    exitLocation.setGround(tree);
-                }
+                Tree tree = new Tree();
+                expend(location,tree);
             }else{
-                for(Exit exit: exits){
-                    Location exitLocation = exit.getDestination();
-                    Hay hay = new Hay();
-                    exitLocation.setGround(hay);
+                Hay hay = new Hay();
+                expend(location,hay);
                 }
             }
         }
-    }
     @Override
     public void tick(Location location) {
         //this.dayEffect(); manager call it

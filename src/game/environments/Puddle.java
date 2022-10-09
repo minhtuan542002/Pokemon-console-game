@@ -9,7 +9,7 @@ import game.time.TimePerception;
 import java.util.List;
 import java.util.Random;
 
-public class Puddle extends Ground implements TimePerception {
+public class Puddle extends Ground implements TimePerception, Expendable, Destoryable {
     private int hasDayEffect;
     private int hasNightEffect;
     /**
@@ -37,13 +37,9 @@ public class Puddle extends Ground implements TimePerception {
      */
     public void dayPuddle(Location location){
         if(this.hasDayEffect == 1){
-            boolean bool = location.containsAnActor();
-            if(!bool){
-                Dirt dirt = new Dirt();
-                location.setGround(dirt);
+            destory(location);
             }
         }
-    }
     @Override
     public void nightEffect() {
         int effectRate = new Random().nextInt(100);
@@ -59,14 +55,10 @@ public class Puddle extends Ground implements TimePerception {
      */
     public void nightPuddle(Location location){
         if(this.hasNightEffect == 1){
-            List<Exit> exits = location.getExits();
-            for(Exit exit: exits){
-                Location exitLocation = exit.getDestination();
-                Puddle puddle = new Puddle();
-                exitLocation.setGround(puddle);
+            Puddle puddle = new Puddle();
+            expend(location,puddle);
             }
         }
-    }
 
     @Override
     public void tick(Location location) {

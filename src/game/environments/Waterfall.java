@@ -23,16 +23,7 @@ public class Waterfall extends SpawningGround{
 
     @Override
     public void spawnPokemon(Location location) {
-        List<Exit> exits = location.getExits();
-        int waterCount = 0;
-        Ground waterfall = new Waterfall();
-        Ground puddle = new Puddle();
-        for(Exit exit: exits){
-            Location exitLocation = exit.getDestination();
-            if(exitLocation.getGround() == waterfall ||exitLocation.getGround() == puddle){
-                waterCount += 1;
-            }
-        }
+        int waterCount = checkSurrounding(location, Element.WATER);
         int spawnRate = new Random().nextInt(100);
         if(spawnRate < 20 && waterCount >= 2){
             // 10 percent chance
