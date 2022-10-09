@@ -74,6 +74,7 @@ public class Application {
         // add nurse joy
         Actor nurse = new Nurse("Nurse Joy", '%', 1);
         gameMap.at(29, 6).addActor(nurse);
+        world.run();
 
     }
 }

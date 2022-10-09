@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.action.AttackAction;
 import game.elements.Element;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The Storage for pokemon's Special attack
  * Created by:
@@ -21,31 +24,29 @@ public class BackupWeapons {
     /**
      * The Special weapon specific to one Pokemon
      */
-    static private WeaponItem specialWeapon;
+    static private List<WeaponItem> specialWeapons = new ArrayList<>();
 
     /**
      * Constructor
      *
-     * @param element Element attribute of the Special Weapon
+     * @param weaponItems the special weapons tobe stored in the Pokemon
      */
-    public BackupWeapons(Element element) {
-        if(element ==Element.FIRE) specialWeapon= new Ember();
-        else if (element ==Element.GRASS) specialWeapon= new VineWhip();
-        else if (element ==Element.WATER) specialWeapon= new Bubble();
+    public BackupWeapons(WeaponItem... weaponItems) {
+        specialWeapons.addAll(List.of(weaponItems));
     }
 
     /**
-     * Get the unique special weapon
-     * @return the unique special weapon
+     * Get the list of special weapons
+     * @return the list of special weapons
      */
-    public WeaponItem getSpecialWeapon() {
-        return specialWeapon;
+    public List<WeaponItem> getSpecialWeapon() {
+        return specialWeapons;
     }
 
     /**
      * Free up resource of the object
      */
     public void remove() {
-        specialWeapon=null;
+        specialWeapons=null;
     }
 }

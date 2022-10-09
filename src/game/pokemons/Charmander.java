@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
+import game.specialattacks.Ember;
 
 /**
  * Pokemon Charmander
@@ -23,7 +24,7 @@ public class Charmander extends Pokemon {
         // HINT: add more relevant behaviours here
         this.addCapability(Element.FIRE);
         this.removeCapability(Status.CATCHABLE);
-        backupWeapon = new BackupWeapons(Element.FIRE);
+        backupWeapon = new BackupWeapons(new Ember());
     }
 
 
