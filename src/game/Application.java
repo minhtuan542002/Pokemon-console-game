@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Nurse;
 import game.actors.Player;
-import game.affection.AffectionManager;
+//import game.affection.AffectionManager;
 import game.elements.Element;
 import game.environments.*;
 import game.items.Candy;
@@ -74,9 +74,8 @@ public class Application {
 
 
         // add nurse joy
-        Actor nurse = new Nurse("Nurse Joy", '%', 1);
+        Actor nurse = new Nurse();
         gameMap.at(29, 6).addActor(nurse);
         world.run();
-
     }
 }

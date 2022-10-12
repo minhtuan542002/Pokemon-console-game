@@ -58,6 +58,7 @@ public class Pokeball extends Item implements Tradable{
      */
     public Pokemon getPokemon() { return this.pokemon;}
 
+
     /**
      * implements method to add item to player's inventory after successful trade
      * @param actor is the player
