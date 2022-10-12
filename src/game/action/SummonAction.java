@@ -28,7 +28,7 @@ public class SummonAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Location summonSpot = null;
         for (Exit exit : map.locationOf(actor).getExits()) {
-            if(exit.getDestination().canActorEnter(summon.getPokemon())){
+            if((exit.getDestination().canActorEnter(summon.getPokemon())) && (!exit.getDestination().containsAnActor())){
                 summonSpot = exit.getDestination();
                 break;
             }

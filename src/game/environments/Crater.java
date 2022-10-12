@@ -21,7 +21,6 @@ public class Crater extends SpawningGround {
     }
 
 
-
     @Override
     public void spawnPokemon(Location location) {
         int spawnRate = new Random().nextInt(100);
