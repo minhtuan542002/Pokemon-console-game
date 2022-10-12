@@ -1,5 +1,5 @@
 package game.pokemons;
 
-public enum EVOLUTION {
+public enum Evolution {
     BASE //The base Pokemons that have not evolved and is capable of being born from eggs
 }
