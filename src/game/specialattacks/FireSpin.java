@@ -1,5 +1,8 @@
 package game.specialattacks;
 
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 public class FireSpin extends WeaponItem {
@@ -11,4 +14,11 @@ public class FireSpin extends WeaponItem {
         super("Fire Spin", 's', 70, "spins", 90);
     }
 
+    @Override
+    public void tick(Location currentLocation, Actor actor) {
+        for(Exit exit: currentLocation.getExits()){
+
+        }
+        super.tick(currentLocation, actor);
+    }
 }
