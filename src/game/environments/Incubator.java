@@ -25,7 +25,7 @@ public class Incubator extends Ground {
 
     public void tick(Location location) {
         hatchTime ++;
-        if (hatchTime == 2 && ) {
+        if (hatchTime == 2) {   // && condition still needed
             location.addActor(new Squirtle());
         }
         if (hatchTime == 3) {

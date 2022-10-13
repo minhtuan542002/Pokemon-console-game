@@ -1,9 +1,8 @@
-package game.affection;
+package game.actors;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.Status;
 import game.behaviours.FollowBehaviour;
-import game.pokemons.Charmander;
 import game.pokemons.Pokemon;
 
 import java.util.HashMap;

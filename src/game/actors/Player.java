@@ -7,10 +7,8 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
-import game.affection.AffectionManager;
 import game.items.Candy;
 import game.time.TimePerceptionManager;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,10 +22,11 @@ import java.util.List;
 
 public class Player extends Actor {
 
+
 	/**
 	 *  creates player's inventory as an array list
 	 */
-	public static ArrayList<Item> playerInventory = new ArrayList<>();
+	 public static ArrayList<Item> playerInventory = new ArrayList<>();
 
 	/**
 	 *  displays menu for GUI implementation
@@ -72,6 +71,7 @@ public class Player extends Actor {
 	 */
 	@Override
 	public char getDisplayChar() {
+
 		return super.getDisplayChar();
 	}
 
@@ -95,8 +95,8 @@ public class Player extends Actor {
 	 * method to obtain player's inventory
 	 * @return player inventory
 	 */
-	public List<Item> getInventory() {
-		return Collections.unmodifiableList(playerInventory);
-	}
+	 public List<Item> getInventory() {
+		 return Collections.unmodifiableList(playerInventory);
+	 }
 
 }

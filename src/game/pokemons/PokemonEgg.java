@@ -53,7 +53,7 @@ public class PokemonEgg extends Item implements Tradable {
 
     public void tick(Location location) {
         hatchTime ++;
-        if (hatchTime == 2 && pokemon == ) {
+        if (hatchTime == 2 ) {  // && pokemon ==
             location.addActor(new Squirtle());
         }
         if (hatchTime == 3) {

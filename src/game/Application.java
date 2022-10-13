@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Nurse;
 import game.actors.Player;
-//import game.affection.AffectionManager;
+//import game.actors.AffectionManager;
 import game.elements.Element;
 import game.environments.*;
 import game.items.Candy;
@@ -38,6 +38,7 @@ public class Application {
                 new Waterfall(), new Hay(),
                 new Crater(),
                 new Lava(), new Puddle());
+                new Incubator();
 
         List<String> map = Arrays.asList(
                 ".............................................^^^^^^^^^^^^^^",
@@ -76,6 +77,8 @@ public class Application {
         // add nurse joy
         Actor nurse = new Nurse();
         gameMap.at(29, 6).addActor(nurse);
+
+
         world.run();
     }
 }
