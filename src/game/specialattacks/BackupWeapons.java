@@ -6,6 +6,8 @@ import game.action.AttackAction;
 import game.elements.Element;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,10 +39,15 @@ public class BackupWeapons {
 
     /**
      * Get the list of special weapons
-     * @return the list of special weapons
+     * @return the list of special weapons with the order randomized
      */
     public List<WeaponItem> getSpecialWeapon() {
+        Collections.shuffle(specialWeapons); //Randomise special weapons
         return specialWeapons;
+    }
+
+    public void addSpecialWeapon(WeaponItem weaponItem) {
+        specialWeapons.add(weaponItem);
     }
 
     /**

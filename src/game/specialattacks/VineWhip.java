@@ -1,5 +1,6 @@
 package game.specialattacks;
 
+import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 /**
@@ -16,4 +17,8 @@ public class VineWhip extends WeaponItem {
         super("Vine Whip", 's', 30, "whips", 70);
     }
 
+    @Override
+    public void tick(Location currentLocation) {
+        super.tick(currentLocation);
+    }
 }

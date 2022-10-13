@@ -1,15 +1,15 @@
 package game.pokemons;
 
+import game.specialattacks.BackupWeapons;
+import game.specialattacks.Ember;
+
 public class Charizard extends Pokemon{
     /**
      * Constructor.
-     *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
      */
-    public Charizard(String name, char displayChar, int hitPoints) {
+    public Charizard() {
         super("Charizard", 'Z', 200);
+        backupWeapon = new BackupWeapons(new Ember());
     }
 
 }
