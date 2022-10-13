@@ -4,5 +4,5 @@ package game.pokemons;
  *
  */
 public interface Evolving {
-    void evolve();
+    public Pokemon getEvolution();
 }

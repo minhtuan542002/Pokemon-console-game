@@ -6,6 +6,7 @@ import game.Status;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 import game.specialattacks.Ember;
+import game.time.TimePerception;
 
 /**
  * Pokemon Charmander
@@ -15,7 +16,7 @@ import game.specialattacks.Ember;
  * Modified by:
  * @author Minh Tuan Le
  */
-public class Charmander extends Pokemon {
+public class Charmander extends Pokemon implements TimePerception {
     /**
      * Constructor.
      */
@@ -23,7 +24,8 @@ public class Charmander extends Pokemon {
         super("Charmander", 'c', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.FIRE);
-        this.removeCapability(Status.CATCHABLE);
+        this.addCapability(Evolution.BASE);
+        this.registerInstance();
         backupWeapon = new BackupWeapons(new Ember());
     }
 

@@ -31,7 +31,7 @@ import java.util.TreeMap;
  * Created by:
  * @author Minh Tuan Le
  */
-public abstract class Pokemon extends Actor implements TimePerception  {
+public abstract class Pokemon extends Actor {
     //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
     /**
      * The behaviour list for the Pokemon, sorted by its priority implemented by key
@@ -58,7 +58,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
 
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.registerPokemon(this);
-        this.registerInstance();
+
     }
 
     /**
@@ -141,8 +141,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         backupWeapon=null;
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.removePokemon(this);
-        TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
-        timePerceptionManager.cleanUp(this);
+
     }
 
     /**

@@ -12,6 +12,7 @@ import game.elements.Element;
 import game.elements.ElementsHelper;
 import game.specialattacks.BackupWeapons;
 import game.specialattacks.Bubble;
+import game.time.TimePerception;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  * @author Minh Tuan Le
  */
-public class Squirtle extends Pokemon{
+public class Squirtle extends Pokemon implements TimePerception {
     /**
      * Constructor.
      */
@@ -30,6 +31,8 @@ public class Squirtle extends Pokemon{
         super("Squirtle", 's', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.WATER);
+        this.addCapability(Evolution.BASE);
+        this.registerInstance();
         backupWeapon = new BackupWeapons(new Bubble());
     }
 

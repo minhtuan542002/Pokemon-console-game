@@ -12,13 +12,4 @@ public class Charizard extends Pokemon{
         super("Charizard", 'Z', 200);
     }
 
-    @Override
-    public void dayEffect() {
-
-    }
-
-    @Override
-    public void nightEffect() {
-
-    }
 }

@@ -12,13 +12,4 @@ public class Charmeleon extends Pokemon{
         super("Charmeleon", 'C', 150);
     }
 
-    @Override
-    public void dayEffect() {
-
-    }
-
-    @Override
-    public void nightEffect() {
-
-    }
 }
