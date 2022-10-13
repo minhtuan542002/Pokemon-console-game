@@ -62,6 +62,7 @@ public class AffectionManager {
     public List<Actor> getTrainers() {
         return trainers;
     }
+    public List<Pokemon> getPokemons() { return pokemons;}
 
     /**
      * Add a trainer to this class's attribute. Assume there's only one trainer at a time.
@@ -95,6 +96,7 @@ public class AffectionManager {
     /**
      * Get the affection point by using the pokemon instance as the key.
      *
+     * @param trainer Trainer instance
      * @param pokemon Pokemon instance
      * @return integer of affection point.
      */
@@ -174,9 +176,10 @@ public class AffectionManager {
 
     /**
      * Remove a Pokemon from the Affection manager to free up resource
-     * @param pokemon the Pokemon to be removed from Affection Manager
+     * @param actor the Pokemon to be removed from Affection Manager
      */
-    public void removePokemon(Pokemon pokemon) {
+    public void removePokemon(Actor actor) {
+        Pokemon pokemon= findPokemon(actor);
         for(Actor trainer: trainers) {
             affectionPoints.get(trainer).remove(pokemon);
         }

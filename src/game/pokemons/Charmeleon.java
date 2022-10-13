@@ -31,7 +31,7 @@ public class Charmeleon extends Pokemon implements Evolving{
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions= super.allowableActions(otherActor, direction, map);
-        if(AffectionManager.getInstance().getAffectionPoint(this)>=100) {
+        if(AffectionManager.getInstance().getAffectionPoint(otherActor, this)>=100) {
             actions.add(new MakeEvolveAction(this,this.getEvolution()));
         }
         return actions;

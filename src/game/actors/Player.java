@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.action.SeeTrainerInfoAction;
 import game.affection.AffectionManager;
 import game.items.Candy;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class Player extends Actor {
 
 		AffectionManager affectionManager=AffectionManager.getInstance();
 		for(Actor trainer: affectionManager.getTrainers()) {
-			actions.add();
+			actions.add(new SeeTrainerInfoAction(trainer));
 		}
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);

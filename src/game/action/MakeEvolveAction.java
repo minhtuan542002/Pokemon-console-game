@@ -19,6 +19,7 @@ public class MakeEvolveAction extends Action {
     public String execute(Actor actor, GameMap map) {
         Location pokemonLocation = map.locationOf(evolvingTarget);
         map.removeActor(evolvingTarget);
+        evolvingTarget.remove();
         pokemonLocation.addActor(evolvedTarget);
         return actor+ " has made "+ evolvingTarget+ " evolve into "+ evolvedTarget+ "!";
     }

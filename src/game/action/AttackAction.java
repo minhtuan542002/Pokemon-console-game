@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.affection.AffectionManager;
 
 /**
  * An Action to attack another Actor.
@@ -65,6 +66,8 @@ public class AttackAction extends Action {
                 drop.execute(target, map);
             // remove actor
             map.removeActor(target);
+            AffectionManager affectionManager= AffectionManager.getInstance();
+            affectionManager.removePokemon(target);
             result += System.lineSeparator() + target + " is killed.";
         }
 
