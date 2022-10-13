@@ -41,11 +41,11 @@ public class FeedPokefruitAction extends Action {
         String resultMessage = "";
 
         if (elementsHelper.hasAnySimilarElements(pokemon, pokefruit.findCapabilitiesByType(Element.class))) {
-            AffectionManager.getInstance().increaseAffection(pokemon, 20);
+            AffectionManager.getInstance().increaseAffection(actor, pokemon, 20);
             resultMessage = pokemon+ " likes it! +20 affection points";
         }
         else {
-           AffectionManager.getInstance().decreaseAffection(pokemon, 10);
+           AffectionManager.getInstance().decreaseAffection(actor, pokemon, 10);
            resultMessage = pokemon+" dislikes it! -10 affection points";
         }
         actor.removeItemFromInventory(pokefruit);
@@ -54,6 +54,6 @@ public class FeedPokefruitAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Ash gives " + pokefruit + " to " + AffectionManager.getInstance().printAffectionPoint(pokemon);
+        return "Ash gives " + pokefruit + " to " + AffectionManager.getInstance().printAffectionPoint(actor, pokemon);
     }
 }

@@ -51,7 +51,7 @@ public class CaptureAction extends Action {
         }
         else {
             target.removeCapability(Status.CATCHABLE);
-            affectionManager.decreaseAffection(target,10);
+            affectionManager.decreaseAffection(actor, target,10);
             return "Failed to capture " + target + "! -10 affection points. This Pokemon can no longer be captured.";
         }
 
@@ -59,6 +59,6 @@ public class CaptureAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " catches " + AffectionManager.getInstance().printAffectionPoint(target);
+        return actor + " catches " + AffectionManager.getInstance().printAffectionPoint(actor, target);
     }
 }

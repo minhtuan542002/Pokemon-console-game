@@ -59,6 +59,10 @@ public class Player extends Actor {
 		// everytime it should print candy list ethe
 		System.out.println(Candy.candyList);
 
+		AffectionManager affectionManager=AffectionManager.getInstance();
+		for(Actor trainer: affectionManager.getTrainers()) {
+			actions.add();
+		}
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}

@@ -2,11 +2,13 @@ package game.affection;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.Status;
+import game.actors.Trainer;
 import game.behaviours.FollowBehaviour;
 import game.pokemons.Charmander;
 import game.pokemons.Pokemon;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.lang.Math.min;
@@ -29,13 +31,14 @@ public class AffectionManager {
     /**
      * HINT: is it just for a Charmander?
      */
-    private final Map<Pokemon, Integer> affectionPoints;
+    private final Map<Actor, Map<Pokemon, Integer>> affectionPoints;
 
     /**
-     * We assume there's only one trainer in this manager.
-     * Think about how will you extend it.
+     * The list of trainers
      */
-    private Actor trainer;
+    private List<Actor> trainers;
+
+    private List<Pokemon> pokemons;
 
     /**
      * private singleton constructor
@@ -56,13 +59,22 @@ public class AffectionManager {
         return instance;
     }
 
+    public List<Actor> getTrainers() {
+        return trainers;
+    }
+
     /**
      * Add a trainer to this class's attribute. Assume there's only one trainer at a time.
      *
      * @param trainer the actor instance
      */
     public void registerTrainer(Actor trainer) {
-        this.trainer = trainer;
+        this.trainers.add(trainer);
+        for (Pokemon pokemon: pokemons) {
+            HashMap<Pokemon, Integer> acctyp = new HashMap<Pokemon,Integer>();
+            acctyp.put(pokemon, 0);
+            affectionPoints.put(trainer, acctyp);
+        }
     }
 
     /**
@@ -72,7 +84,12 @@ public class AffectionManager {
      * @param pokemon
      */
     public void registerPokemon(Pokemon pokemon) {
-        affectionPoints.put(pokemon,0);
+
+        for (Actor trainer: trainers){
+            HashMap<Pokemon,Integer> acctyp = new HashMap<Pokemon,Integer>();
+            acctyp.put(pokemon, 0);
+            affectionPoints.put(trainer, acctyp);
+        }
     }
 
     /**
@@ -81,8 +98,8 @@ public class AffectionManager {
      * @param pokemon Pokemon instance
      * @return integer of affection point.
      */
-    public int getAffectionPoint(Pokemon pokemon) {
-        return affectionPoints.get(pokemon);
+    public int getAffectionPoint(Actor trainer, Pokemon pokemon) {
+        return affectionPoints.get(trainer).get(pokemon);
     }
 
     /**
@@ -92,7 +109,7 @@ public class AffectionManager {
      * @return the Pokemon instance.
      */
     private Pokemon findPokemon(Actor actor) {
-        for (Pokemon pokemon : affectionPoints.keySet()) {
+        for (Pokemon pokemon : pokemons) {
             if (pokemon.equals(actor)) {
                 return pokemon;
             }
@@ -104,53 +121,54 @@ public class AffectionManager {
      * Increase the affection. Work on both cases when there's a Pokemon,
      * or when it doesn't exist in the collection.
      *
-     * @param actor Actor instance, but we expect a Pokemon here.
+     * @param pokemon Actor instance, but we expect a Pokemon here.
+     * @param trainer The trainer of the pokemon
      * @param point positive affection modifier
      * @return custom message to be printed by Display instance later.
      */
-    public String increaseAffection(Actor actor, int point) {
-        Pokemon pokemon = findPokemon(actor);
-        affectionPoints.put(pokemon, min(100,affectionPoints.get(pokemon) + point));
-        return affectionPoints.get(pokemon).toString();
+    public String increaseAffection(Actor trainer, Actor pokemon, int point) {
+        Pokemon target = findPokemon(pokemon);
+        affectionPoints.get(trainer).put(target, min(100,affectionPoints.get(trainer).get(target) + point));
+        return affectionPoints.get(trainer).get(target).toString();
     }
 
     /**
      * Decrease the affection level of the . Work on both cases when it is
      *
-     * @param actor Actor instance, but we expect a Pokemon here.
-     * @param point positive affection modifier (to be subtracted later)
+     * @param pokemon Actor instance, but we expect a Pokemon here.
+     * @param trainer The trainer of the pokemon
+     * @param point positive affection modifier
      * @return custom message to be printed by Display instance later.
      */
-    public String decreaseAffection(Actor actor, int point) {
-        Pokemon pokemon = findPokemon(actor);
-        affectionPoints.put(pokemon, affectionPoints.get(pokemon) - point);
-        return affectionPoints.get(pokemon).toString();
+    public String decreaseAffection(Actor trainer, Actor pokemon, int point) {
+        Pokemon target = findPokemon(pokemon);
+        affectionPoints.get(trainer).put(target, min(100,affectionPoints.get(trainer).get(target) - point));
+        return affectionPoints.get(trainer).get(target).toString();
     }
 
     /**
      * Update the behaviours of the Pokemons according to the Affection points
      */
     public void updatePokemonBehaviours() {
-        for(Map.Entry<Pokemon, Integer> entry : affectionPoints.entrySet()) {
-            if(entry.getValue()>=75) {
-                entry.getKey().addBehaviour(1, new FollowBehaviour(trainer));
-            }
-            else {
-                entry.getKey().removeBehaviour(1);
-            }
-            if(entry.getValue()<=-50) {
-                entry.getKey().addCapability(Status.HOSTILE);
-            }
-            else {
-                entry.getKey().hasCapability(Status.CAN_CONSUME_POKEFRUIT);
-            }
-            if(entry.getValue()>=50) {
-                entry.getKey().addCapability(Status.CATCHABLE);
-            }
-            else {
-                entry.getKey().removeCapability(Status.CATCHABLE);
-            }
+        for(Actor trainer: trainers) {
+            for (Map.Entry<Pokemon, Integer> entry : affectionPoints.get(trainer).entrySet()) {
+                if (entry.getValue() >= 75) {
+                    entry.getKey().addBehaviour(1, new FollowBehaviour(trainer));
+                } else {
+                    entry.getKey().removeBehaviour(1);
+                }
+                if (entry.getValue() <= -50) {
+                    entry.getKey().addCapability(Status.HOSTILE);
+                } else {
+                    entry.getKey().hasCapability(Status.CAN_CONSUME_POKEFRUIT);
+                }
+                if (entry.getValue() >= 50) {
+                    entry.getKey().addCapability(Status.CATCHABLE);
+                } else {
+                    entry.getKey().removeCapability(Status.CATCHABLE);
+                }
 
+            }
         }
     }
 
@@ -159,17 +177,21 @@ public class AffectionManager {
      * @param pokemon the Pokemon to be removed from Affection Manager
      */
     public void removePokemon(Pokemon pokemon) {
-        affectionPoints.remove(pokemon);
+        for(Actor trainer: trainers) {
+            affectionPoints.get(trainer).remove(pokemon);
+        }
+        pokemons.remove(pokemon);
     }
 
     /**
      * Print the Pokemon name, health and Affection point
-     * @param actor
+     * @param trainer the trainer of the pokemon
+     * @param poke the pokemon that need the affection point to be reported
      * @return Pokemon information in the format of [Pokemon's name](current HP/max HP)(AP:Affection point)
      */
-    public String printAffectionPoint(Actor actor) {
-        Pokemon pokemon = findPokemon(actor);
-        return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(findPokemon(actor)) + ")";
+    public String printAffectionPoint(Actor trainer, Actor poke) {
+        Pokemon pokemon = findPokemon(poke);
+        return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(trainer, pokemon) + ")";
     }
 
 }
