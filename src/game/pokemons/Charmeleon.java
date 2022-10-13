@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.action.MakeEvolveAction;
 import game.affection.AffectionManager;
 import game.behaviours.EvolveBehaviour;
 import game.elements.Element;
@@ -27,15 +28,19 @@ public class Charmeleon extends Pokemon implements Evolving{
         return new Charizard();
     }
 
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions= super.allowableActions(otherActor, direction, map);
+        if(AffectionManager.getInstance().getAffectionPoint(this)>=100) {
+            actions.add(new MakeEvolveAction(this,this.getEvolution()));
+        }
+        return actions;
+    }
+
     public Action playTurn (ActionList actions, Action lastAction, GameMap map, Display display) {
 
         turnCount++;
-        if(AffectionManager.getInstance().getAffectionPoint(this) >=100) {
-            this.addBehaviour(0, new EvolveBehaviour(this));
-        }
-        else {
-            this.removeBehaviour(0);
-        }
+
         if(turnCount>=20) {
             boolean otherActorNearby = false;
             for(Exit exit: map.locationOf(this).getExits()){
@@ -48,6 +53,7 @@ public class Charmeleon extends Pokemon implements Evolving{
                 addBehaviour(0, new EvolveBehaviour(this));
             }
         }
+
         return super.playTurn(actions, lastAction, map, display);
     }
 }

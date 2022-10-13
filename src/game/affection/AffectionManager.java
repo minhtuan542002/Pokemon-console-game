@@ -2,7 +2,6 @@ package game.affection;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import game.Status;
-import game.behaviours.EvolveBehaviour;
 import game.behaviours.FollowBehaviour;
 import game.pokemons.Charmander;
 import game.pokemons.Pokemon;
@@ -133,7 +132,6 @@ public class AffectionManager {
      */
     public void updatePokemonBehaviours() {
         for(Map.Entry<Pokemon, Integer> entry : affectionPoints.entrySet()) {
-
             if(entry.getValue()>=75) {
                 entry.getKey().addBehaviour(1, new FollowBehaviour(trainer));
             }
