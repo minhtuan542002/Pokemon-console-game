@@ -37,7 +37,7 @@ public class Charmander extends Pokemon implements TimePerception, Evolving {
         this.addCapability(Element.DRAGON);
         this.addCapability(Evolution.BASE);
         this.registerInstance();
-        backupWeapon.addSpecialWeapon(new FireSpin());
+        backupWeapon = new BackupWeapons(new Ember());
     }
 
 

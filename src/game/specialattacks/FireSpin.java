@@ -17,7 +17,7 @@ public class FireSpin extends WeaponItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {
         for(Exit exit: currentLocation.getExits()){
-
+            exit.getDestination().addItem(new Fire());
         }
         super.tick(currentLocation, actor);
     }

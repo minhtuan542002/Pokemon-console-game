@@ -20,5 +20,6 @@ public class VineWhip extends WeaponItem {
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
+
     }
 }
