@@ -21,19 +21,13 @@ public class CaptureAction extends Action {
      */
     private Pokemon target;
 
-    /**
-     * The direction of the Pokemon that is to be captured.
-     */
-    private String direction;
 
     /**
      * Constructor
      * @param target the target of the capture Action
-     * @param direction the direction of the Capture Action
      */
-    public CaptureAction(Pokemon target, String direction) {
+    public CaptureAction(Pokemon target) {
         this.target = target;
-        this.direction = direction;
     }
 
     @Override
@@ -48,7 +42,7 @@ public class CaptureAction extends Action {
         }
         else {
             target.removeCapability(Status.CATCHABLE);
-            affectionManager.decreaseAffection(target,10);
+            affectionManager.decreaseAffection(actor, target,10);
             return "Failed to capture " + target + "! -10 affection points. This Pokemon can no longer be captured.";
         }
 
@@ -56,6 +50,6 @@ public class CaptureAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " catches " + AffectionManager.getInstance().printAffectionPoint(target);
+        return actor + " catches " + AffectionManager.getInstance().printAffectionPoint(actor, target);
     }
 }

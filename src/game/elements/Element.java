@@ -3,6 +3,8 @@ package game.elements;
 public enum Element {
     WATER("Water"),
     FIRE("Fire"),
+
+    DRAGON("Dragon"),
     GRASS("Grass");
 
     private final String label;

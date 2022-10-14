@@ -5,10 +5,14 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.action.AttackAction;
 import game.action.CaptureAction;
+import game.action.FeedPokefruitAction;
+import game.behaviours.EvolveBehaviour;
 import game.elements.Element;
 import game.elements.ElementsHelper;
 import game.actors.AffectionManager;
@@ -27,7 +31,7 @@ import java.util.TreeMap;
  * Created by:
  * @author Minh Tuan Le
  */
-public abstract class Pokemon extends Actor implements TimePerception  {
+public abstract class Pokemon extends Actor {
     //FIXME: Change it to a sorted map (is it TreeMap? HashMap? LinkedHashMap?)
     /**
      * The behaviour list for the Pokemon, sorted by its priority implemented by key
@@ -54,7 +58,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
 
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.registerPokemon(this);
-        this.registerInstance();
+
     }
 
     /**
@@ -100,7 +104,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
         actions.add(new AttackAction(this, direction));
         //Allow pokemon except Charmander to be captured
-        actions.add(new CaptureAction(this, direction));
+        actions.add(new CaptureAction(this));
 
         return actions;
     }
@@ -137,8 +141,7 @@ public abstract class Pokemon extends Actor implements TimePerception  {
         backupWeapon=null;
         AffectionManager affectionManager = AffectionManager.getInstance();
         affectionManager.removePokemon(this);
-        TimePerceptionManager timePerceptionManager = TimePerceptionManager.getInstance();
-        timePerceptionManager.cleanUp(this);
+
     }
 
     /**

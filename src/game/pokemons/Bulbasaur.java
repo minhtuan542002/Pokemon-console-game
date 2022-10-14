@@ -4,13 +4,14 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.elements.Element;
 import game.specialattacks.BackupWeapons;
 import game.specialattacks.VineWhip;
+import game.time.TimePerception;
 
 /**
  * The Pokemon of type Bulbasaur, element is GRASS
  * Created by:
  * @author Minh Tuan Le
  */
-public class Bulbasaur extends Pokemon{
+public class Bulbasaur extends Pokemon implements TimePerception {
     /**
      * Constructor.
      */
@@ -18,6 +19,8 @@ public class Bulbasaur extends Pokemon{
         super("Bulbasaur", 'b', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.GRASS);
+        this.addCapability(Evolution.BASE);
+        this.registerInstance();
         backupWeapon = new BackupWeapons(new VineWhip());
     }
 

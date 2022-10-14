@@ -7,8 +7,11 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
+import game.action.SeeTrainerInfoAction;
+import game.affection.AffectionManager;
 import game.items.Candy;
 import game.time.TimePerceptionManager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,13 +42,6 @@ public class Player extends Actor {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-
-	/**
-	 *
-	 * @param name
-	 * @param displayChar
-	 * @param hitPoints
-	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.IMMUNE);
@@ -59,8 +55,17 @@ public class Player extends Actor {
 			return lastAction.getNextAction();
 		// everytime it should print candy list ethe
 		System.out.println(Candy.candyList);
-		// everytime run the time
-		time.run();
+
+		TimePerceptionManager.getInstance().run();
+
+		AffectionManager affectionManager=AffectionManager.getInstance();
+		affectionManager.updatePokemonBehaviours();
+		for(Actor trainer: affectionManager.getTrainers()) {
+			if(!trainer.equals(this)) {
+				actions.add(new SeeTrainerInfoAction(trainer));
+
+			}
+		}
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
