@@ -7,6 +7,7 @@ import game.behaviours.FollowBehaviour;
 import game.pokemons.Charmander;
 import game.pokemons.Pokemon;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +37,9 @@ public class AffectionManager {
     /**
      * The list of trainers
      */
-    private List<Actor> trainers;
+    private List<Actor> trainers = new ArrayList<>();
 
-    private List<Pokemon> pokemons;
+    private List<Pokemon> pokemons = new ArrayList<>();
 
     /**
      * private singleton constructor
