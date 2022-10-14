@@ -8,8 +8,8 @@ import game.pokemons.Evolving;
 import game.pokemons.Pokemon;
 
 public class MakeEvolveAction extends Action {
-    private Pokemon evolvingTarget;
-    private Pokemon evolvedTarget;
+    private final Pokemon evolvingTarget;
+    private final Pokemon evolvedTarget;
 
     public MakeEvolveAction(Pokemon evolvingTarget, Pokemon evolvedTarget){
         this.evolvingTarget=evolvingTarget;

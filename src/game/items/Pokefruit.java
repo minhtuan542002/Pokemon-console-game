@@ -34,7 +34,7 @@ public class Pokefruit extends Item implements Tradable {
     public Pokefruit(Element pokeFruitType) {
         super("Pokefruit", 'f', true);
         this.addCapability(pokeFruitType);
-
+        this.addCapability(ItemType.POKEFRUIT);
         name= pokeFruitType.toString()+ ' '+ name;
     }
 

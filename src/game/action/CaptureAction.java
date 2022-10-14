@@ -24,19 +24,13 @@ public class CaptureAction extends Action {
      */
     private Pokemon target;
 
-    /**
-     * The direction of the Pokemon that is to be captured.
-     */
-    private String direction;
 
     /**
      * Constructor
      * @param target the target of the capture Action
-     * @param direction the direction of the Capture Action
      */
-    public CaptureAction(Pokemon target, String direction) {
+    public CaptureAction(Pokemon target) {
         this.target = target;
-        this.direction = direction;
     }
 
     @Override

@@ -10,6 +10,8 @@ import game.Status;
 import game.action.SeeTrainerInfoAction;
 import game.affection.AffectionManager;
 import game.items.Candy;
+import game.time.TimePerceptionManager;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,13 +41,6 @@ public class Player extends Actor {
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
 	 */
-
-	/**
-	 *
-	 * @param name
-	 * @param displayChar
-	 * @param hitPoints
-	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.IMMUNE);
@@ -59,6 +54,8 @@ public class Player extends Actor {
 			return lastAction.getNextAction();
 		// everytime it should print candy list ethe
 		System.out.println(Candy.candyList);
+
+		TimePerceptionManager.getInstance().run();
 
 		AffectionManager affectionManager=AffectionManager.getInstance();
 		for(Actor trainer: affectionManager.getTrainers()) {

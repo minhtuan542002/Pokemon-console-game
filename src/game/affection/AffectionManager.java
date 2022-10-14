@@ -82,7 +82,7 @@ public class AffectionManager {
      * Add Pokemon to the collection. By default, it has 0 affection point.
      * Ideally, you'll register all instantiated Pokemon
      *
-     * @param pokemon
+     * @param pokemon The Pokemon to be registered
      */
     public void registerPokemon(Pokemon pokemon) {
 
@@ -100,8 +100,8 @@ public class AffectionManager {
      * @param pokemon Pokemon instance
      * @return integer of affection point.
      */
-    public int getAffectionPoint(Actor trainer, Pokemon pokemon) {
-        return affectionPoints.get(trainer).get(pokemon);
+    public int getAffectionPoint(Actor trainer, Actor pokemon) {
+        return affectionPoints.get(trainer).get(findPokemon(pokemon));
     }
 
     /**
@@ -110,7 +110,7 @@ public class AffectionManager {
      * @param actor general actor instance
      * @return the Pokemon instance.
      */
-    private Pokemon findPokemon(Actor actor) {
+    public Pokemon findPokemon(Actor actor) {
         for (Pokemon pokemon : pokemons) {
             if (pokemon.equals(actor)) {
                 return pokemon;

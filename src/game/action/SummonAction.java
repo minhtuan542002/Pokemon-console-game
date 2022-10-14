@@ -14,7 +14,7 @@ public class SummonAction extends Action {
     /**
      * The Pokeball containing the Pokemon to be summoned
      */
-    private Pokeball summon;
+    private final Pokeball summon;
 
     /**
      * Constructor

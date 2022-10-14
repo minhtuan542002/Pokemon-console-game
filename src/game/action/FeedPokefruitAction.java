@@ -2,6 +2,7 @@ package game.action;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.affection.AffectionManager;
 import game.elements.Element;
@@ -18,29 +19,28 @@ public class FeedPokefruitAction extends Action {
     /**
      * The Pokemon to be fed
      */
-    private Actor pokemon;
+    private final Actor pokemon;
 
     /**
      * The Pokefruit fed to the pokemon
      */
-    private Pokefruit pokefruit;
+    private final Item pokefruit;
 
     /**
      * Constructor
      * @param pokemon The Pokemon to be fed
      * @param pokefruit The Pokefruit fed to the pokemon
      */
-    public FeedPokefruitAction(Actor pokemon, Pokefruit pokefruit) {
+    public FeedPokefruitAction(Actor pokemon, Item pokefruit) {
         this.pokefruit=pokefruit;
         this.pokemon=pokemon;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        ElementsHelper elementsHelper = new ElementsHelper();
         String resultMessage = "";
 
-        if (elementsHelper.hasAnySimilarElements(pokemon, pokefruit.findCapabilitiesByType(Element.class))) {
+        if (ElementsHelper.hasAnySimilarElements(pokemon, pokefruit.findCapabilitiesByType(Element.class))) {
             AffectionManager.getInstance().increaseAffection(actor, pokemon, 20);
             resultMessage = pokemon+ " likes it! +20 affection points";
         }

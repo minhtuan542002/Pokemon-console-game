@@ -18,19 +18,18 @@ public class SeeTrainerInfoAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Location trainerLocation = map.locationOf(trainer);
-        String inventoryList ="[" +trainer.getInventory().get(0).toString();
+        StringBuilder inventoryList = new StringBuilder("[" + trainer.getInventory().get(0).toString());
         for(int i=1; i<trainer.getInventory().size(); i++){
 
-            inventoryList += ", "+ trainer.getInventory().get(i).toString();
+            inventoryList.append(", ").append(trainer.getInventory().get(i).toString());
         }
-        inventoryList+=']';
+        inventoryList.append(']');
 
-        String pokemonList ="";
+        StringBuilder pokemonList = new StringBuilder();
         AffectionManager affectionManager= AffectionManager.getInstance();
         for(Pokemon pokemon: affectionManager.getPokemons()) {
             Location pokemonLocation= map.locationOf(pokemon);
-            pokemonList+=" - "+ pokemon.toString()+ pokemon.printHP()+ " with "+
-                    affectionManager.getAffectionPoint(trainer,pokemon)+ " AP at "+ pokemonLocation.x()+','+pokemonLocation.y()+'\n';
+            pokemonList.append(" - ").append(pokemon.toString()).append(pokemon.printHP()).append(" with ").append(affectionManager.getAffectionPoint(trainer, pokemon)).append(" AP at ").append(pokemonLocation.x()).append(',').append(pokemonLocation.y()).append('\n');
         }
         return trainer.toString() +" | "+ trainerLocation.x()+ ','+ trainerLocation.y()+ " | inventory: "+ inventoryList+ '\n'+
                 pokemonList;

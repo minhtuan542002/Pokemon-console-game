@@ -106,7 +106,7 @@ public abstract class Pokemon extends Actor {
         //FIXME: allow other actor to attack this Charmander (incl. Player). Please check requirement! :)
         actions.add(new AttackAction(this, direction));
         //Allow pokemon except Charmander to be captured
-        actions.add(new CaptureAction(this, direction));
+        actions.add(new CaptureAction(this));
 
         return actions;
     }
