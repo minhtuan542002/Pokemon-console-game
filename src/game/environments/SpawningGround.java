@@ -1,7 +1,11 @@
 package game.environments;
 
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.elements.Element;
+
+import java.util.List;
 
 public abstract class SpawningGround extends Ground {
     /**
@@ -11,6 +15,18 @@ public abstract class SpawningGround extends Ground {
      */
     public SpawningGround(char displayChar) {
         super(displayChar);
+    }
+
+    public int checkSurrounding(Location location, Element element){
+        List<Exit> exits = location.getExits();
+        int Count = 0;
+        for(Exit exit: exits){
+            Location exitLocation = exit.getDestination();
+            if(exitLocation.getGround().hasCapability(element)){
+                Count += 1;
+            }
+        }
+        return Count;
     }
 
 

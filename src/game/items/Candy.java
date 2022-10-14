@@ -36,9 +36,7 @@ public class Candy extends Item  {
     }
 
     @Override
-    public DropItemAction getDropAction(Actor actor) {
-        return new DropCandyAction(this);
-    }
+    public DropItemAction getDropAction(Actor actor) { return new DropCandyAction(this); }
 
     /**
      * method to add candy to the candy list

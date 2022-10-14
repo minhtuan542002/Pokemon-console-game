@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.affection.AffectionManager;
+import game.actors.AffectionManager;
 import game.elements.Element;
 import game.elements.ElementsHelper;
 import game.items.Pokefruit;

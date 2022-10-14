@@ -37,24 +37,41 @@ public class Application {
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(),
                 new Floor(), new Tree(),
+                new Waterfall(), new Hay(),
+                new Crater(), new Door(),
                 new Lava(), new Puddle());
+                new Incubator();
 
         List<String> map = Arrays.asList(
                 ".............................................^^^^^^^^^^^^^^",
                 "............+..................................+...^^^^^^^^",
                 ".....................................................^^^^^^",
                 "........................................................^^^",
-                "..........................#######........................^^",
+                "........O.................#######........................^^",
                 "..........................#_____#............+............^",
                 ".....................+....#_____#..........................",
-                "...+.......~..............###_###..........................",
+                "...+.......~..............###_###.............W............",
                 "...~~~~~~~~................................................",
-                "....~~~~~..................................................",
-                "~~~~~~~....................................................",
+                "....~~~~~..................###.............................",
+                "~~~~~~~....................#=#.............................",
                 "~~~~~~..+.............................+....................",
                 "~~~~~~~~~..................................................");
         GameMap gameMap = new GameMap(groundFactory, map);
         world.addGameMap(gameMap);
+
+        List<String> centerMap = Arrays.asList(
+                "##################",
+                "#________________#",
+                "#______.._.._____#",
+                "#________________#",
+                "#________________#",
+                "########_=_#######");
+        GameMap pokeCenterMap = new GameMap(groundFactory, centerMap);
+        world.addGameMap(pokeCenterMap);
+
+        //Add nurse joy
+        Actor nurseCenter = new Nurse();
+        pokeCenterMap.at(9, 2).addActor(nurseCenter);
 
         //Add player - Ash
         Player ash = new Player("Ash", '@', 1);
@@ -78,11 +95,15 @@ public class Application {
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
 
+        Lava lava = new Lava();
+        gameMap.at(13,4).setGround(lava);
+
 
         // add nurse joy
-        Actor nurse = new Nurse("Nurse Joy", '%', 1);
+        Actor nurse = new Nurse();
         gameMap.at(29, 6).addActor(nurse);
-        world.run();
 
+
+        world.run();
     }
 }

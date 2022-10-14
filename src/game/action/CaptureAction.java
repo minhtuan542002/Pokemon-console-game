@@ -1,16 +1,13 @@
 package game.action;
 
-import javax.swing.*;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
-import game.affection.AffectionManager;
+import game.actors.AffectionManager;
 import game.items.Candy;
 import game.items.Pokeball;
 import game.pokemons.Pokemon;
-
-import java.util.Random;
 
 /**
  * An Action to catch a Pokemon.

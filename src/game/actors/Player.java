@@ -25,16 +25,17 @@ import java.util.List;
 
 public class Player extends Actor {
 
+
 	/**
 	 *  creates player's inventory as an array list
 	 */
-	public static ArrayList<Item> playerInventory = new ArrayList<>();
+	 public static ArrayList<Item> playerInventory = new ArrayList<>();
 
 	/**
 	 *  displays menu for GUI implementation
 	 */
 	private final Menu menu = new Menu();
-
+	private TimePerceptionManager time = TimePerceptionManager.getInstance();
 	/**
 	 * Constructor.
 	 * @param name        Name to call the player in the UI
@@ -75,6 +76,7 @@ public class Player extends Actor {
 	 */
 	@Override
 	public char getDisplayChar() {
+
 		return super.getDisplayChar();
 	}
 
@@ -98,8 +100,8 @@ public class Player extends Actor {
 	 * method to obtain player's inventory
 	 * @return player inventory
 	 */
-	public List<Item> getInventory() {
-		return Collections.unmodifiableList(playerInventory);
-	}
+	 public List<Item> getInventory() {
+		 return Collections.unmodifiableList(playerInventory);
+	 }
 
 }

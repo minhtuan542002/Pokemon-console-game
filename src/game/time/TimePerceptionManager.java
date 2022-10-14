@@ -1,11 +1,5 @@
 package game.time;
 
-import edu.monash.fit2099.engine.positions.Ground;
-import game.affection.AffectionManager;
-import game.environments.Lava;
-import game.environments.Puddle;
-import game.environments.Tree;
-
 import java.util.ArrayList;
 import java.util.List;
 
