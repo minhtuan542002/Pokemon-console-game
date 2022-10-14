@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.pokemons.Bulbasaur;
 import game.pokemons.PokemonEgg;
@@ -19,6 +20,7 @@ import game.trades.TradeAction;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class representing Pokefruit
@@ -45,6 +47,7 @@ public class Nurse extends Actor {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // nurse should show tradable items in her inventory,
         // hashmap syntax https://edstem.org/au/courses/8750/lessons/22738/slides/160450
+        nurseTradableList=new HashMap<>();
         nurseTradableList.put("Fire Pokefruit", new Pokefruit(Element.FIRE));
         nurseTradableList.put("Water Pokefruit", new Pokefruit(Element.WATER));
         nurseTradableList.put("Grass Pokefruit", new Pokefruit(Element.GRASS));
