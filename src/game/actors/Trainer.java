@@ -40,6 +40,8 @@ public class Trainer extends Actor {
         this.behaviours.put(9, new PickUpItemBehaviour());
         this.behaviours.put(8, new FeedPokefruitBehaviour());
         this.behaviours.put(7, new CatchPokemonBehaviour());
+        AffectionManager.getInstance().registerTrainer(this);
+
     }
 
     @Override

@@ -60,8 +60,8 @@ public class Application {
         Player ash = new Player("Ash", '@', 1);
         world.addPlayer(ash, gameMap.at(32, 10));
 
-        Trainer goh = new Trainer("Ash", '@', 1);
-        gameMap.at(32,4).addActor(goh);
+        Trainer goh = new Trainer("Goh", 'G', 1);
+        gameMap.at(33,4).addActor(goh);
         Actor squirtle = new Squirtle();
         gameMap.at(32,3).addActor(squirtle);
         AffectionManager.getInstance().increaseAffection(goh, squirtle, 100);

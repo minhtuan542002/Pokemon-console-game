@@ -58,8 +58,12 @@ public class Player extends Actor {
 		TimePerceptionManager.getInstance().run();
 
 		AffectionManager affectionManager=AffectionManager.getInstance();
+		affectionManager.updatePokemonBehaviours();
 		for(Actor trainer: affectionManager.getTrainers()) {
-			actions.add(new SeeTrainerInfoAction(trainer));
+			if(!trainer.equals(this)) {
+				actions.add(new SeeTrainerInfoAction(trainer));
+
+			}
 		}
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);

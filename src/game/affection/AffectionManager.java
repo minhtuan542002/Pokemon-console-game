@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 /**
@@ -32,7 +33,7 @@ public class AffectionManager {
     /**
      * HINT: is it just for a Charmander?
      */
-    private final Map<Actor, Map<Pokemon, Integer>> affectionPoints;
+    private Map<Actor, Map<Pokemon, Integer>> affectionPoints;
 
     /**
      * The list of trainers
@@ -57,6 +58,7 @@ public class AffectionManager {
         if (instance == null) {
             instance = new AffectionManager();
         }
+
         return instance;
     }
 
@@ -72,10 +74,12 @@ public class AffectionManager {
      */
     public void registerTrainer(Actor trainer) {
         this.trainers.add(trainer);
-        for (Pokemon pokemon: pokemons) {
-            HashMap<Pokemon, Integer> acctyp = new HashMap<Pokemon,Integer>();
-            acctyp.put(pokemon, 0);
-            affectionPoints.put(trainer, acctyp);
+        if(!pokemons.isEmpty()){
+            for (Pokemon pokemon: pokemons) {
+                HashMap<Pokemon, Integer> acctyp = new HashMap<>();
+                acctyp.put(pokemon, 0);
+                affectionPoints.put(trainer, acctyp);
+            }
         }
     }
 
@@ -86,11 +90,20 @@ public class AffectionManager {
      * @param pokemon The Pokemon to be registered
      */
     public void registerPokemon(Pokemon pokemon) {
-
-        for (Actor trainer: trainers){
-            HashMap<Pokemon,Integer> acctyp = new HashMap<Pokemon,Integer>();
-            acctyp.put(pokemon, 0);
-            affectionPoints.put(trainer, acctyp);
+        pokemons.add(pokemon);
+        if(!trainers.isEmpty()) {
+            if(affectionPoints.isEmpty()){
+                for (Actor trainer : trainers) {
+                    HashMap<Pokemon, Integer> acctyp = new HashMap<Pokemon, Integer>();
+                    acctyp.put(pokemon, 0);
+                    affectionPoints.put(trainer, acctyp);
+                }
+            }
+            for (Actor trainer : trainers) {
+                HashMap<Pokemon, Integer> acctyp = new HashMap<Pokemon, Integer>();
+                acctyp.put(pokemon, 0);
+                affectionPoints.get(trainer).put(pokemon, 0);
+            }
         }
     }
 
@@ -145,7 +158,7 @@ public class AffectionManager {
      */
     public String decreaseAffection(Actor trainer, Actor pokemon, int point) {
         Pokemon target = findPokemon(pokemon);
-        affectionPoints.get(trainer).put(target, min(100,affectionPoints.get(trainer).get(target) - point));
+        affectionPoints.get(trainer).put(target, max(-100,affectionPoints.get(trainer).get(target) - point));
         return affectionPoints.get(trainer).get(target).toString();
     }
 
@@ -198,4 +211,17 @@ public class AffectionManager {
         return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(trainer, pokemon) + ")";
     }
 
+    public void print() {
+        System.out.println("\n all");
+        for (Actor trainer: affectionPoints.keySet()) {
+            System.out.println(" "+trainer.toString());
+            if(affectionPoints.get(trainer)==null) {
+                System.out.println("null");
+                return;
+            }
+            for (Pokemon pokemon: affectionPoints.get(trainer).keySet()) {
+                System.out.println("   "+pokemon.toString()+"/"+affectionPoints.get(trainer).get(pokemon).toString());
+            }
+        }
+    }
 }

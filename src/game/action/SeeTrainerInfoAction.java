@@ -12,24 +12,28 @@ public class SeeTrainerInfoAction extends Action {
     Actor trainer;
 
     public SeeTrainerInfoAction(Actor trainer) {
-
+        this.trainer=trainer;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         Location trainerLocation = map.locationOf(trainer);
-        StringBuilder inventoryList = new StringBuilder("[" + trainer.getInventory().get(0).toString());
+        String inventoryList =(trainer.getInventory().isEmpty()) ?
+                "" : trainer.getInventory().get(0).toString();
+        inventoryList ="[" +inventoryList;
         for(int i=1; i<trainer.getInventory().size(); i++){
 
-            inventoryList.append(", ").append(trainer.getInventory().get(i).toString());
+            inventoryList += ", "+ trainer.getInventory().get(i).toString();
         }
-        inventoryList.append(']');
+        inventoryList+=']';
 
-        StringBuilder pokemonList = new StringBuilder();
+        String pokemonList ="";
         AffectionManager affectionManager= AffectionManager.getInstance();
         for(Pokemon pokemon: affectionManager.getPokemons()) {
             Location pokemonLocation= map.locationOf(pokemon);
-            pokemonList.append(" - ").append(pokemon.toString()).append(pokemon.printHP()).append(" with ").append(affectionManager.getAffectionPoint(trainer, pokemon)).append(" AP at ").append(pokemonLocation.x()).append(',').append(pokemonLocation.y()).append('\n');
+            String pokemonLocationString= (pokemonLocation==null) ? " not on the map": " at "+pokemonLocation.x()+','+pokemonLocation.y();
+            pokemonList+=" - "+ pokemon.toString()+ pokemon.printHP()+ " with "+
+                    affectionManager.getAffectionPoint(trainer,pokemon)+ " AP"+ pokemonLocationString+ '\n';
         }
         return trainer.toString() +" | "+ trainerLocation.x()+ ','+ trainerLocation.y()+ " | inventory: "+ inventoryList+ '\n'+
                 pokemonList;

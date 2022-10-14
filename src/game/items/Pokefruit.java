@@ -18,11 +18,6 @@ import game.trades.Tradable;
 
 public class Pokefruit extends Item implements Tradable {
     /**
-     * The name of the Pokefruit
-     */
-    private String name;
-
-    /**
      * cost of pokefruit defined as a private integer
      */
     private int cost = 1;
@@ -32,10 +27,10 @@ public class Pokefruit extends Item implements Tradable {
      *  @param pokeFruitType The element of the Pokefruit
      */
     public Pokefruit(Element pokeFruitType) {
-        super("Pokefruit", 'f', true);
+        super(pokeFruitType.toString()+ " Pokefruit", 'f', true);
         this.addCapability(pokeFruitType);
         this.addCapability(ItemType.POKEFRUIT);
-        name= pokeFruitType.toString()+ ' '+ name;
+
     }
 
     /**
@@ -46,15 +41,6 @@ public class Pokefruit extends Item implements Tradable {
     public Integer getItemCost() {
         // attributes
         return cost;
-    }
-
-    /**
-     * method to convert to string format
-     * @return name of the pokefruit
-     */
-    @Override
-    public String toString() {
-        return name;
     }
 
     /**
