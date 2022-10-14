@@ -43,12 +43,12 @@ public class Application {
         List<String> map = Arrays.asList(
                 ".............................................^^^^^^^^^^^^^^",
                 "............+..................................+...^^^^^^^^",
-                "........T............................................^^^^^^",
+                ".....................................................^^^^^^",
                 "........................................................^^^",
-                "..........................#######........................^^",
+                "........O.................#######........................^^",
                 "..........................#_____#............+............^",
                 ".....................+....#_____#..........................",
-                "...+.......~..............###_###..........................",
+                "...+.......~..............###_###.............W............",
                 "...~~~~~~~~................................................",
                 "....~~~~~..................###.............................",
                 "~~~~~~~....................#=#.............................",
@@ -60,12 +60,16 @@ public class Application {
         List<String> centerMap = Arrays.asList(
                 "##################",
                 "#________________#",
-                "#______..%.._____#",
+                "#______.._.._____#",
                 "#________________#",
                 "#________________#",
                 "########_=_#######");
-        GameMap pokeCenter = new GameMap(groundFactory, centerMap);
-        world.addGameMap(pokeCenter);
+        GameMap pokeCenterMap = new GameMap(groundFactory, centerMap);
+        world.addGameMap(pokeCenterMap);
+
+        //Add nurse joy
+        Actor nurseCenter = new Nurse();
+        pokeCenterMap.at(9, 2).addActor(nurseCenter);
 
         //Add player - Ash
         Player ash = new Player("Ash", '@', 1);
@@ -82,6 +86,9 @@ public class Application {
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
+
+        Lava lava = new Lava();
+        gameMap.at(13,4).setGround(lava);
 
 
         // add nurse joy
