@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Nurse;
 import game.actors.Player;
+import game.actors.Trainer;
 import game.affection.AffectionManager;
 import game.elements.Element;
 import game.environments.*;
@@ -19,6 +20,7 @@ import game.items.Pokeball;
 import game.items.Pokefruit;
 import game.pokemons.Bulbasaur;
 import game.pokemons.Charmander;
+import game.pokemons.Squirtle;
 
 /**
  * The main class to start the game.
@@ -57,6 +59,12 @@ public class Application {
         //Add player - Ash
         Player ash = new Player("Ash", '@', 1);
         world.addPlayer(ash, gameMap.at(32, 10));
+
+        Trainer goh = new Trainer("Ash", '@', 1);
+        gameMap.at(32,4).addActor(goh);
+        Actor squirtle = new Squirtle();
+        gameMap.at(32,3).addActor(squirtle);
+        AffectionManager.getInstance().increaseAffection(goh, squirtle, 100);
 
         //Add first pokemon - Charmander
         Actor charmander = new Charmander();
