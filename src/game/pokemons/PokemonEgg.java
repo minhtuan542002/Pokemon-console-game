@@ -1,11 +1,17 @@
 package game.pokemons;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.SummonAction;
 import game.trades.Tradable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PokemonEgg extends Item implements Tradable {
 
@@ -13,6 +19,8 @@ public class PokemonEgg extends Item implements Tradable {
      * private integer for hashTime representing number of turns taken by pokemon egg to hatch
      */
     private int hatchTime;
+
+    private boolean consumed = true;
 
     /**
      * The Pokemon contained inside the PokemonEgg
@@ -42,6 +50,13 @@ public class PokemonEgg extends Item implements Tradable {
         return cost;
     }
 
+    public Pokemon getPokemon() {
+        return pokemon;
+    }
+
+    public void dropped(Actor actor, GameMap map) {
+
+    }
     /**
      * implements method to add item to player's inventory after successful trade
      * @param actor is the player
@@ -51,29 +66,12 @@ public class PokemonEgg extends Item implements Tradable {
         actor.addItemToInventory(this);
     }
 
-    public void tick(Location location) {
-        hatchTime ++;
-        if (hatchTime == 2 ) {  // && pokemon ==
-            location.addActor(new Squirtle());
-        }
-        if (hatchTime == 3) {
-            if (location.containsAnActor()){
-                for (Exit exits: location.getExits()){
 
-                    if (!exits.getDestination().containsAnActor()){
-                        exits.getDestination().addActor(new Bulbasaur());
-                        break;
-                    }
-                }
-            }else{
-                location.addActor(new Bulbasaur()); // for bulbasaur
-            }
-//
-        }
-        if (hatchTime == 4) {
-            location.addActor(new Charmander()); // for charmander
-        }
 
+    @Override
+    public List<Action> getAllowableActions() {
+        ArrayList<Action> actions = new ArrayList<>();
+        actions.add(new DropItemAction(this));
+        return super.getAllowableActions();
     }
-
 }

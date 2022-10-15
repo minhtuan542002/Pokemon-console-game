@@ -3,10 +3,8 @@ package game.environments;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.pokemons.Bulbasaur;
-import game.pokemons.Charmander;
-import game.pokemons.PokemonEgg;
-import game.pokemons.Squirtle;
+import game.actors.Player;
+import game.pokemons.*;
 
 public class Incubator extends Ground {
 
@@ -14,6 +12,8 @@ public class Incubator extends Ground {
      * private integer for hashTime representing number of turns taken by pokemon egg to hatch
      */
     private int hatchTime;
+
+    private PokemonEgg pokemonEgg;
 
     /**
      * Constructor.
@@ -25,7 +25,8 @@ public class Incubator extends Ground {
 
     public void tick(Location location) {
         hatchTime ++;
-        if (hatchTime == 2) {   // && condition still needed
+
+        if (hatchTime == 2 && Player.playerInventory.contains(pokemonEgg) ) {   // && condition still needed
             location.addActor(new Squirtle());
         }
         if (hatchTime == 3) {

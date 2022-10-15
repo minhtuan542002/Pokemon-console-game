@@ -20,7 +20,7 @@ public class Charmeleon extends Pokemon implements Evolving{
      */
     public Charmeleon() {
         super("Charmeleon", 'C', 150);
-        backupWeapon.addSpecialWeapon(new Blaze());
+//        backupWeapon.addSpecialWeapon(new Blaze());
     }
 
     @Override

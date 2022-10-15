@@ -49,7 +49,7 @@ public class TradeAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         /** candy balance is obtained by finding length of player's inventory */
-        candyBalance = Player.playerInventory.size() + 1;
+        candyBalance = Candy.candyList.size() + 1;
         System.out.println(Player.playerInventory);
 
         /** if conditional to check if there are enough candies to trade the item */
@@ -73,7 +73,7 @@ public class TradeAction extends Action {
     @Override
     public String menuDescription(Actor actor) {
 
-        return actor + "traded " + item + " successfully ";
+        return actor + " can trade " + item;
     }
 
 }
