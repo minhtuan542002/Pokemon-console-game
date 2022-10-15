@@ -3,12 +3,15 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.monash.fit2099.demo.mars.items.MartianItem;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.action.EnterDoorAction;
 import game.actors.Nurse;
 import game.actors.Player;
 import game.actors.Trainer;
@@ -47,13 +50,13 @@ public class Application {
                 "............+..................................+...^^^^^^^^",
                 ".....................................................^^^^^^",
                 "........................................................^^^",
-                "........O.................#######........................^^",
-                "..........................#_____#............+............^",
-                ".....................+....#_____#..........................",
-                "...+.......~..............###_###.............W............",
+                "........O.................###............................^^",
+                "..........................#_#................+............^",
+                ".....................+.....................................",
+                "...+.......~..............###.###.............W............",
                 "...~~~~~~~~................................................",
-                "....~~~~~..................###.............................",
-                "~~~~~~~....................#=#.............................",
+                "....~~~~~..................................................",
+                "~~~~~~~....................................................",
                 "~~~~~~..+.............................+....................",
                 "~~~~~~~~~..................................................");
         GameMap gameMap = new GameMap(groundFactory, map);
@@ -65,17 +68,17 @@ public class Application {
                 "#______.._.._____#",
                 "#________________#",
                 "#________________#",
-                "########_=_#######");
-        GameMap pokeCenterMap = new GameMap(groundFactory, centerMap);
-        world.addGameMap(pokeCenterMap);
+                "########___#######");
+        GameMap pokeCenter = new GameMap(groundFactory, centerMap);
+        world.addGameMap(pokeCenter);
 
         //Add nurse joy
         Actor nurseCenter = new Nurse();
-        pokeCenterMap.at(9, 2).addActor(nurseCenter);
+        pokeCenter.at(9, 2).addActor(nurseCenter);
 
         //Add player - Ash
         Player ash = new Player("Ash", '@', 1);
-        world.addPlayer(ash, gameMap.at(32, 10));
+        world.addPlayer(ash, gameMap.at(27, 6));
 
         Trainer goh = new Trainer("Goh", 'G', 1);
         gameMap.at(33,4).addActor(goh);
@@ -95,13 +98,16 @@ public class Application {
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
         ash.addItemToInventory(new Pokefruit(Element.GRASS));
 
-        Lava lava = new Lava();
-        gameMap.at(13,4).setGround(lava);
+        MartianItem enterDoor = new MartianItem("Door", '=', false);
+        enterDoor.addSampleAction(new EnterDoorAction(pokeCenter.at(9, 5), "to Pokemon Center!"));
+        gameMap.at(27, 5).addItem(enterDoor);
+
+        MartianItem exitDoor = new MartianItem("Door", '=', false);
+        exitDoor.addSampleAction(new EnterDoorAction(gameMap.at(27, 5), "to Pallet Town!"));
+        pokeCenter.at(9, 5).addItem(exitDoor);
 
 
-        // add nurse joy
-        Actor nurse = new Nurse();
-        gameMap.at(29, 6).addActor(nurse);
+
 
 
         world.run();
