@@ -14,6 +14,13 @@ public class EnterDoorAction extends Action {
      * One of the 8-d navigation
      */
     protected String direction;
+
+    /**
+     * Constructor to create an Action that will move the Actor to a Location in a given Direction.
+     *
+     * @param moveToLocation Location of map to enter to
+     * @param direction String describing the map to enter in, e.g. "Poke center"
+     */
     public EnterDoorAction(Location moveToLocation, String direction) {
         this.moveToLocation = moveToLocation;
         this.direction = direction;
