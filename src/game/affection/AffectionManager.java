@@ -209,6 +209,10 @@ public class AffectionManager {
         return pokemon+ pokemon.printHP() +"(AP: " + getAffectionPoint(trainer, pokemon) + ")";
     }
 
+    /**
+     * Print all the affection points corresponding to all trainers and pokemons in affection managers.
+     * Used only for testing purposes
+     */
     public void print() {
         System.out.println("\n all");
         for (Actor trainer: affectionPoints.keySet()) {

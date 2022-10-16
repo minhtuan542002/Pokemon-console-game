@@ -12,6 +12,12 @@ import game.action.CaptureAction;
 import game.action.FeedPokefruitAction;
 import game.affection.AffectionManager;
 
+/**
+ * The behaviour class for trainer to get the catch pokemon action
+ *
+ * Created by:
+ * @author Minh tuan Le
+ */
 public class CatchPokemonBehaviour implements Behaviour{
 
     @Override

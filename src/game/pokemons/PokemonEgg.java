@@ -51,7 +51,7 @@ public class PokemonEgg extends Item implements Tradable {
      * @param pokemon is an actor in the game
      */
     public PokemonEgg(Pokemon pokemon) {
-        super(pokemon + "PokemonEgg", 'g', true);
+        super(pokemon + " PokemonEgg", 'g', true);
         this.pokemon = pokemon;
     }
 
@@ -98,15 +98,15 @@ public class PokemonEgg extends Item implements Tradable {
 
             hatchTime ++;
 
-            if (hatchTime == 2 && pokemon instanceof Squirtle ) {   // && condition still needed
+            if (hatchTime == 2 && pokemon instanceof Squirtle ) {
                 location.addActor(new Squirtle());
             }
 
-            if (hatchTime == 3 && pokemon instanceof Bulbasaur ) {   // && condition still needed
+            if (hatchTime == 3 && pokemon instanceof Bulbasaur ) {
                 location.addActor(new Bulbasaur());
             }
 
-            if (hatchTime == 4 && pokemon instanceof Charmander ) {   // && condition still needed
+            if (hatchTime == 4 && pokemon instanceof Charmander ) {
                 location.addActor(new Charmander());
             }
         }

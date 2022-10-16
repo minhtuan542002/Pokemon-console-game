@@ -13,6 +13,11 @@ import game.behaviours.*;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * The trainer class, which is reserved for non-player trainers
+ * Created by:
+ * @author Minh Tuan Le
+ */
 public class Trainer extends Actor {
     /**
      * The behaviour list for the trainer, sorted by its priority implemented by key

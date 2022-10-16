@@ -5,6 +5,11 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 
+/**
+ * The action to enter a Door
+ * Created by:
+ * @author Zhijun Chen
+ */
 public class EnterDoorAction extends Action {
     /**
      * Target location
