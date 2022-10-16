@@ -76,12 +76,12 @@ public abstract class Pokemon extends Actor {
      */
     public void toggleWeapon(boolean isEquipping) {
         if(isEquipping) {
-            for(WeaponItem weaponItem : backupWeapon.getSpecialWeapon())
-                this.addItemToInventory(weaponItem);
+//            for(WeaponItem weaponItem : backupWeapon.getSpecialWeapon())
+//                this.addItemToInventory(weaponItem);
         }
         else {
-            for(WeaponItem weaponItem : backupWeapon.getSpecialWeapon())
-                this.removeItemFromInventory(weaponItem);
+//            for(WeaponItem weaponItem : backupWeapon.getSpecialWeapon())
+//                this.removeItemFromInventory(weaponItem);
         }
     }
 

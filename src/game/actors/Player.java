@@ -25,7 +25,6 @@ import java.util.List;
 
 public class Player extends Actor {
 
-
 	/**
 	 *  creates player's inventory as an array list
 	 */
@@ -48,13 +47,15 @@ public class Player extends Actor {
 		AffectionManager.getInstance().registerTrainer(this);
 	}
 
+
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		// everytime it should print candy list ethe
+		// everytime it should print candy list
 		System.out.println(Candy.candyList);
+
 
 		TimePerceptionManager.getInstance().run();
 
