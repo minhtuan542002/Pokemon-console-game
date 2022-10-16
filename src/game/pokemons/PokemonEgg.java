@@ -51,7 +51,7 @@ public class PokemonEgg extends Item implements Tradable {
      * @param pokemon is an actor in the game
      */
     public PokemonEgg(Pokemon pokemon) {
-        super(pokemon + "PokemonEgg", 'g', true);
+        super(pokemon + " PokemonEgg", 'g', true);
         this.pokemon = pokemon;
     }
 
