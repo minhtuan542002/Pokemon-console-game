@@ -86,16 +86,8 @@ public class PokemonEgg extends Item implements Tradable {
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);
-
-
     }
 
-//    public DropItemAction getDropAction(Actor actor) {
-//        if (location.getGround() instanceof Incubator){
-//            return new DropItemAction(this);
-//        }
-//        return null;
-//    }
 
     /**
      * Method to keep track of time. Even egg is dropped, hatch time is used to track the time (turns) required to hatch
@@ -119,23 +111,7 @@ public class PokemonEgg extends Item implements Tradable {
             }
         }
 
-//        if (hatchTime == 3) {
-//            if (location.containsAnActor()){
-//                for (Exit exits: location.getExits()){
-//
-//                    if (!exits.getDestination().containsAnActor()){
-//                        exits.getDestination().addActor(new Bulbasaur());
-//                        break;
-//                    }
-//                }
-//            }else{
-//                location.addActor(new Bulbasaur()); // for bulbasaur
-//            }
-////
-//        }
-//        if (hatchTime == 4) {
-//            location.addActor(new Charmander()); // for charmander
-//        }
+
 
     }
 }
