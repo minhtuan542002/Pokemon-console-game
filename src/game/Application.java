@@ -93,7 +93,6 @@ public class Application {
         gameMap.at(33,4).addActor(goh);
         Actor squirtle = new Squirtle();
         gameMap.at(32,3).addActor(squirtle);
-        AffectionManager.getInstance().increaseAffection(goh, squirtle, 100);
 
         //Add first pokemon - Charmander
         Actor charmander = new Charmander();
