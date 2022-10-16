@@ -8,9 +8,21 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.affection.AffectionManager;
 import game.pokemons.Pokemon;
 
+/**
+ * Action for the player to see other npc trainer's information
+ * Created by:
+ * @author Minh Tuan Le
+ */
 public class SeeTrainerInfoAction extends Action {
+    /**
+     * The trainer the the action will query information about
+     */
     Actor trainer;
 
+    /**
+     * Constructor
+     * @param trainer The trainer the the action will query information about
+     */
     public SeeTrainerInfoAction(Actor trainer) {
         this.trainer=trainer;
     }
