@@ -28,7 +28,7 @@ public class TradeAction extends Action {
     /**
      * number of candies player has defined as an integer
      */
-    private int candyBalance;
+//    private int candyBalance;
 
     /**
      * Constructor
@@ -49,20 +49,24 @@ public class TradeAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         /** candy balance is obtained by finding length of player's inventory */
-        candyBalance = Candy.candyList.size() + 1;
+//        candyBalance = Candy.candyList.size() + 1;
+        System.out.println(Candy.candyBalance);
         System.out.println(Player.playerInventory);
 
         /** if conditional to check if there are enough candies to trade the item */
-        if (candyBalance >= cost) {
+        if (Candy.candyBalance >= cost) {
             item.addToPlayerInventory(actor);
 
             for (int i =0; i < cost; i++){
                 Candy.candyList.remove(0);
+                Candy.candyBalance -= 1;
             }
+            return "Traded " + item+ "successfully";
+        } else {
+            /** returns a message if player does not have enough candies */
+            return "you don't have enough candies";
         }
 
-        /** returns a message if player does not have enough candies */
-        return "you don't have enough candies";
     }
 
     /**

@@ -52,9 +52,9 @@ public class Nurse extends Actor {
         nurseTradableList.put("Water Pokefruit", new Pokefruit(Element.WATER));
         nurseTradableList.put("Grass Pokefruit", new Pokefruit(Element.GRASS));
         nurseTradableList.put("Pokeball", new Pokeball(new Charmander()));
-        nurseTradableList.put("Charmander", new PokemonEgg(new Charmander()));
-        nurseTradableList.put("Squirtle", new PokemonEgg(new Squirtle()));
-        nurseTradableList.put("Bulbasaur", new PokemonEgg(new Bulbasaur()));
+        nurseTradableList.put("Charmander Egg", new PokemonEgg(new Charmander()));
+        nurseTradableList.put("Squirtle Egg", new PokemonEgg(new Squirtle()));
+        nurseTradableList.put("Bulbasaur Egg", new PokemonEgg(new Bulbasaur()));
         return new DoNothingAction();
 
         // note to self, instead of having this here, move up or down

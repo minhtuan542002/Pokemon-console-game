@@ -8,10 +8,19 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.action.SummonAction;
+import game.actors.Player;
+import game.environments.Incubator;
 import game.trades.Tradable;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Class representing TradeAction
+ * Created by:
+ * @author Ishrat Kaur
+ * Modified by: Minh Tuan Le, and Ishrat Kaur
+ */
 
 public class PokemonEgg extends Item implements Tradable {
 
@@ -20,7 +29,10 @@ public class PokemonEgg extends Item implements Tradable {
      */
     private int hatchTime;
 
-    private boolean consumed = true;
+    /**
+     * Private Boolean to keep track if Pokemon egg has been dropped
+     */
+    private boolean dropped = false;
 
     /**
      * The Pokemon contained inside the PokemonEgg
@@ -32,12 +44,14 @@ public class PokemonEgg extends Item implements Tradable {
      */
     private int cost = 5;
 
+
+
     /**
      * Constructor
      * @param pokemon is an actor in the game
      */
     public PokemonEgg(Pokemon pokemon) {
-        super("PokemonEgg", 'g', false);
+        super(pokemon + "PokemonEgg", 'g', true);
         this.pokemon = pokemon;
     }
 
@@ -50,13 +64,21 @@ public class PokemonEgg extends Item implements Tradable {
         return cost;
     }
 
+    /**
+     * Method to obtain Pokemon
+     * @return pokemon
+     */
     public Pokemon getPokemon() {
         return pokemon;
     }
 
-    public void dropped(Actor actor, GameMap map) {
-
+    /**
+     * method call to change dropped variable's value to true
+     */
+    public void dropped() {
+        dropped = true;
     }
+
     /**
      * implements method to add item to player's inventory after successful trade
      * @param actor is the player
@@ -64,14 +86,56 @@ public class PokemonEgg extends Item implements Tradable {
     @Override
     public void addToPlayerInventory(Actor actor) {
         actor.addItemToInventory(this);
+
+
     }
 
+//    public DropItemAction getDropAction(Actor actor) {
+//        if (location.getGround() instanceof Incubator){
+//            return new DropItemAction(this);
+//        }
+//        return null;
+//    }
 
+    /**
+     * Method to keep track of time. Even egg is dropped, hatch time is used to track the time (turns) required to hatch
+     * @param location The location of the ground on which we lie.
+     */
+    public void tick(Location location) {
+        if (dropped == true){
 
-    @Override
-    public List<Action> getAllowableActions() {
-        ArrayList<Action> actions = new ArrayList<>();
-        actions.add(new DropItemAction(this));
-        return super.getAllowableActions();
+            hatchTime ++;
+
+            if (hatchTime == 2 && pokemon instanceof Squirtle ) {   // && condition still needed
+                location.addActor(new Squirtle());
+            }
+
+            if (hatchTime == 3 && pokemon instanceof Bulbasaur ) {   // && condition still needed
+                location.addActor(new Bulbasaur());
+            }
+
+            if (hatchTime == 4 && pokemon instanceof Charmander ) {   // && condition still needed
+                location.addActor(new Charmander());
+            }
+        }
+
+//        if (hatchTime == 3) {
+//            if (location.containsAnActor()){
+//                for (Exit exits: location.getExits()){
+//
+//                    if (!exits.getDestination().containsAnActor()){
+//                        exits.getDestination().addActor(new Bulbasaur());
+//                        break;
+//                    }
+//                }
+//            }else{
+//                location.addActor(new Bulbasaur()); // for bulbasaur
+//            }
+////
+//        }
+//        if (hatchTime == 4) {
+//            location.addActor(new Charmander()); // for charmander
+//        }
+
     }
 }
