@@ -6,7 +6,16 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.elements.Element;
 
+/**
+ * Item to create special effect for Special attack FireSpin of Charizard
+ *
+ * Created by:
+ * @author Minh Tuan Le
+ */
 public class Fire extends Item {
+    /**
+     * Number of turns since it is created, used to remove it after some time
+     */
     private int turnCount=0;
     /***
      * Constructor.

@@ -27,8 +27,11 @@ import game.time.TimePerception;
  * @author Minh Tuan Le
  */
 public class Charmander extends Pokemon implements TimePerception, Evolving {
-
+    /**
+     * The count of turn since the instance was created, used for evolution
+     */
     private int turnCount=0;
+
     /**
      * Constructor.
      */
@@ -36,7 +39,6 @@ public class Charmander extends Pokemon implements TimePerception, Evolving {
         super("Charmander", 'c', 100);
         // HINT: add more relevant behaviours here
         this.addCapability(Element.FIRE);
-        this.addCapability(Element.DRAGON);
         this.addCapability(Evolution.BASE);
         this.registerInstance();
         backupWeapon = new BackupWeapons(new Ember());
