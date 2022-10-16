@@ -25,7 +25,8 @@ import java.util.Map;
 /**
  * Class representing Pokefruit
  * Created by:
- * @author Ishrat Kaur
+ * @author Ishrat
+ * editing by: Minh Tuan
  */
 
 public class Nurse extends Actor {
@@ -43,6 +44,14 @@ public class Nurse extends Actor {
         // NOTE TO SELF: add tradable items in here
     }
 
+    /**
+     * creates new hashmap with all the tradable items that nurse joy can trade
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return
+     */
     @Override // implements method inherited
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // nurse should show tradable items in her inventory,
@@ -57,7 +66,6 @@ public class Nurse extends Actor {
         nurseTradableList.put("Bulbasaur Egg", new PokemonEgg(new Bulbasaur()));
         return new DoNothingAction();
 
-        // note to self, instead of having this here, move up or down
     }
 
     /**

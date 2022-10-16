@@ -11,12 +11,25 @@ import game.trades.Tradable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class representing enumeration of type of Candy
+ * Created by:
+ * @author Ishrat Kaur
+ * Modified by: Minh Tuan Le, Zhijun Chen and Ishrat Kaur
+ */
+
 public class Candy extends Item  {
 
     /**
      * creates a list of candies
      */
     public static ArrayList<String> candyList = new ArrayList<>();
+
+
+    /**
+     * integer representing candy balance, given by the length of the array
+     */
+    public static int candyBalance = candyList.size();
 
     /**
      * Constructor
@@ -35,6 +48,11 @@ public class Candy extends Item  {
         return new PickUpCandyAction(this);
     }
 
+    /**
+     * method allows actor to drop a candy
+     * @param actor is the player
+     * @returns a new pickup candy action
+     */
     @Override
     public DropItemAction getDropAction(Actor actor) { return new DropCandyAction(this); }
 
@@ -43,7 +61,17 @@ public class Candy extends Item  {
      */
     public void addCandy() {
         candyList.add("candy");
+        candyBalance += 1;
     }
 
-    public void dropCandy() {candyList.remove(0);}
+    /**
+     * method allows actor to drop a candy
+     * @returns a new pickup candy action
+     */
+    public void dropCandy() {
+        candyList.remove(0);
+        candyBalance -= 1;
+    }
+
+
 }
