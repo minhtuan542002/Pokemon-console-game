@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Status;
 import game.action.AttackAction;
 import game.elements.Element;
 import game.elements.ElementsHelper;
@@ -26,7 +27,7 @@ public class AttackBehaviour implements Behaviour {
         Actor targetedActor = null;
         for (Exit exit : map.locationOf(actor).getExits()){
             targetedActor= map.getActorAt(exit.getDestination());
-            if((targetedActor != null) && !(ElementsHelper.hasAnySimilarElements(actor, targetedActor.findCapabilitiesByType(Element.class))) ) {
+            if((targetedActor != null) && (!targetedActor.hasCapability(Status.IMMUNE)) && !(ElementsHelper.hasAnySimilarElements(actor, targetedActor.findCapabilitiesByType(Element.class))) ) {
                 return new AttackAction(targetedActor, exit.getName());// behaviour will stop here.
             }
         }
